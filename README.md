@@ -9,7 +9,7 @@
 www.UkraineCrisis.me
 Namecheap (domain)
 
-#The proposed project: The goal of our project is to bring attention to the ongoing crisis in Ukraine and how it has affected the lives of individuals who have been impacted.
+# The proposed project: The goal of our project is to bring attention to the ongoing crisis in Ukraine and how it has affected the lives of individuals who have been impacted.
  
 URLs of at least three data sources that you will programmatically scrape (at least one must be a RESTful API) (be very sure about this):
 
