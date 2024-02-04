@@ -1,15 +1,15 @@
 # Ukrain-Refugees
 
-Canvas / Slack group number (please check this carefully) : Group 6
+# Canvas / Slack group number (please check this carefully) : Group 6
 
-Names of the team members: Samuel Osibamowo, Chuma Anigbogu, Alex Jimenez, Derek Chen, Akhilesh Bitla
+# Names of the team members: Samuel Osibamowo, Chuma Anigbogu, Alex Jimenez, Derek Chen, Akhilesh Bitla
 
-Name of the project (alphanumeric, no spaces, max 32 chars; this will also be your URL): 
+# Name of the project (alphanumeric, no spaces, max 32 chars; this will also be your URL): 
 
 www.UkraineCrisis.me
 Namecheap (domain)
 
-The proposed project: The goal of our project is to bring attention to the ongoing crisis in Ukraine and how it has affected the lives of individuals who have been impacted.
+#The proposed project: The goal of our project is to bring attention to the ongoing crisis in Ukraine and how it has affected the lives of individuals who have been impacted.
  
 URLs of at least three data sources that you will programmatically scrape (at least one must be a RESTful API) (be very sure about this):
 
@@ -27,7 +27,7 @@ https://ai4good.org/ukraine/?gclid=CjwKCAiAiP2tBhBXEiwACslfnl-QIOpelN28AWGerGv1L
 
 https://www.razomforukraine.org/
 
-at least three models
+# at least three models
 
 Support Groups/Resources
 	Attributes:
@@ -60,11 +60,11 @@ Current Location
 Immigration Distance
 Story and Personal Struggles (How recent?)
 
-an estimate of the number of instances of each model: 3 per each model
+# an estimate of the number of instances of each model: 3 per each model
 
 each model must have many attributes 
 
-describe five of those attributes for each model that you can filter or sort: 
+# describe five of those attributes for each model that you can filter or sort: 
 
 Support Groups: Date(Recent - Past; vice-versa), Name (A-Z, Z-A), Location (A-Z, Z-A), Common Services/Type(Fundraiser, Projects), Resources (similar resources)
 
@@ -72,13 +72,13 @@ News Media: Publication Date, Name, Location, Type of source (video, speech, tex
 
 Refugee Profile: Age group, Location, Name, Distance Immigrated, Date of Story
 
-instances of each model must connect to instances of at least two other models:
+# instances of each model must connect to instances of at least two other models:
 
 One instance of a refugee profile will connect to a specific instance of a support group, and this support group instance will connect to a related news story that the group addresses in their purpose
 
 instances of each model must be rich with different media (e.g., feeds, images, maps, text, videos, etc.) (be very sure about this): 
 
-describe two types of media for instances of each model
+# describe two types of media for instances of each model
 
 Support Groups:
 Map
@@ -91,14 +91,13 @@ Text(Title/Info/Published date/Publisher info)
 Images/Videos/Recordings (from the article)
 
 
-
 Refugee Profile
 Images/videos
 Text (Description of their story, etc)
 Map
 
 
-describe three questions that your site will answer
+# describe three questions that your site will answer
 
 How could you help out?
 What is currently going on in Ukraine?
