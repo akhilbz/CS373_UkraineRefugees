@@ -1,0 +1,32 @@
+.main {
+    text-align: center;
+}
+
+.teamContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.memberCard {
+    width: 200px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    position: relative; 
+  }
+  
+.imageContainer {
+    border-radius: 50%;
+    width: 175px;
+    height: 175px;
+    position: relative; 
+    overflow: hidden;
+}
+
+.memberImage {
+    border-radius: 50%;
+    object-fit: cover; 
+    object-position: center;
+}
