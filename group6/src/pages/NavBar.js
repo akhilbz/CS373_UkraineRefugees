@@ -5,7 +5,7 @@ const NavBar = () => {
     const router = useRouter();
 
     return (
-        <nav className="fixed top-0 left-0 w-full flex items-center justify-between p-4 bg-gray-800 text-white">
+        <nav className="top-0 left-0 w-full flex items-center justify-between p-4 bg-gray-800 text-white">
             <div className="flex items-center justify-center w-full">
                 <div className="flex justify-evenly w-full max-w-5xl">
                     <Link href="/" passHref>
