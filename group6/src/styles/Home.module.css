@@ -1,0 +1,19 @@
+/* Home.module.css */
+.main-content {
+    text-align: center;
+}
+
+.main-content h1 {
+    font-size: 4rem;
+    font-weight: bold;
+    margin-bottom: 2rem;
+}
+
+.main-content p {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.main-content .italic {
+    font-style: italic;
+}
