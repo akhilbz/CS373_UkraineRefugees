@@ -9,7 +9,7 @@ export default function Home() {
       {/* Home Screen */}
       <main className={`flex min-h-screen flex-col items-center justify-between p-24 ${styles.mainContent}`}>
         <div className={styles.mainContent}>
-          <h1 className={styles.title}>Ukraine Refugee</h1>
+          <h1 className={styles.title}>Ukraine Crisis</h1>
           <div className={styles.imageContainer}>
             {/* Ukraine picture */}
             <div className={styles.imageWrapper}>
