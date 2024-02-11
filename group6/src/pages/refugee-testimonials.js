@@ -1,9 +1,7 @@
 import NavBar from './NavBar'; // Adjust the path as necessary
 import Grid from '@mui/material/Grid'; // Grid version 2
 import Card from '@mui/material/Card';
-import CardHeader from '@mui/material/CardHeader';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
+import RefugeeCard from '@/components/RefugeeCard';
 
 export default function RefugeeTestimonials() {
     const items = [1, 2, 3, 4, 5, 6];
@@ -18,7 +16,49 @@ export default function RefugeeTestimonials() {
                         <Grid item xs={6} md={4}>
                             <Card className=' text-center'>
                                 <div>
-
+                                    <RefugeeCard />
+                                </div>
+                            </Card>
+                        </Grid>
+                        <Grid item xs={6} md={4}>
+                            <Card className=' text-center'>
+                                <div>
+                                    <RefugeeCard />
+                                </div>
+                            </Card>
+                        </Grid>
+                        <Grid item xs={6} md={4}>
+                            <Card className=' text-center'>
+                                <div>
+                                    <RefugeeCard />
+                                </div>
+                            </Card>
+                        </Grid>
+                        <Grid item xs={6} md={4}>
+                            <Card className=' text-center'>
+                                <div>
+                                    <RefugeeCard />
+                                </div>
+                            </Card>
+                        </Grid>
+                        <Grid item xs={6} md={4}>
+                            <Card className=' text-center'>
+                                <div>
+                                    <RefugeeCard />
+                                </div>
+                            </Card>
+                        </Grid>
+                        <Grid item xs={6} md={4}>
+                            <Card className=' text-center'>
+                                <div>
+                                    <RefugeeCard />
+                                </div>
+                            </Card>
+                        </Grid>
+                        <Grid item xs={6} md={4}>
+                            <Card className=' text-center'>
+                                <div>
+                                    <RefugeeCard />
                                 </div>
                             </Card>
                         </Grid>
