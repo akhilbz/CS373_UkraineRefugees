@@ -1,3 +1,4 @@
+import axios from 'axios';
 import Image from "next/image";
 import styles from '../styles/AboutUs.module.css'
 import { useState, useEffect } from 'react';
@@ -6,7 +7,7 @@ import NavBar from './NavBar'; // Import the NavBar component from index.js
 const defaultImageUrl = '/images/default.jpg';
 
 // Constant that contains all of the team members info 
-const teamMembers = [
+let teamMembers = [
     {
         id: 1,
         name: 'Samuel Osibamowo',
@@ -15,7 +16,9 @@ const teamMembers = [
         bio: 'I am a Junior Computer Science Major and getting a minor in Buisness. Samuel loves coding! In my free time, I enjoy drawing and skateboarding',
         commits: 50,
         issues: 10,
-        tests: 5,
+        tests: 0,
+        gitLabName: 'Samuel Osibamowo',
+        username: 'SamuelOsibamowo',
     },
     {
         id: 2,
@@ -23,9 +26,11 @@ const teamMembers = [
         role: 'Fulll Stack Engineer',
         imageUrl: "/chuma.jpg",
         bio: 'I am a Junior CS student with a minor in Informatics. In my free time, I enjoy playing basketball, lsitening to music and hanging out with friends.',
-        commits: 50,
+        commits: 0,
         issues: 10,
-        tests: 5,
+        tests: 0,
+        gitLabName: 'chumaanigbogu',
+        username: 'chumaanigbogu',
     },
     {
         id: 3,
@@ -36,6 +41,8 @@ const teamMembers = [
         commits: 50,
         issues: 10,
         tests: 5,
+        gitLabName: 'Derek Chen',
+        username: 'chumaanigbogu',
     },
     {
         id: 4,
@@ -45,7 +52,9 @@ const teamMembers = [
         bio: 'I am a Junior Computer Science Major with a minor in Buisness. In my free time I like to watch and play sports with my friends as well as grill.  ',
         commits: 50,
         issues: 10,
-        tests: 5,
+        tests: 0,
+        gitLabName :'AlexJimenez12',
+        username: 'ajimenez1173',
     },
     {
         id: 5,
@@ -55,7 +64,9 @@ const teamMembers = [
         bio: 'I am a Sophomore pursuing CS and Entrepreneurship. In my free time, I love to work out and try new food!',
         commits: 50,
         issues: 10,
-        tests: 5,
+        tests: 0,
+        gitLabName: 'akhilbz',
+        username: 'akhilb04',
     },
 ];
 
@@ -141,11 +152,66 @@ const documentation = [
 
 export default function AboutUs() {
     const [teamMembersState, setTeamMembersState] = useState(teamMembers);
+    let totalCommits = 0;
+    let totalIssues = 0;
 
     useEffect(() => {
         const fetchAndUpdateData = async () => {
             // Fetch commits and issues from GitLab API
             // Update the state of teamMembersState with new data
+            const projectId = process.env.NEXT_PUBLIC_GITLAB_PROJECT_ID;
+            const gitLabToken = process.env.NEXT_PUBLIC_GITLAB_API_TOKEN;
+
+            try {
+                // Fetch commits data
+                const contributorsResponse = await axios.get(
+                    `https://gitlab.com/api/v4/projects/${projectId}/repository/contributors`, {
+                        headers: {
+                            'PRIVATE-TOKEN': gitLabToken,
+                        },
+                    }
+                );
+                const contributorRes = contributorsResponse.data;
+
+                // Fetch issues data
+                const issuesResponse = await axios.get(
+                    `https://gitlab.com/api/v4/projects/${projectId}/issues`, {
+                        headers: {
+                            'PRIVATE-TOKEN': gitLabToken,
+                        },
+                    }
+                );
+                const issueRes = issuesResponse.data;
+
+                // console.log('GOT HERE');
+                // console.log('COMMITS: ', contributorRes);
+                console.log('ISSUES: ', issueRes);
+
+                // Example of how you might update team members based on fetched data
+                // This example assumes you will map or correlate GitLab data with your team members
+                // You need to adapt this logic based on how your data is structured and how you want to correlate it
+                
+                const updatedTeamMembers = teamMembers.map(member => {
+                    // Logic to update each member's commits and issues based on the fetched data
+                    // This is an example and needs to be adapted
+                    let commits = 0;
+                    // He had two commits on a different gitlab account, so we just add it manually here
+                    if (member.gitLabName == 'AlexJimenez12') {
+                        commits = 2;
+                    }
+                    commits += contributorRes.find(contributor => contributor.name === member.gitLabName)?.commits || member.commits;
+                    const issues = issueRes.filter(issue => issue.assignee && issue.assignee.username === member.username).length;
+                    
+                    totalCommits += commits;
+                    totalIssues += issues;
+
+                    return { ...member, commits, issues };
+                });
+
+                setTeamMembersState(updatedTeamMembers);
+            } catch (error) {
+                console.error('Error fetching data from GitLab:', error);
+            }
         };
 
         fetchAndUpdateData();
@@ -184,7 +250,7 @@ export default function AboutUs() {
                     {/* This code is repeated on this about us page, it prints all of the information and images on the site in boxes  */}
                     <h1 className={styles.h1Style}>Team</h1>
                     <div className={styles.teamContainer}>
-                        {teamMembers.map(member => (
+                        {teamMembersState.map(member => (
                             <div key={member.id} className={styles.memberCard}>
                                 <div className={styles.imageContainer}>
                                     <Image
