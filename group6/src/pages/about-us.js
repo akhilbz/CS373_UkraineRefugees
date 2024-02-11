@@ -42,7 +42,7 @@ let teamMembers = [
         issues: 10,
         tests: 5,
         gitLabName: 'Derek Chen',
-        username: 'chumaanigbogu',
+        username: 'derex1987',
     },
     {
         id: 4,
