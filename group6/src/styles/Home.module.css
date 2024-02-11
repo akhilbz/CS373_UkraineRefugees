@@ -1,19 +1,39 @@
-/* Home.module.css */
-.main-content {
+.title {
+    font-size: 4rem;
+    font-weight: bold;
+    color: rgba(255, 255, 0, 0.946);
+    margin-top: -5rem;
+    margin-bottom: 1rem;
+    /* For Text Border */
+    text-shadow: -3px -3px 0 black,
+        3px -3px 0 black,
+        -3px 3px 0 black,
+        3px 3px 0 black;
+}
+
+
+.mainContent {
     text-align: center;
 }
 
-.main-content h1 {
-    font-size: 4rem;
-    font-weight: bold;
-    margin-bottom: 2rem;
-}
-
-.main-content p {
+.paragraph {
     font-size: 1.5rem;
+   
+}
+
+.italic {
+    font-style: italic;
+}
+
+.imageContainer {
+    display: flex;
+    justify-content: center;
     margin-bottom: 2rem;
 }
 
-.main-content .italic {
-    font-style: italic;
+.imageWrapper {
+    display: inline-block;
+    /* Border for Picture */
+    border: 5px solid whitesmoke;
+   
 }
