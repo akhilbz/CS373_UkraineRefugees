@@ -126,7 +126,7 @@ const dataSources = [
     {
         id: 2,
         name: 'Data Source 2',
-        link: 'https://ai4good.org/ukraine/?gclid=CjwKCAiAiP2tBhBXEiwACslfnl-QIOpelN28AWGerGv1LyYcssKRzfTYCJCi0hNm9G7pXWgAmgaRvhoCtIMQAvD_BwE',
+        link: 'https://www.redcross.org/about-us/news-and-events/news/2022/voices-of-ukraine-refugees-tell-their-stories.html',
     },
     {
         id: 3,
