@@ -152,8 +152,9 @@ const documentation = [
 
 export default function AboutUs() {
     const [teamMembersState, setTeamMembersState] = useState(teamMembers);
-    let totalCommits = 0;
-    let totalIssues = 0;
+    const [totalCommits, setTotalCommits] = useState(0);
+    const [totalClosedIssues, setTotalClosedIssues] = useState(0);
+
 
     useEffect(() => {
         const fetchAndUpdateData = async () => {
@@ -172,6 +173,8 @@ export default function AboutUs() {
                     }
                 );
                 const contributorRes = contributorsResponse.data;
+                const commitsCount = contributorRes.reduce((acc, contributor) => acc + contributor.commits, 0);
+                setTotalCommits(commitsCount);
 
                 // Fetch issues data
                 const issuesResponse = await axios.get(
@@ -183,13 +186,19 @@ export default function AboutUs() {
                 );
                 const issueRes = issuesResponse.data;
 
-                // console.log('GOT HERE');
-                // console.log('COMMITS: ', contributorRes);
-                console.log('ISSUES: ', issueRes);
 
-                // Example of how you might update team members based on fetched data
-                // This example assumes you will map or correlate GitLab data with your team members
-                // You need to adapt this logic based on how your data is structured and how you want to correlate it
+                const closedIssuesResponse = await axios.get(
+                    `https://gitlab.com/api/v4/projects/${projectId}/issues?state=closed`, {
+                        headers: {
+                            'PRIVATE-TOKEN': gitLabToken,
+                        },
+                    }
+                );
+
+                const closedIssuesCount = closedIssuesResponse.data.length;
+                setTotalClosedIssues(closedIssuesCount);
+                
+                console.log('ISSUES: ', issueRes);
                 
                 const updatedTeamMembers = teamMembers.map(member => {
                     // Logic to update each member's commits and issues based on the fetched data
@@ -202,9 +211,6 @@ export default function AboutUs() {
                     commits += contributorRes.find(contributor => contributor.name === member.gitLabName)?.commits || member.commits;
                     const issues = issueRes.filter(issue => issue.assignee && issue.assignee.username === member.username).length;
                     
-                    totalCommits += commits;
-                    totalIssues += issues;
-
                     return { ...member, commits, issues };
                 });
 
@@ -289,6 +295,12 @@ export default function AboutUs() {
 
                             </div>
                         ))}
+                    </div>
+
+                    
+                    <div>
+                        <p>Total Issues: {totalClosedIssues}</p>
+                        <p>Total Commits: {totalCommits}</p>
                     </div>
 
 
