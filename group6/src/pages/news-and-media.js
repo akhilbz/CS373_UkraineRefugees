@@ -42,12 +42,12 @@ export default function mediaModel() {
     },
     {
         id: 4,
-        title: "Russia launches barrage of 45 drones over Ukraine as Kyiv changes more military leaders",
-        date: "February 11, 2024",
-        source: "AP",
-        caption: "Russian forces launched 45 drones over Ukraine in a five-and-a-half-hour barrage Sunday, officials said, as Ukrainian President Volodymyr Zelenskyy continued the reshuffle of his war cabinet as the war enters its third year.",
-        image: 'https://dims.apnews.com/dims4/default/957dad5/2147483647/strip/true/crop/8640x5760+0+0/resize/1440x960!/format/webp/quality/90/?url=https%3A%2F%2Fassets.apnews.com%2Faa%2F5f%2F2c54e0fa639581dadd6b94b1ee84%2F90b6475c05814c08a48c25dde0384dd6',
-        link: 'https://apnews.com/article/russia-ukraine-war-drone-strike-cabinet-reshuffle-a8cfc77e01401e448e05c77e37b746c3'
+        title: "What do Ukrainian refugees make of Israel’s war on Gaza?",
+        date: "February 2, 2024",
+        source: "Aljazeera",
+        caption: "Civilians have been bombed, killed and injured in their thousands. Infrastructure has been shelled – and millions displaced. Today, these images of conflict evoke Gaza, but 120 days ago were more associated with Ukraine following the Russian invasion of the former Soviet republic in February 2022.",
+        image: 'https://www.aljazeera.com/wp-content/uploads/2024/02/Olena-1706867436.jpg?resize=770%2C513&quality=80',
+        link: 'https://www.aljazeera.com/news/2024/2/2/ukrainian-refugees-divided-on-israels-war-on-gaza-but-feel-for-civilians'
     }]
 
     return (
