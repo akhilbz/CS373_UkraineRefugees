@@ -175,6 +175,7 @@ export default function AboutUs() {
                 const contributorRes = contributorsResponse.data;
                 const commitsCount = contributorRes.reduce((acc, contributor) => acc + contributor.commits, 0);
                 setTotalCommits(commitsCount);
+                console.log('COMMITS: ', contributorRes);
 
                 // Fetch issues data
                 const issuesResponse = await axios.get(
