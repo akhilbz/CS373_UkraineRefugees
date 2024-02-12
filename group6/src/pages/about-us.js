@@ -121,7 +121,7 @@ const dataSources = [
     {
         id: 1,
         name: 'Data Source 1',
-        link: 'https://ai4good.org/ukraine/?gclid=CjwKCAiAiP2tBhBXEiwACslfnl-QIOpelN28AWGerGv1LyYcssKRzfTYCJCi0hNm9G7pXWgAmgaRvhoCtIMQAvD_BwE',
+        link: 'https://apnews.com/hub/russia-ukraine',
     },
     {
         id: 2,
@@ -131,7 +131,7 @@ const dataSources = [
     {
         id: 3,
         name: 'Data Source 3',
-        link: 'https://ai4good.org/ukraine/?gclid=CjwKCAiAiP2tBhBXEiwACslfnl-QIOpelN28AWGerGv1LyYcssKRzfTYCJCi0hNm9G7pXWgAmgaRvhoCtIMQAvD_BwE',
+        link: 'https://www.weho.org/services/human-services/resources-for-ukrainian-refugees',
     },
 ]
 
