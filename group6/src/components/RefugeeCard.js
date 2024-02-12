@@ -1,4 +1,5 @@
 import React from "react";
+import Link from 'next/link';
 export default function RefugeeCard({ refugee_data }) {
     
     return (
@@ -20,9 +21,10 @@ export default function RefugeeCard({ refugee_data }) {
             </div>
             
             <div className=" flex justify-center p-2">
-                <button className="h-[25px] w-[85px] bg-slate-300 rounded-lg ">
-                Read More
-                </button>
+                <Link href={`/refugee-testimonials/${refugee_data.id}`} key={refugee_data.id} passHref>
+                    <button className="h-[25px] w-[85px] bg-slate-300 rounded-lg "> Read More
+                    </button>
+                </Link>
             </div>
         </div>
     );

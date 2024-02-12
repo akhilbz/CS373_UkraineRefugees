@@ -5,6 +5,7 @@ import RefugeeCard from '@/components/RefugeeCard';
 
 export default function RefugeeTestimonials() {
     const testimonials = [{
+        id: 1,
         name: "Tanja",
         date: "March 16, 2022",
         topic: "Long Journey After Leaving Husband Behind",
@@ -12,7 +13,8 @@ export default function RefugeeTestimonials() {
         image: 'https://www.redcross.org/content/dam/redcross/about-us/news/2022/tanja.jpg.transform/768/q70/feature/image.jpeg'
         
     },
-    {
+    {   
+        id: 2,
         name: "Pendura",
         date: "March 16, 2022",
         topic: "Headed to Spain",
@@ -20,6 +22,7 @@ export default function RefugeeTestimonials() {
         image: 'https://www.redcross.org/content/dam/redcross/about-us/news/2022/pendura.jpg.transform/768/q70/feature/image.jpeg'
     },
     {
+        id: 3,
         name: "Alina",
         date: "March 16, 2022",
         topic: "Trauma of War",
@@ -27,6 +30,7 @@ export default function RefugeeTestimonials() {
         image: 'https://www.redcross.org/content/dam/redcross/about-us/news/2022/tanja.jpg.transform/768/q70/feature/image.jpeg'
     },
     {
+        id: 4,
         name: "Francis",
         date: "March 16, 2022",
         topic: "Foreign Students Flee Ukraine",
@@ -35,6 +39,7 @@ export default function RefugeeTestimonials() {
         
     },
     {
+        id: 5,
         name: "Viktoria",
         date: "March 16, 2022",
         topic: "Victoria from Kyiv",
@@ -42,6 +47,7 @@ export default function RefugeeTestimonials() {
         image: 'https://www.redcross.org/content/dam/redcross/about-us/news/2022/victoria.jpg.transform/768/q70/feature/image.jpeg'
     },
     {
+        id: 6,
         name: "Magdalena",
         date: "March 16, 2022",
         topic: "Welcoming Refugees",
