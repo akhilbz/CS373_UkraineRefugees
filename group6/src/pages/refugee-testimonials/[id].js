@@ -21,7 +21,7 @@ export default function TestimonialPage() {
               <div>
                 <h1 className=' p-3 flex justify-center text-2xl font-semibold'>{`Name: ${refTestimonial.name}`}</h1>
                 <h2 className=' flex w-full justify-end pr-3 text-xl font-semibold'>{`${refTestimonial.date}`}</h2>
-                <p className='m-2 text-lg flex justify-end w-full'>{`"${refTestimonial.caption}"`}</p>
+                <p className='p-2 text-lg flex justify-end w-full'>{`"${refTestimonial.caption}"`}</p>
               </div>
             </div>
             <div>
