@@ -24,21 +24,21 @@ export default function mediaModel() {
     },
     {
         id: 2,
-        title: "Russia launches barrage of 45 drones over Ukraine as Kyiv changes more military leaders",
-        date: "February 11, 2024",
-        source: "AP",
-        caption: "Russian forces launched 45 drones over Ukraine in a five-and-a-half-hour barrage Sunday, officials said, as Ukrainian President Volodymyr Zelenskyy continued the reshuffle of his war cabinet as the war enters its third year.",
-        image: 'https://dims.apnews.com/dims4/default/957dad5/2147483647/strip/true/crop/8640x5760+0+0/resize/1440x960!/format/webp/quality/90/?url=https%3A%2F%2Fassets.apnews.com%2Faa%2F5f%2F2c54e0fa639581dadd6b94b1ee84%2F90b6475c05814c08a48c25dde0384dd6',
-        link: 'https://apnews.com/article/russia-ukraine-war-drone-strike-cabinet-reshuffle-a8cfc77e01401e448e05c77e37b746c3'
+        title: "Russian Drone Strike Ignites a Fuel Depot, Setting a Neighborhood Ablaze in Ukraine",
+        date: "February 10, 2024",
+        source: "The New York Times",
+        caption: "Seven people from two families died in the inferno in Kharkiv on Friday night, as burning oil flowed like lava. “People were doomed,” an official said.",
+        image: 'https://static01.nyt.com/images/2024/02/10/multimedia/10ukraine-strike-interior-tmfk/10ukraine-strike-interior-tmfk-superJumbo.jpg?quality=75&auto=webp',
+        link: 'https://www.nytimes.com/2024/02/10/world/russia-drone-strike-kharkiv-ukraine.html'
     },
     {
         id: 3,
-        title: "Russia launches barrage of 45 drones over Ukraine as Kyiv changes more military leaders",
-        date: "February 11, 2024",
-        source: "AP",
-        caption: "Russian forces launched 45 drones over Ukraine in a five-and-a-half-hour barrage Sunday, officials said, as Ukrainian President Volodymyr Zelenskyy continued the reshuffle of his war cabinet as the war enters its third year.",
-        image: 'https://dims.apnews.com/dims4/default/957dad5/2147483647/strip/true/crop/8640x5760+0+0/resize/1440x960!/format/webp/quality/90/?url=https%3A%2F%2Fassets.apnews.com%2Faa%2F5f%2F2c54e0fa639581dadd6b94b1ee84%2F90b6475c05814c08a48c25dde0384dd6',
-        link: 'https://apnews.com/article/russia-ukraine-war-drone-strike-cabinet-reshuffle-a8cfc77e01401e448e05c77e37b746c3'
+        title: "Two years of war: Ukrainian refugees face lasting exile",
+        date: "February 12, 2024",
+        source: "yahoo!news",
+        caption: "Iryna, Maryna, Katya -- three generations from one family -- fled their home in southern Ukraine just after the war started, hoping to return quickly.",
+        image: 'https://s.yimg.com/ny/api/res/1.2/Co4p1BpA3TXMc857X_HIOw--/YXBwaWQ9aGlnaGxhbmRlcjt3PTk2MDtoPTY0MDtjZj13ZWJw/https://media.zenfs.com/en/afp.co.uk/0bd404b3aa3a0a4d4eca67c9242bd099',
+        link: 'https://uk.news.yahoo.com/two-years-war-ukrainian-refugees-061851366.html?guccounter=1'
     },
     {
         id: 4,

@@ -21,7 +21,7 @@ export default function MediaCard({ media_data }) {
             </div>
             
             <div className=" flex justify-center p-2">
-                <Link href={`/refugee-testimonials/${media_data.id}`} key={media_data.id} passHref>
+                <Link href={media_data.link} passHref>
                     <button className="h-[25px] w-[85px] bg-slate-300 rounded-lg "> Read More
                     </button>
                 </Link>
