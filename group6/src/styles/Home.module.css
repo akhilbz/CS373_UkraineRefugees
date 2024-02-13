@@ -11,14 +11,12 @@
         3px 3px 0 black;
 }
 
-
 .mainContent {
     text-align: center;
 }
 
 .paragraph {
     font-size: 1.5rem;
-   
 }
 
 .italic {
@@ -35,5 +33,15 @@
     display: inline-block;
     /* Border for Picture */
     border: 5px solid whitesmoke;
-   
+}
+
+.tweetContainer {
+    display: flex;
+    justify-content:space-evenly;
+    margin-bottom: 2rem;
+    margin-top: 2rem;
+}
+
+.twitter-tweet {
+    flex-basis: 300px;
 }
