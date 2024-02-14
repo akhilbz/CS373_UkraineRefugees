@@ -47,24 +47,17 @@ export default function Home() {
             Our group is deeply committed to advocating for a peaceful resolution and supporting those affected by the conflict.
           </p>
           <p className={styles.italic}>"United in solidarity, we can make a difference."</p>
-          {/* Container to hold all tweets side by side */}
+          {/* Container to hold all tweets */}
           <div className={styles.tweetContainer}>
-            {/* Embed the first tweet */}
-            <blockquote className="twitter-tweet" data-width="300">
-              <p lang="en" dir="ltr">NEW from <a href="https://twitter.com/KarolinaAHird?ref_src=twsrc%5Etfw">@KarolinaAHird</a>: Russia seeks to persuade Ukraine &amp; its supporters that its control of occupied Ukrainian territory is irreversible.<br /><br />The Kremlin is using the same playbook in the lands Russia has taken since Feb 24, 2022, that it’s used in Crimea and Donbas since 2014.⬇️ <a href="https://t.co/qBE1b8BBgZ">pic.twitter.com/qBE1b8BBgZ</a>
-              </p>
-              <a href="https://twitter.com/TheStudyofWar/status/1755962302258446634?ref_src=twsrc%5Etfw">February 9, 2024</a>
-            </blockquote>
+            {/* Embed the timeline for @The Study of War */}
+            <a className="twitter-timeline" data-lang="en" data-width="400" data-height="800" href="https://twitter.com/TheStudyofWar?ref_src=twsrc%5Etfw">Tweets by TheStudyofWar</a>
             {/* Embed the second tweet */}
             <blockquote className="twitter-tweet" data-width="300">
               <p lang="en" dir="ltr">President Zelensky announces the firing of Ukraine's top general, the country's biggest military shake-up since Russia's full-scale invasion began<a href="https://t.co/gxVlF14wby">https://t.co/gxVlF14wby</a></p>
               <a href="https://twitter.com/cnnbrk/status/1755634610803818853?ref_src=twsrc%5Etfw">February 8, 2024</a>
             </blockquote>
-            {/* Embed the third tweet*/}
-            <blockquote className="twitter-tweet" data-width="300">
-              <p lang="en" dir="ltr">More than 120,000 Ukrainian refugees have left the country since Russia began its attack, UN refugee agency says. <a href="https://t.co/JBxkXnOGgO">https://t.co/JBxkXnOGgO</a></p>
-              <a href="https://twitter.com/NBCNews/status/1497524065392906242?ref_src=twsrc%5Etfw">February 26, 2022</a>
-            </blockquote>
+            {/* Embed the timeline for @ikhurshudyan */}
+            <a className="twitter-timeline" data-lang="en" data-width="400" data-height="800" href="https://twitter.com/ikhurshudyan?ref_src=twsrc%5Etfw">Tweets by ikhurshudyan</a>
           </div>
         </div>
         {/* Home Screen */}
