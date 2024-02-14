@@ -54,8 +54,11 @@ export default function mediaModel() {
         <div>
             <NavBar />
             <main>
-                <h1 className=' pt-7 pb-12 flex justify-center text-3xl font-bold'>Media and Articles</h1>
-                <div className=' pb-12 flex justify-center w-full'>
+                <div className="top-7 flex relative items-center w-full"> {/* Add relative here */}
+                    <h1 className='text-3xl pt-7 font-bold w-full text-center absolute'>Media and Articles</h1> {/* Absolute positioning */}
+                    <h2 className='absolute pt-7 right-3 font-light text-xl'>Total Articles: {newsReels.length}</h2> {/* Right aligned */}
+                </div>
+                <div className='pt-28 flex justify-center w-full'>
                     <div className="flex justify-center items-center">
                         <Grid container spacing={3} className='flex justify-center '>
                             {newsReels.map(newsObject => (
