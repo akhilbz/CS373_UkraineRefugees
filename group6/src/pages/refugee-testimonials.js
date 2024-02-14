@@ -88,10 +88,10 @@ export default function RefugeeTestimonials() {
             <NavBar />
             <main>
                 <div className="top-7 flex relative items-center w-full"> 
-                    <h1 className='text-3xl pt-7 font-bold w-full text-center absolute'>Refugee Testimonials</h1> 
+                    <h1 className='text-3xl pt-7 font-medium w-full text-center absolute'>Refugee Testimonials</h1> 
                     <h2 className='absolute pt-7 right-3 font-light text-xl'>Total Testimonials: {testimonials.length}</h2> 
                 </div>
-                <div className=' pt-28 flex justify-center w-full'>
+                <div className=' pt-28 pb-8 flex justify-center w-full'>
                     <div className="flex justify-center items-center">
                         <Grid container spacing={3} className='flex justify-center '>
                             {refTestimonials.map(testimonial => (

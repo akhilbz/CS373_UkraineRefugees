@@ -1,0 +1,55 @@
+import NavBar from '../NavBar';
+import { useRouter } from 'next/router';
+import { useSelector } from 'react-redux';
+
+export default function TestimonialPage() {
+  const router = useRouter();
+  const { id } = router.query; // Accessing the dynamic part of the URL
+
+  // Use useSelector without await, as it is synchronous
+  const newsMedia = useSelector(state => 
+    state.newsMedia.find((item, index) => index === parseInt(id, 10) - 1)
+  );
+
+  // Optionally, handle loading or undefined state
+  if (!newsMedia) {
+    return <div>Loading...</div>; // or any other loading state
+  }
+
+
+  return (
+    <div>
+      <NavBar />
+      <main>
+        <h1 className=' pt-7 pb-5 flex justify-center text-3xl font-sans'>{newsMedia?.title ?? "_topic_" }</h1>
+        <div className="flex justify-center">
+          <div className='rounded-2xl w-[1000px] h-auto pb-8 bg-white bg-opacity-40'>
+            <div className="flex justify-between">
+              <div className="flex justify-start p-3 w-full">
+                <img src={newsMedia?.image  ?? "_img_url_"} className=" max-h-[250px] rounded-2xl "/>
+              </div>
+              <div className='w-full'>
+                <div className=" rounded-tr-2xl rounded-bl-2xl pb-2 flex items-end flex-col justify-end w-auto h-auto bg-yellow-600">
+                    <h1 className=' py-1 pr-3 flex justify-end text-xl font-light'>{`Publisher: ${newsMedia?.publisher ?? "_publisher_"}`}</h1>
+                    <h2 className=' flex w-full justify-end pr-3 text-xl font-light'>{`Date Published: ${newsMedia?.date ?? "_date_"}`}</h2>
+                    <h2 className=' flex w-full justify-end pr-3 text-xl font-light'>{`Source Type: ${newsMedia?.source ?? "_source_"}`}</h2>
+                    <h2 className=' flex w-full justify-end pr-3 text-xl font-light'>{`Location: ${newsMedia?.location ?? "_location_"}`}</h2>
+                </div>
+                <p className='p-2 text-lg flex justify-end w-full font-light'>{`"${newsMedia?.caption ?? "_caption_"}"`}</p>
+              </div>
+            </div>
+            <div className="w-[1000px] flex flex-col  items-center justify-between">
+                <div className="w-[750px] flex justify-start pb-2">
+                    <h1 className='text-2xl font-light'>Read More at:</h1>
+                </div>
+                <div className='rounded-2xl flex justify-center items-center w-[800px] h-[50px]  bg-white'>
+                <h1 className='text-center text-md text-yellow-600'><span className=' hover:underline'>
+                    <a href={newsMedia?.link ?? 'www.google.com'} target="_blank" rel="noopener noreferrer">{newsMedia?.link ?? 'www.google.com'}</a></span></h1>
+                </div>
+            </div>
+          </div>
+        </div>
+    </main>
+    </div>
+  );
+};

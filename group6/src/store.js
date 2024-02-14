@@ -2,6 +2,7 @@ import { configureStore } from '@reduxjs/toolkit';
 
 const initialState = {
   refTestimonials: [],
+  newsMedia: [],
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -9,6 +10,8 @@ const rootReducer = (state = initialState, action) => {
   switch (action.type) {
     case 'SET_REF_TESTIMONIALS':
       return { ...state, refTestimonials: [...action.payload] };
+      case 'SET_NEWS_MEDIA':
+        return { ...state, newsMedia: [...action.payload] };
     default:
       return state;
   }
