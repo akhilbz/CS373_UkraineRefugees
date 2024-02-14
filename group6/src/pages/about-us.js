@@ -25,7 +25,7 @@ let teamMembers = [
         name: 'Chuma Anigbogu',
         role: 'Fulll Stack Engineer',
         imageUrl: "/chuma.jpg",
-        bio: 'I am a Junior CS student with a minor in Informatics. In my free time, I enjoy playing basketball, lsitening to music and hanging out with friends.',
+        bio: 'I am a Junior CS student with a minor in Informatics. In my free time, I enjoy playing basketball, listening to music and hanging out with friends.',
         commits: 0,
         issues: 10,
         tests: 0,
