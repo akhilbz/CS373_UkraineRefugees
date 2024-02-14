@@ -18,7 +18,9 @@ export default function RefugeeTestimonials() {
         Airlink has supported the transportation of 5 assessment and emergency response teams to Poland, Romania and Moldova, with more on their way. 
         They are currently working with humanitarian, logistics, and airline partners to send relief supplies.`,
         link: 'https://airlinkflight.org/responses/ukraine/',
-        resources: ['https://airlinkflight.org/help-ukraine/', 'https://airlinkflight.org/get-involved/ways-to-give/miles/']
+        resources: ['https://airlinkflight.org/help-ukraine/', 'https://airlinkflight.org/get-involved/ways-to-give/miles/'],
+        youtube: 'https://youtu.be/Asr-EWQ_IGQ?si=Mm1L6QehuEuUEHkY',
+        picture: 'https://www.adra.ua/wp-content/uploads/2023/03/airlink.jpg'
     },
     {
         id: 2,
@@ -31,7 +33,9 @@ export default function RefugeeTestimonials() {
         Emergency gifts support CARE’s Ukraine Crisis Fund to reach 4 million with immediate aid and recovery, food, water, hygiene kits, 
         psychosocial support, and cash assistance — prioritizing women and girls, families, and the elderly.`,
         link: 'https://www.care.org/our-work/where-we-work/ukraine/',
-        resources: ['https://my.care.org/site/Donation2?df_id=31067&mfc_pref=T&31067.donation=form1&s_src=172220UCF000&_ga=2.30464188.2031879431.1646163164-1963073507.1646163164', 'https://www.airbnb.org/help-ukraine']
+        resources: ['https://my.care.org/site/Donation2?df_id=31067&mfc_pref=T&31067.donation=form1&s_src=172220UCF000&_ga=2.30464188.2031879431.1646163164-1963073507.1646163164', 'https://www.airbnb.org/help-ukraine'],
+        youtube: 'https://youtu.be/SG_hzZnYFE4?si=GD_6cyPyo_eaLZzM',
+        picture: 'https://www.care.org/wp-content/uploads/2021/01/primary_logo_horizontal_min.svg'
     },
     {
         id: 3,
@@ -45,7 +49,9 @@ export default function RefugeeTestimonials() {
         They recently sent a large shipment of diabetic supplies and they are offering Ukrainian partners IV fluids, antibiotics, medications for anesthesia, sutures, and cardiovascular medication.`,
         link: 'https://www.directrelief.org/',
         resources: ['https://secure.directrelief.org/site/Donation2?df_id=2924&mfc_pref=T&2924.donation=form1', 'https://www.directrelief.org/get-involved/donate-crypto/',
-        'https://www.weho.org/services/human-services/resources-for-ukrainian-refugees#:~:text=visit%20their%20website-,here,-.']
+        'https://www.weho.org/services/human-services/resources-for-ukrainian-refugees#:~:text=visit%20their%20website-,here,-.'],
+        youtube: 'https://youtu.be/MzPBYv1hG34?si=NZr54ZgExRfRmo14',
+        picture: 'https://mma.prnewswire.com/media/1018033/Direct_Relief_Logo.jpg?p=facebook'
     },
     {
         id: 4,
@@ -57,7 +63,9 @@ export default function RefugeeTestimonials() {
         Emergency teams have arrived at the Polish-Ukrainian border and are currently trying to get essential staff and supplies into Ukraine. 
         They are working to set up emergency response activities and dispatching teams to Poland, Moldova, Hungary, Romania, and Slovakia.`,
         link: 'https://www.doctorswithoutborders.org/',
-        resources: ['https://donate.doctorswithoutborders.org/secure/donate?_ga=2.127093709.1983195640.1646178330-1517370144.1646178330']
+        resources: ['https://donate.doctorswithoutborders.org/secure/donate?_ga=2.127093709.1983195640.1646178330-1517370144.1646178330'],
+        youtube: 'https://youtu.be/f0dY7qazyQE?si=oqgJDR_fIutncFIn',
+        picture: 'https://www.doctorswithoutborders.org/themes/custom/msf/meta_image.png'
     },
     {
         id: 5,
@@ -70,7 +78,9 @@ export default function RefugeeTestimonials() {
         Ukrainian evacuees can choose a country where they have family or friends that can take them in. 
         Donations will assist in relocating thousands of women and children throughout Europe and funds will be used for booking and paying for immediate transportation.`,
         link: 'https://www.globalempowermentmission.org/mission/ukraine-crisis/',
-        resources: ['https://globalempowermentmission.kindful.com/?campaign=1182522']
+        resources: ['https://globalempowermentmission.kindful.com/?campaign=1182522'],
+        youtube: 'https://youtu.be/xFxDpPJZbSo?si=WzxchsxeMmTnpV-E',
+        picture: 'https://www.globalempowermentmission.org/wp-content/uploads/2020/08/gem-logo-social.jpg'
     },
     {
         id: 6,
@@ -82,7 +92,9 @@ export default function RefugeeTestimonials() {
         All donations to the Ukraine Crisis Relief Fund will support humanitarian assistance in impacted communities in Ukraine and surrounding regions where Ukrainian refugees have fled. 
         GlobalGiving's nonprofit partners are providing shelter, food, clean water, psychosocial support, and economic assistance to displaced communities.`,
         link: 'https://www.globalgiving.org/projects/ukraine-crisis-relief-fund/',
-        resources: ['https://www.globalgiving.org/projects/ukraine-crisis-relief-fund/']
+        resources: ['https://www.globalgiving.org/projects/ukraine-crisis-relief-fund/'],
+        youtube: 'https://youtu.be/Sic0rsdnglY?si=ONSB9-KmvOGCNw6L',
+        picture: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS-hX98ipa3t9IA3VzudSwcyYMXsIzFGSXnff2_TLFDd2u1zCdDry0jEBOHCxwhcSTewUU&usqp=CAU'
     }];
 
     useEffect(() => {
