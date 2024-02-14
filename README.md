@@ -1,104 +1,61 @@
 # Ukrain-Refugees
 
-# Canvas / Slack group number (please check this carefully) : Group 6
+## Canvas / Slack group number: Group 6
 
-# Names of the team members: Samuel Osibamowo, Chuma Anigbogu, Alex Jimenez, Derek Chen, Akhilesh Bitla
+### Names of the team members:
+- Samuel Osibamowo
+- Chuma Anigbogu
+- Alex Jimenez
+- Derek Chen
+- Akhilesh Bitla
 
-# Name of the project (alphanumeric, no spaces, max 32 chars; this will also be your URL): 
+### Project Name: UkraineCrisis
 
-www.UkraineCrisis.me
-Namecheap (domain)
-
-# The proposed project: The goal of our project is to bring attention to the ongoing crisis in Ukraine and how it has affected the lives of individuals who have been impacted.
- 
-URLs of at least three data sources that you will programmatically scrape (at least one must be a RESTful API) (be very sure about this):
-
-https://data.unhcr.org/es/dataviz/107#:~:text=Ukrainian%20refugees%20and%20asylum%2Dseekers&text=These%20statistics%20are%20sourced%20from,page%20for%20the%20latest%20figures (Restful API )
-
-https://developer.twitter.com/en/docs/api-reference-index (Twitter News Feed on Ukraine Crisis)
-
-https://hilltopusc.org/employment-training (support group/resources)
-
-https://hope-ua.com/?gclid=CjwKCAiAiP2tBhBXEiwACslfnvLkVhngn8tuJFcmhhftRstpCFs7JIu67XdqFCBwEVH8jqEoAhOKRhoCQvIQAvD_BwE
-
-https://eu-solidarity-ukraine.ec.europa.eu/helping-ukrainians-how-you-can-donate-and-engage_en
-
-https://ai4good.org/ukraine/?gclid=CjwKCAiAiP2tBhBXEiwACslfnl-QIOpelN28AWGerGv1LyYcssKRzfTYCJCi0hNm9G7pXWgAmgaRvhoCtIMQAvD_BwE
-
-https://www.razomforukraine.org/
-
-# at least three models
-
-Support Groups/Resources
-	Attributes:
-Name/Basic Info
-Services provided 
-Contact Info
-Location
-Year Established
-Resources (under support group) [Instance]
-		Attributes:
-Name of Resource
-Type of Resource
-Status of the Resource (if it's currently available)
-External & Internal Resources
-
-News/Media
-	Attributes:
-Name/Basic Info 
-Publisher
-The Actual News
-Different Sources (video, text, speech)
-Date 
+**Website URL:** [www.UkraineCrisis.me](https://www.UkraineCrisis.me)
+**API Documentation:** [https://documenter.getpostman.com/view/32956503/2sA2r53kYq](https://documenter.getpostman.com/view/32956503/2sA2r53kYq)
 
 
-Refugee Profile
-Attributes:
-Name
-Basic info (age, available resources)
-Current Location
-Immigration Distance
-Story and Personal Struggles (How recent?)
+### Project Proposal
+The goal of our project is to bring attention to the ongoing crisis in Ukraine and how it has affected the lives of individuals who have been impacted.
 
-# an estimate of the number of instances of each model: 3 per each model
+### Data Sources
+We will programmatically scrape data from the following sources:
+- [UNHCR Ukrainian refugees data](https://data.unhcr.org/es/dataviz/107) (Restful API)
+- [Twitter API for Ukraine Crisis News Feed](https://developer.twitter.com/en/docs/api-reference-index) (Twitter News Feed on Ukraine Crisis)
+- [Hilltop USC for Employment & Training Support](https://hilltopusc.org/employment-training) (Support group/resources)
+- [Hope for Ukraine](https://hope-ua.com/)
+- [EU Solidarity with Ukraine](https://eu-solidarity-ukraine.ec.europa.eu/helping-ukrainians-how-you-can-donate-and-engage_en)
+- [AI for Good](https://ai4good.org/ukraine/)
+- [Razom for Ukraine](https://www.razomforukraine.org/)
 
-each model must have many attributes 
+### Models
+#### 1. Support Groups/Resources
+   - **Attributes:** Name/Basic Info, Services/Resources provided, Status of Resource, Contact Info, Location, Year Established
+   - **Instances:** 3
 
-# describe five of those attributes for each model that you can filter or sort: 
+#### 2. News/Media
+   - **Attributes:** Name/Basic Info, Publisher, The Actual News, Different Sources, Date
+   - **Instances:** 3
 
-Support Groups: Date(Recent - Past; vice-versa), Name (A-Z, Z-A), Location (A-Z, Z-A), Common Services/Type(Fundraiser, Projects), Resources (similar resources)
+#### 3. Refugee Profile
+   - **Attributes:** Name, Basic info, Current Location, Immigration Distance, Story and Personal Struggles
+   - **Instances:** 3
 
-News Media: Publication Date, Name, Location, Type of source (video, speech, text), Publisher
+### Sorting and Filtering
+- **Support Groups:** Date, Name, Location, Common Services/Type, Resources
+- **News Media:** Publication Date, Name, Location, Type of source, Publisher
+- **Refugee Profile:** Age group, Location, Name, Distance Immigrated, Date of Story
 
-Refugee Profile: Age group, Location, Name, Distance Immigrated, Date of Story
+### Connections
+Each model will connect to instances of at least two other models, enhancing the richness and interactivity of the data.
 
-# instances of each model must connect to instances of at least two other models:
+### Media Types
+- **Support Groups:** Maps, Videos, Images, Text
+- **News:** Text, Images/Videos/Recordings
+- **Refugee Profile:** Images/Videos, Text, Map
 
-One instance of a refugee profile will connect to a specific instance of a support group, and this support group instance will connect to a related news story that the group addresses in their purpose
-
-instances of each model must be rich with different media (e.g., feeds, images, maps, text, videos, etc.) (be very sure about this): 
-
-# describe two types of media for instances of each model
-
-Support Groups:
-Map
-Videos
-Images of that Group
-Text
-
-News: 
-Text(Title/Info/Published date/Publisher info)
-Images/Videos/Recordings (from the article)
-
-
-Refugee Profile
-Images/videos
-Text (Description of their story, etc)
-Map
-
-
-# describe three questions that your site will answer
-
-How could you help out?
-What is currently going on in Ukraine?
-How has this event affected people’s lives?
+### Site Questions
+Our site will provide answers to the following questions:
+1. How could you help out?
+2. What is currently going on in Ukraine?
+3. How has this event affected people’s lives?
