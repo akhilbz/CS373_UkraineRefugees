@@ -18,6 +18,10 @@ export default function TestimonialPage() {
     state.newsMedia.find((item, index) => index === parseInt(id, 10) - 1)
   );
 
+  if (!isLoaded) {
+    return <div>Loading Map...</div>; // or any other loading state
+  }
+
   // Optionally, handle loading or undefined state
   if (!newsMedia) {
     return <div>Loading...</div>; // or any other loading state
