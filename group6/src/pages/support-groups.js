@@ -12,7 +12,7 @@ export default function RefugeeTestimonials() {
         id: 1,
         organization: "Airlink",
         status: "active",
-        year: "2024",
+        year: "2022",
         caption: `Airlink is a rapid-response humanitarian relief organization that connects airlines and pre-qualified nonprofits to help communities in crisis.`,
         about: `Airlink is a rapid-response humanitarian relief organization that connects airlines and pre-qualified nonprofits to help communities in crisis. 
         Airlink has supported the transportation of 5 assessment and emergency response teams to Poland, Romania and Moldova, with more on their way. 
@@ -26,7 +26,7 @@ export default function RefugeeTestimonials() {
         id: 2,
         organization: "CARE (Cooperative For Assistance And Relief Everywhere)",
         status: "active",
-        year: "2024",
+        year: "2022",
         caption: `CARE works around the globe to save lives, defeat poverty and achieve social justice.`,
         about: `CARE works around the globe to save lives, defeat poverty and achieve social justice. 
         CARE has launched a humanitarian appeal to support the most vulnerable Ukrainians, particularly women-headed households and the elderly. 
@@ -71,7 +71,7 @@ export default function RefugeeTestimonials() {
         id: 5,
         organization: "Global Empowerment Mission",
         status: "active",
-        year: "2024",
+        year: "2022",
         caption: `Global Empowerment Mission (GEM) is a nonprofit organization founded as a first responder to global disasters.`,
         about: `Global Empowerment Mission (GEM) is a nonprofit organization founded as a first responder to global disasters. 
         GEM has established a welcome center in Medyka, Poland on the Ukraine border. The Welcome Center will serve as a relocation and aid center. 
@@ -86,7 +86,7 @@ export default function RefugeeTestimonials() {
         id: 6,
         organization: "GlobalGiving",
         status: "active",
-        year: "2024",
+        year: "2022",
         caption: `GlobalGiving is a nonprofit that supports other nonprofits by connecting them to donors.`,
         about: `GlobalGiving is a nonprofit that supports other nonprofits by connecting them to donors. 
         All donations to the Ukraine Crisis Relief Fund will support humanitarian assistance in impacted communities in Ukraine and surrounding regions where Ukrainian refugees have fled. 
