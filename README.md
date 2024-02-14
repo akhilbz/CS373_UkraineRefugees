@@ -11,8 +11,8 @@
 
 ### Project Name: UkraineCrisis
 
-**Website URL:** [www.UkraineCrisis.me](https://www.UkraineCrisis.me)
-**API Documentation:** [https://documenter.getpostman.com/view/32956503/2sA2r53kYq](https://documenter.getpostman.com/view/32956503/2sA2r53kYq)
+- **Website URL:** [www.UkraineCrisis.me](https://www.UkraineCrisis.me)
+- **API Documentation:** [https://documenter.getpostman.com/view/32956503/2sA2r53kYq](https://documenter.getpostman.com/view/32956503/2sA2r53kYq)
 
 
 ### Project Proposal
