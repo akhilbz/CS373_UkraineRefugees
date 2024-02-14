@@ -9,7 +9,7 @@ export default function TestimonialPage() {
 
   const center = { lat: 48.3794, lng: 31.1656 }
   const { isLoaded } = useJsApiLoader({
-    googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
+    googleMapsApiKey: process.env.NEXT_PUBLIC_REACT_APP_GOOGLE_MAPS_API_KEY,
   })
 
 
