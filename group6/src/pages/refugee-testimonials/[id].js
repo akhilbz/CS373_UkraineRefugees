@@ -19,7 +19,6 @@ export default function TestimonialPage() {
   );
 
   if (!isLoaded) {
-    console.log("Here")
     return <div>Loading Map...</div>; // or any other loading state
   }
   // Optionally, handle loading or undefined state
@@ -42,6 +41,7 @@ export default function TestimonialPage() {
               <div>
                 <h1 className=' p-3 flex justify-center text-2xl font-light'>{`Name: ${refTestimonial?.name ?? "_name_"}`}</h1>
                 <h2 className=' flex w-full justify-end pr-3 text-xl font-light'>{`${refTestimonial?.date ?? "_date_"}`}</h2>
+                <h3 className=' flex w-full justify-end pr-3 text-xl font-light'>{`${refTestimonial?.timeDisplaced ?? "Time Displaced"}`}</h3>
                 <p className='p-2 text-lg flex justify-end w-full'>{`"${refTestimonial?.caption ?? "_caption_"}"`}</p>
               </div>
             </div>
