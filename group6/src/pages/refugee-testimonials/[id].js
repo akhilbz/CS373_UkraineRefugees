@@ -1,16 +1,27 @@
 import NavBar from '../NavBar';
 import { useRouter } from 'next/router';
 import { useSelector } from 'react-redux';
+import { useJsApiLoader, GoogleMap, Marker, } from '@react-google-maps/api';
 
 export default function TestimonialPage() {
   const router = useRouter();
   const { id } = router.query; // Accessing the dynamic part of the URL
+
+  const center = { lat: 48.3794, lng: 31.1656 }
+  const { isLoaded } = useJsApiLoader({
+    googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
+  })
+
 
   // Use useSelector without await, as it is synchronous
   const refTestimonial = useSelector(state => 
     state.refTestimonials.find((item, index) => index === parseInt(id, 10) - 1)
   );
 
+  if (!isLoaded) {
+    console.log("Here")
+    return <div>Loading Map...</div>; // or any other loading state
+  }
   // Optionally, handle loading or undefined state
   if (!refTestimonial) {
     return <div>Loading...</div>; // or any other loading state
@@ -39,6 +50,17 @@ export default function TestimonialPage() {
               <p className='px-3 pt-2 text-lg flex justify-end w-full'>{refTestimonial?.testimonial ?? "_testimonial_"}</p>
             </div>
           </div>
+        </div>
+        <div className='w-[500px] h-[500px] bg-white '>
+          <GoogleMap center={center} zoom={15} mapContainerStyle={{width: '500px', height: '500px'}}
+          options={{
+            zoomControl: false,
+            streetViewControl: false,
+            mapTypeControl: false,
+            fullscreenControl: false,
+          }}>
+            <Marker position={center} />
+          </GoogleMap>
         </div>
     </main>
     </div>
