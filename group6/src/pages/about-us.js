@@ -177,17 +177,6 @@ export default function AboutUs() {
                 setTotalCommits(commitsCount);
                 console.log('COMMITS: ', contributorRes);
 
-                // Fetch issues data
-                const issuesResponse = await axios.get(
-                    `https://gitlab.com/api/v4/projects/${projectId}/issues`, {
-                        headers: {
-                            'PRIVATE-TOKEN': gitLabToken,
-                        },
-                    }
-                );
-                const issueRes = issuesResponse.data;
-
-
                 const closedIssuesResponse = await axios.get(
                     `https://gitlab.com/api/v4/projects/${projectId}/issues?state=closed`, {
                         headers: {
@@ -195,7 +184,7 @@ export default function AboutUs() {
                         },
                     }
                 );
-
+                const issueRes = closedIssuesResponse.data
                 const closedIssuesCount = closedIssuesResponse.data.length;
                 setTotalClosedIssues(closedIssuesCount);
                 
