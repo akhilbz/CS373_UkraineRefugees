@@ -1,10 +1,17 @@
 import NavBar from '../NavBar';
 import { useRouter } from 'next/router';
 import { useSelector } from 'react-redux';
+import { useJsApiLoader, GoogleMap, Marker, } from '@react-google-maps/api';
 
 export default function TestimonialPage() {
   const router = useRouter();
   const { id } = router.query; // Accessing the dynamic part of the URL
+
+  // Pin location
+  const center = { lat: 48.3794, lng: 31.1656 }
+  const { isLoaded } = useJsApiLoader({
+    googleMapsApiKey: process.env.NEXT_PUBLIC_REACT_APP_GOOGLE_MAPS_API_KEY,
+  })
 
   // Use useSelector without await, as it is synchronous
   const newsMedia = useSelector(state => 
@@ -20,7 +27,7 @@ export default function TestimonialPage() {
   return (
     <div>
       <NavBar />
-      <main>
+      <main className='flex flex-col items-center pt-7'>
         <h1 className=' pt-7 pb-5 flex justify-center text-3xl font-sans'>{newsMedia?.title ?? "_topic_" }</h1>
         <div className="flex justify-center">
           <div className='rounded-2xl w-[1000px] h-auto pb-8 bg-white bg-opacity-40'>
@@ -49,7 +56,23 @@ export default function TestimonialPage() {
             </div>
           </div>
         </div>
-    </main>
+
+        <div className='w-[500px] h-[500px] bg-white'>
+          <GoogleMap 
+            center={center}
+            zoom={15}
+            mapContainerStyle={{ width: '500px', height: '500px' }}
+            options={{
+              zoomControl: false,
+              streetViewControl: false,
+              mapTypeControl: false,
+              fullscreenControl: false,
+            }}
+          >
+            <Marker position={center} />
+          </GoogleMap>
+        </div>
+      </main>
     </div>
   );
 };
