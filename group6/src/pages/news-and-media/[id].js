@@ -32,8 +32,8 @@ export default function TestimonialPage() {
     <div>
       <NavBar />
       <main className='flex flex-col items-center pt-7'>
-        <h1 className=' pt-7 pb-5 flex justify-center text-3xl font-sans'>{newsMedia?.title ?? "_topic_" }</h1>
-        <div className="flex justify-center">
+        <h1 className=' pt-5 pb-5 flex justify-center text-3xl font-sans'>{newsMedia?.title ?? "_topic_" }</h1>
+        <div className="flex pb-5 justify-center">
           <div className='rounded-2xl w-[1000px] h-auto pb-8 bg-white bg-opacity-40'>
             <div className="flex justify-between">
               <div className="flex justify-start p-3 w-full">
@@ -49,6 +49,20 @@ export default function TestimonialPage() {
                 <p className='p-2 text-lg flex justify-end w-full font-light'>{`"${newsMedia?.caption ?? "_caption_"}"`}</p>
               </div>
             </div>
+            <div className='w-full flex justify-center h-[350px]  rounded-[50px]'>
+          <GoogleMap 
+            center={center}
+            zoom={15}
+            mapContainerStyle={{ width: '500px', height: '350px', borderRadius: '50px'  }}
+            options={{
+              zoomControl: false,
+              streetViewControl: false,
+              mapTypeControl: false,
+              fullscreenControl: false,
+            }}>
+            <Marker position={center} />
+          </GoogleMap>
+        </div>
             <div className="w-[1000px] flex flex-col  items-center justify-between">
                 <div className="w-[750px] flex justify-start pb-2">
                     <h1 className='text-2xl font-light'>Read More at:</h1>
@@ -59,22 +73,6 @@ export default function TestimonialPage() {
                 </div>
             </div>
           </div>
-        </div>
-
-        <div className='w-[500px] h-[500px] bg-white'>
-          <GoogleMap 
-            center={center}
-            zoom={15}
-            mapContainerStyle={{ width: '500px', height: '500px' }}
-            options={{
-              zoomControl: false,
-              streetViewControl: false,
-              mapTypeControl: false,
-              fullscreenControl: false,
-            }}
-          >
-            <Marker position={center} />
-          </GoogleMap>
         </div>
       </main>
     </div>
