@@ -145,7 +145,7 @@ const documentation = [
     {
         id: 2,
         name: 'API Documentation',
-        link: 'https://gitlab.com/ajimenez1173/cs373-group-6',
+        link: 'https://documenter.getpostman.com/view/32956503/2sA2r53kYq',
 
     }
 ]
