@@ -36,20 +36,39 @@ export default function TestimonialPage() {
         </h1>
         <div className='rounded-2xl w-[1000px] h-auto bg-white bg-opacity-40 p-3 mb-8'>
           <div className="flex flex-col items-center">
-            <img src={refTestimonial?.image ?? "_img_url_"} alt="Testimonial" className="h-[300px] rounded-2xl"/>
+            <div className="flex flex-row justify-between items-center">
+            <img src={refTestimonial?.image ?? "_img_url_"} alt="Testimonial" className="h-[300px] rounded-2xl mr-5"/>
+            <div className='w-[400px] flex justify-center h-[300px]  rounded-[16px]'>
+            <GoogleMap 
+              center={center}
+              zoom={15}
+              mapContainerStyle={{ width: '400px', height: '300px', borderRadius: '16px'  }}
+              options={{
+                zoomControl: false,
+                streetViewControl: false,
+                mapTypeControl: false,
+                fullscreenControl: false,
+              }}>
+              <Marker position={center} />
+            </GoogleMap>
+            </div>
+            </div>
+            
             <div className='text-center'>
-              <h1 className='text-2xl font-light pt-3'>{`Name: ${refTestimonial?.name ?? "_name_"}`}</h1>
-              <h2 className='text-xl font-light'>{`${refTestimonial?.date ?? "_date_"}`}</h2>
-              <h3 className='text-xl font-light'>{`${refTestimonial?.timeDisplaced ?? "_timeDisplaced_"}`}</h3>
-              <p className='text-lg p-2'>{`"${refTestimonial?.caption ?? "_caption_"}"`}</p>
-              <div>
-                <h1 className='text-2xl font-light'>Testimonial:</h1>
+              <div className="bg-blue-700 my-2 rounded-2xl">
+                <h1 className='text-2xl font-light pt-3'>{`Name: ${refTestimonial?.name ?? "_name_"}`}</h1>
+                <h2 className='text-xl font-light'>{`${refTestimonial?.date ?? "_date_"}`}</h2>
+                <h3 className='text-xl font-light'>{`${refTestimonial?.timeDisplaced ?? "_timeDisplaced_"}`}</h3>
+                <p className='text-lg p-2'>{`"${refTestimonial?.caption ?? "_caption_"}"`}</p>
+              </div>
+              <div className='bg-white text-yellow-600 rounded-2xl p-2'>
+                <h1 className='text-2xl font-light underline'>Testimonial</h1>
                 <p className='text-lg'>{refTestimonial?.testimonial ?? "_testimonial_"}</p>
               </div>
             </div>
           </div>
         </div>
-        <div className='w-[500px] h-[500px] bg-white'>
+        {/* <div className='w-[500px] h-[500px] bg-white'>
           <GoogleMap 
             center={center}
             zoom={15}
@@ -63,7 +82,7 @@ export default function TestimonialPage() {
           >
             <Marker position={center} />
           </GoogleMap>
-        </div>
+        </div> */}
       </main>
     </div>
   );

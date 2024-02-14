@@ -50,19 +50,19 @@ export default function TestimonialPage() {
               </div>
             </div>
             <div className='w-full flex justify-center h-[350px]  rounded-[50px]'>
-          <GoogleMap 
-            center={center}
-            zoom={15}
-            mapContainerStyle={{ width: '500px', height: '350px', borderRadius: '50px'  }}
-            options={{
-              zoomControl: false,
-              streetViewControl: false,
-              mapTypeControl: false,
-              fullscreenControl: false,
-            }}>
-            <Marker position={center} />
-          </GoogleMap>
-        </div>
+            <GoogleMap 
+              center={center}
+              zoom={15}
+              mapContainerStyle={{ width: '500px', height: '350px', borderRadius: '50px'  }}
+              options={{
+                zoomControl: false,
+                streetViewControl: false,
+                mapTypeControl: false,
+                fullscreenControl: false,
+              }}>
+              <Marker position={center} />
+            </GoogleMap>
+            </div>
             <div className="w-[1000px] flex flex-col  items-center justify-between">
                 <div className="w-[750px] flex justify-start pb-2">
                     <h1 className='text-2xl font-light'>Read More at:</h1>

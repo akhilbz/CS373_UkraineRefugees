@@ -45,7 +45,7 @@ export default function Home() {
         timeDisplaced: "Time Displaced : 2 years",
         topic: "Trauma of War",
         caption: "Alina and her daughter fled from their neighborhood after heavy bombing in the area.",
-        image: 'https://www.redcross.org/content/dam/redcross/about-us/news/2022/tanja.jpg.transform/768/q70/feature/image.jpeg',
+        image: 'https://www.redcross.org/content/dam/redcross/about-us/news/2022/erica.jpeg.jpg.transform/768/q70/feature/image.jpeg',
         testimonial: `You can see the terror in Erika’s eyes when she talks about her traumatic experience in Ukraine. She says that when the bombing started, she was home with friends. 
         Since that time, it has been a nightmare. “We spent five days in the bombing shelter. I thought that it would never end. I don’t want to go back. In a few hours, I will take the bus to the Netherlands. 
         The Netherlands is a safe haven,” she said while struggling to manage her emotions and feelings. Alina, Erika’s mother, is optimistic that very soon Ukrainians will be able to return home to Ukraine.
@@ -58,7 +58,7 @@ export default function Home() {
         timeDisplaced: "Time Displaced : 2 years",
         topic: "Foreign Students Flee Ukraine",
         caption: "Francis and Frank, both students, left Ukraine when the conflict started.",
-        image: 'https://www.redcross.org/content/dam/redcross/about-us/news/2022/erica.jpeg.jpg.transform/768/q70/feature/image.jpeg',
+        image: 'https://www.redcross.org/content/dam/redcross/about-us/news/2022/francis.jpg.transform/768/q70/feature/image.jpeg',
         testimonial: `Francis from Nigeria and Frank from Cameroon recently talked to a Red Cross worker in Hungary. Both were students in Ukraine when violence erupted. 
         They were among the more than three million people who fled the country. “The Red Cross has been very generous, they offered us food and tea, and helped make food for my baby,” Francis said.`
     },
