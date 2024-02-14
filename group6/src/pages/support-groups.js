@@ -19,7 +19,7 @@ export default function RefugeeTestimonials() {
         They are currently working with humanitarian, logistics, and airline partners to send relief supplies.`,
         link: 'https://airlinkflight.org/responses/ukraine/',
         resources: ['https://airlinkflight.org/help-ukraine/', 'https://airlinkflight.org/get-involved/ways-to-give/miles/'],
-        youtube: 'https://youtu.be/Asr-EWQ_IGQ?si=Mm1L6QehuEuUEHkY',
+        youtube: 'https://www.youtube.com/embed/Asr-EWQ_IGQ?si=CH6qbyakPU1YhOQz',
         picture: 'https://www.adra.ua/wp-content/uploads/2023/03/airlink.jpg'
     },
     {
@@ -34,7 +34,7 @@ export default function RefugeeTestimonials() {
         psychosocial support, and cash assistance — prioritizing women and girls, families, and the elderly.`,
         link: 'https://www.care.org/our-work/where-we-work/ukraine/',
         resources: ['https://my.care.org/site/Donation2?df_id=31067&mfc_pref=T&31067.donation=form1&s_src=172220UCF000&_ga=2.30464188.2031879431.1646163164-1963073507.1646163164', 'https://www.airbnb.org/help-ukraine'],
-        youtube: 'https://youtu.be/SG_hzZnYFE4?si=GD_6cyPyo_eaLZzM',
+        youtube: 'https://www.youtube.com/embed/OICJBJgWT20?si=NVA3bX7ld0GAJFrX',
         picture: 'https://www.care.org/wp-content/uploads/2021/01/primary_logo_horizontal_min.svg'
     },
     {
@@ -50,7 +50,7 @@ export default function RefugeeTestimonials() {
         link: 'https://www.directrelief.org/',
         resources: ['https://secure.directrelief.org/site/Donation2?df_id=2924&mfc_pref=T&2924.donation=form1', 'https://www.directrelief.org/get-involved/donate-crypto/',
         'https://www.weho.org/services/human-services/resources-for-ukrainian-refugees#:~:text=visit%20their%20website-,here,-.'],
-        youtube: 'https://youtu.be/MzPBYv1hG34?si=NZr54ZgExRfRmo14',
+        youtube: 'https://www.youtube.com/embed/MzPBYv1hG34?si=TDOvSEOpdD-BXhf9',
         picture: 'https://mma.prnewswire.com/media/1018033/Direct_Relief_Logo.jpg?p=facebook'
     },
     {
@@ -64,7 +64,7 @@ export default function RefugeeTestimonials() {
         They are working to set up emergency response activities and dispatching teams to Poland, Moldova, Hungary, Romania, and Slovakia.`,
         link: 'https://www.doctorswithoutborders.org/',
         resources: ['https://donate.doctorswithoutborders.org/secure/donate?_ga=2.127093709.1983195640.1646178330-1517370144.1646178330'],
-        youtube: 'https://youtu.be/f0dY7qazyQE?si=oqgJDR_fIutncFIn',
+        youtube: 'https://www.youtube.com/embed/f0dY7qazyQE?si=LTwd-cVBFMikmxF1',
         picture: 'https://www.doctorswithoutborders.org/themes/custom/msf/meta_image.png'
     },
     {
@@ -79,7 +79,7 @@ export default function RefugeeTestimonials() {
         Donations will assist in relocating thousands of women and children throughout Europe and funds will be used for booking and paying for immediate transportation.`,
         link: 'https://www.globalempowermentmission.org/mission/ukraine-crisis/',
         resources: ['https://globalempowermentmission.kindful.com/?campaign=1182522'],
-        youtube: 'https://youtu.be/xFxDpPJZbSo?si=WzxchsxeMmTnpV-E',
+        youtube: 'https://www.youtube.com/embed/xFxDpPJZbSo?si=APg-Iwxe6-931IJP',
         picture: 'https://www.globalempowermentmission.org/wp-content/uploads/2020/08/gem-logo-social.jpg'
     },
     {
@@ -93,7 +93,7 @@ export default function RefugeeTestimonials() {
         GlobalGiving's nonprofit partners are providing shelter, food, clean water, psychosocial support, and economic assistance to displaced communities.`,
         link: 'https://www.globalgiving.org/projects/ukraine-crisis-relief-fund/',
         resources: ['https://www.globalgiving.org/projects/ukraine-crisis-relief-fund/'],
-        youtube: 'https://youtu.be/Sic0rsdnglY?si=ONSB9-KmvOGCNw6L',
+        youtube: 'https://www.youtube.com/embed/Sic0rsdnglY?si=p7sD5eFMaDCmRJV3',
         picture: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS-hX98ipa3t9IA3VzudSwcyYMXsIzFGSXnff2_TLFDd2u1zCdDry0jEBOHCxwhcSTewUU&usqp=CAU'
     }];
 

@@ -61,12 +61,12 @@ export default function TestimonialPage() {
               {supportGroup.youtube && (
                 <div className='rounded-2xl flex justify-center items-center w-[800px] h-[400px] bg-white'>
                   <iframe
-                    width="100%"
-                    height="100%"
-                    src={supportGroup.youtube}
+                    width="560"
+                    height="315"
+                    src={supportGroup?.youtube ?? 'www.google.com'}
                     title="YouTube video player"
                     frameborder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture;webshare"
                     allowfullscreen
                   ></iframe>
                 </div>
