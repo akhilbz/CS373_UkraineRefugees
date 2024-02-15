@@ -40,8 +40,8 @@ export default function TestimonialPage() {
             <img src={refTestimonial?.image ?? "_img_url_"} alt="Testimonial" className="h-[300px] rounded-2xl mr-5"/>
             <div className='w-[400px] flex justify-center h-[300px]  rounded-[16px]'>
             <GoogleMap 
-              center={center}
-              zoom={15}
+              center={{ lat: refTestimonial?.location[0] ?? 48.3794, lng: refTestimonial?.location[1] ?? 31.1656 }}
+              zoom={5}
               mapContainerStyle={{ width: '400px', height: '300px', borderRadius: '16px'  }}
               options={{
                 zoomControl: false,
@@ -49,7 +49,7 @@ export default function TestimonialPage() {
                 mapTypeControl: false,
                 fullscreenControl: false,
               }}>
-              <Marker position={center} />
+              <Marker position={{ lat: refTestimonial?.location[0] ?? 48.3794, lng: refTestimonial?.location[1] ?? 31.1656 }} />
             </GoogleMap>
             </div>
             </div>
@@ -68,21 +68,6 @@ export default function TestimonialPage() {
             </div>
           </div>
         </div>
-        {/* <div className='w-[500px] h-[500px] bg-white'>
-          <GoogleMap 
-            center={center}
-            zoom={15}
-            mapContainerStyle={{ width: '500px', height: '500px' }}
-            options={{
-              zoomControl: false,
-              streetViewControl: false,
-              mapTypeControl: false,
-              fullscreenControl: false,
-            }}
-          >
-            <Marker position={center} />
-          </GoogleMap>
-        </div> */}
       </main>
     </div>
   );

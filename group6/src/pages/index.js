@@ -23,7 +23,8 @@ export default function Home() {
         The other night they were bombing constantly from 4 in the morning to 7. We were afraid so I took the kids and I fled,” she said. 
         “My husband is still there, and I start crying every time I think of that. I am so afraid for the children and the men left behind fighting in Ukraine. 
         I just want to go home; I want to go home as soon as possible. I do not want to travel to other European countries, because I want to stay close, as soon as I can go home, 
-        I will,” she said.`
+        I will,” she said.`,
+        location: [52.2297, 21.0122] // latitude and longitude
     },
     {   
         id: 2,
@@ -36,7 +37,8 @@ export default function Home() {
         testimonial: `Pendura, her daughter Larysa and her grandson Alexander, one year and seven months old, left their village just outside of Kyiv a few days ago. 
         While they wait in the mother and child friendly space at the train station in Lviv, Ukraine, she says that she’s left behind two sons in Kyiv who are fighting.
         During a time in her childhood, Larysa lived in Spain with a host family. When the fighting broke out, the family reached out via social media, inviting her to come stay with them in Spain. 
-        While the family waits for a bus to take them there, they worry about their loved ones at home.`
+        While the family waits for a bus to take them there, they worry about their loved ones at home.`,
+        location: [40.4168, 3.7038] // latitude and longitude 
     },
     {
         id: 3,
@@ -49,7 +51,8 @@ export default function Home() {
         testimonial: `You can see the terror in Erika’s eyes when she talks about her traumatic experience in Ukraine. She says that when the bombing started, she was home with friends. 
         Since that time, it has been a nightmare. “We spent five days in the bombing shelter. I thought that it would never end. I don’t want to go back. In a few hours, I will take the bus to the Netherlands. 
         The Netherlands is a safe haven,” she said while struggling to manage her emotions and feelings. Alina, Erika’s mother, is optimistic that very soon Ukrainians will be able to return home to Ukraine.
-        “We are a strong nation. We will win this war and peace is very close. I will visit Netherlands and very soon I will return to my beloved Ukraine,” Erika said.`
+        “We are a strong nation. We will win this war and peace is very close. I will visit Netherlands and very soon I will return to my beloved Ukraine,” Erika said.`,
+        location: [52.1326, 5.2913] // latitude and longitude
     },
     {
         id: 4,
@@ -60,7 +63,9 @@ export default function Home() {
         caption: "Francis and Frank, both students, left Ukraine when the conflict started.",
         image: 'https://www.redcross.org/content/dam/redcross/about-us/news/2022/francis.jpg.transform/768/q70/feature/image.jpeg',
         testimonial: `Francis from Nigeria and Frank from Cameroon recently talked to a Red Cross worker in Hungary. Both were students in Ukraine when violence erupted. 
-        They were among the more than three million people who fled the country. “The Red Cross has been very generous, they offered us food and tea, and helped make food for my baby,” Francis said.`
+        They were among the more than three million people who fled the country. 
+        “The Red Cross has been very generous, they offered us food and tea, and helped make food for my baby,” Francis said.`,
+        location: [47.1625, 19.5033] // latitude and longitude
     },
     {
         id: 5,
@@ -71,7 +76,8 @@ export default function Home() {
         caption: "Viktoria and her mother are headed to relatives in Poland.",
         image: 'https://www.redcross.org/content/dam/redcross/about-us/news/2022/victoria.jpg.transform/768/q70/feature/image.jpeg',
         testimonial: `Viktoria and her mother came from Kyiv, Ukraine to Záhony at the Hungary-Ukraine border — a distance of more than 500 miles — with two small puppies in her backpack. 
-        She said she could not bear to leave them behind. She and the puppies are now headed to Warsaw, Poland, where they will stay with a cousin.`
+        She said she could not bear to leave them behind. She and the puppies are now headed to Warsaw, Poland, where they will stay with a cousin.`,
+        location: [] // latitude and longitude
     },
     {
         id: 6,
@@ -83,7 +89,8 @@ export default function Home() {
         image: 'https://www.redcross.org/content/dam/redcross/about-us/news/2022/toys.jpg.transform/768/q70/feature/image.jpeg',
         testimonial: `Magdalena Michutka Kuras is a paramedic volunteering at the health station at the Przemysl train station in Poland. 
         She’s just received notice that another train from Ukraine has arrived at the station and she’s ready to distribute toys to children who arriving from Ukraine. 
-        “It is nice to see how happy they are when they are given a toy,” she says.`
+        “It is nice to see how happy they are when they are given a toy,” she says.`,
+        location: [52.2297, 21.0122] // latitude and longitude
     }];
 
       /* News and Media Data */
