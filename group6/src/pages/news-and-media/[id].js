@@ -49,10 +49,10 @@ export default function TestimonialPage() {
                 <p className='p-2 text-lg flex justify-end w-full font-light'>{`"${newsMedia?.caption ?? "_caption_"}"`}</p>
               </div>
             </div>
-            <div className='w-full flex justify-center h-[350px]  rounded-[50px]'>
+            <div className='w-full flex justify-center h-[350px] rounded-[50px]'>
             <GoogleMap 
               center={center}
-              zoom={15}
+              zoom={5}
               mapContainerStyle={{ width: '500px', height: '350px', borderRadius: '50px'  }}
               options={{
                 zoomControl: false,
