@@ -66,13 +66,13 @@ export default function TestimonialPage() {
             </GoogleMap>
             </div>
             <div className="w-[1000px] flex flex-col  items-center justify-between">
-                <div className="w-[750px] flex justify-start pb-2">
-                    <h1 className='text-2xl font-light'>Read More at:</h1>
-                </div>
-                <div className='rounded-2xl flex justify-center items-center w-[800px] h-[50px]  bg-white'>
-                <h1 className='text-center text-md text-yellow-600'><span className=' hover:underline'>
-                    <a href={newsMedia?.link ?? 'www.google.com'} target="_blank" rel="noopener noreferrer">{newsMedia?.link ?? 'www.google.com'}</a></span></h1>
-                </div>
+              <div className="w-[750px] flex justify-start pb-2">
+                  <h1 className='text-2xl font-light'>Read More at:</h1>
+              </div>
+              <div className='rounded-2xl flex justify-center items-center w-[800px] h-[50px]  bg-white'>
+              <h1 className='text-center text-md text-yellow-600'><span className=' hover:underline'>
+                  <a href={newsMedia?.link ?? 'www.google.com'} target="_blank" rel="noopener noreferrer">{newsMedia?.link ?? 'www.google.com'}</a></span></h1>
+              </div>
             </div>
           </div>
         </div>
