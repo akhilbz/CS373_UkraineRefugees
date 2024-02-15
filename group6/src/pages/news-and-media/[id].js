@@ -79,22 +79,21 @@ export default function TestimonialPage() {
               </div>
             </div>
             {/* Connections */}
-          <div className="w-full pt-5 pb-5">
-            <div className="w-full flex justify-center text-3xl pb-5 font-light">
-              <h1>Recent News and Resources:</h1>
+            <div className="w-full pt-5 pb-5">
+              <div className="w-full flex justify-center text-3xl pb-5 font-light">
+                <h1>Recent News and Resources:</h1>
+              </div>
+              <Grid container spacing={3} className='flex justify-center '>
+                <Grid item xs={6} md={2.5} className='flex justify-center '>
+                </Grid>
+                <Grid item xs={6} md={2.5} className='flex justify-center '>
+                  <Card className='rounded-2xl h-[400px] w-[275px]'>
+                    <MediaCard media_data={newsMedia} />
+                  </Card>
+                </Grid>
+              </Grid>
             </div>
-            <Grid container spacing={3} className='flex justify-center '>
-              <Grid item xs={6} md={2.5} className='flex justify-center '>
-              </Grid>
-              <Grid item xs={6} md={2.5} className='flex justify-center '>
-                <Card className='rounded-2xl h-[400px] w-[275px]'>
-                  <MediaCard media_data={newsMedia} />
-                </Card>
-              </Grid>
-            </Grid>
           </div>
-          </div>
-          
         </div>
       </main>
     </div>
