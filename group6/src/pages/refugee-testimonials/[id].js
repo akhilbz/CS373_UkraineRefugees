@@ -88,9 +88,9 @@ export default function TestimonialPage() {
           </div>
           <Grid container spacing={3} className='flex justify-center '>
             <Grid item xs={6} md={2.5} className='flex justify-center '>
-                <Card className='rounded-2xl h-[400px] w-[275px]'>
-                  <SupportCard support_groups_data={supportGroups} />
-                </Card>
+              <Card className='rounded-2xl h-[400px] w-[275px]'>
+                <SupportCard support_groups_data={supportGroups} />
+              </Card>
               </Grid>
               <Grid item xs={6} md={2.5} className='flex justify-center '>
                 <Card className='rounded-2xl h-[400px] w-[275px]'>

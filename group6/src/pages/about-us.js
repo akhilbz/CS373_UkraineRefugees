@@ -37,7 +37,7 @@ let teamMembers = [
         name: 'Derek Chen',
         role: 'Back End Engineer',
         imageUrl: "/1704181702021.jpg",
-        bio: 'I am a Junior computer science major with a minor in business. In my free time I develop mods for Minecraft and video edit ',
+        bio: 'I am a Junior computer science major with a minor in business. In my free time I develop mods for Minecraft and edit videos ',
         commits: 50,
         issues: 10,
         tests: 0,
