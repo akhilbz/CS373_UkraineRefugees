@@ -5,7 +5,7 @@ import { useJsApiLoader, GoogleMap, Marker, } from '@react-google-maps/api';
 import Grid from '@mui/material/Grid';
 import Card from '@mui/material/Card';
 import SupportCard from '@/components/SupportCard';
-import MediaCard from '@/components/MediaCard';
+import RefugeeCard from '@/components/RefugeeCard';
 
 export default function TestimonialPage() {
   const router = useRouter();
@@ -16,10 +16,15 @@ export default function TestimonialPage() {
   const { isLoaded } = useJsApiLoader({
     googleMapsApiKey: process.env.NEXT_PUBLIC_REACT_APP_GOOGLE_MAPS_API_KEY,
   })
-
-  // Use useSelector without await, as it is synchronous
-  const newsMedia = useSelector(state =>
+  const newsMedia = useSelector(state => 
     state.newsMedia.find((item, index) => index === parseInt(id, 10) - 1)
+  );
+  const supportGroups = useSelector(state => 
+    state.supportGroups.find((item, index) => index === parseInt(id, 10) - 1)
+  );
+
+  const refTestimonial = useSelector(state => 
+    state.refTestimonials.find((item, index) => index === parseInt(id, 10) - 1)
   );
 
   if (!isLoaded) {
@@ -27,7 +32,7 @@ export default function TestimonialPage() {
   }
 
   // Optionally, handle loading or undefined state
-  if (!newsMedia) {
+  if (!supportGroups || !refTestimonial || !newsMedia) {
     return <div className='flex justify-center align-middle'>Loading...</div>;
   }
 
@@ -85,10 +90,13 @@ export default function TestimonialPage() {
               </div>
               <Grid container spacing={3} className='flex justify-center '>
                 <Grid item xs={6} md={2.5} className='flex justify-center '>
+                  <Card className='rounded-2xl h-[400px] w-[275px]'>
+                    <SupportCard support_groups_data={supportGroups} />
+                  </Card>
                 </Grid>
                 <Grid item xs={6} md={2.5} className='flex justify-center '>
                   <Card className='rounded-2xl h-[400px] w-[275px]'>
-                    <MediaCard media_data={newsMedia} />
+                    <RefugeeCard refugee_data={refTestimonial} />
                   </Card>
                 </Grid>
               </Grid>

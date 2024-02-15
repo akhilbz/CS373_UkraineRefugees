@@ -1,6 +1,10 @@
 import NavBar from '../NavBar';
 import { useRouter } from 'next/router';
 import { useSelector } from 'react-redux';
+import Grid from '@mui/material/Grid';
+import Card from '@mui/material/Card';
+import RefugeeCard from '@/components/RefugeeCard';
+import MediaCard from '@/components/MediaCard';
 
 export default function TestimonialPage() {
   const router = useRouter();
@@ -15,6 +19,12 @@ export default function TestimonialPage() {
   if (!supportGroup) {
     return <div className='flex justify-center align-middle'>Loading...</div>; // or any other loading state
   }
+  const newsMedia = useSelector(state => 
+    state.newsMedia.find((item, index) => index === parseInt(id, 10) - 1)
+  );
+  const refTestimonial = useSelector(state => 
+    state.refTestimonials.find((item, index) => index === parseInt(id, 10) - 1)
+  );
 
   return (
     <div>
@@ -83,6 +93,24 @@ export default function TestimonialPage() {
               )}
             </div>
           </div>
+        </div>
+        {/* Connections */}
+        <div className="w-full pt-5 pb-5">
+          <div className="w-full flex justify-center text-3xl pb-5 font-light">
+            <h1>Recent News and Resources:</h1>
+          </div>
+          <Grid container spacing={3} className='flex justify-center '>
+            <Grid item xs={6} md={2.5} className='flex justify-center '>
+              <Card className='rounded-2xl h-[400px] w-[275px]'>
+                <MediaCard media_data={newsMedia} />
+              </Card>
+            </Grid>
+            <Grid item xs={6} md={2.5} className='flex justify-center '>
+              <Card className='rounded-2xl h-[400px] w-[275px]'>
+                <RefugeeCard refugee_data={refTestimonial} />
+              </Card>
+            </Grid>
+          </Grid>
         </div>
       </main>
     </div>
