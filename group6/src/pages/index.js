@@ -77,7 +77,7 @@ export default function Home() {
         image: 'https://www.redcross.org/content/dam/redcross/about-us/news/2022/victoria.jpg.transform/768/q70/feature/image.jpeg',
         testimonial: `Viktoria and her mother came from Kyiv, Ukraine to Záhony at the Hungary-Ukraine border — a distance of more than 500 miles — with two small puppies in her backpack. 
         She said she could not bear to leave them behind. She and the puppies are now headed to Warsaw, Poland, where they will stay with a cousin.`,
-        location: [] // latitude and longitude
+        location: [51.9194, 19.1451] // latitude and longitude
     },
     {
         id: 6,

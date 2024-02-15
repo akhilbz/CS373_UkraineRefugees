@@ -23,7 +23,7 @@ let teamMembers = [
     {
         id: 2,
         name: 'Chuma Anigbogu',
-        role: 'Fulll Stack Engineer',
+        role: 'Full Stack Engineer',
         imageUrl: "/chuma.jpg",
         bio: 'I am a Junior CS student with a minor in Informatics. In my free time, I enjoy playing basketball, listening to music and hanging out with friends.',
         commits: 0,
@@ -59,7 +59,7 @@ let teamMembers = [
     {
         id: 5,
         name: 'Akhilesh Bitla',
-        role: 'Fulll Stack Engineer',
+        role: 'Full Stack Engineer',
         imageUrl: "/akhil.jpeg",
         bio: 'I am a Sophomore pursuing CS and Entrepreneurship. In my free time, I love to work out and try new food!',
         commits: 50,
