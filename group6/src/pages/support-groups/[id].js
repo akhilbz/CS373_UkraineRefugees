@@ -97,7 +97,7 @@ export default function TestimonialPage() {
         {/* Connections */}
         <div className="w-full pt-5 pb-5">
           <div className="w-full flex justify-center text-3xl pb-5 font-light">
-            <h1>Recent News and Resources:</h1>
+            <h1>Recent News and Related Testimony:</h1>
           </div>
           <Grid container spacing={3} className='flex justify-center '>
             <Grid item xs={6} md={2.5} className='flex justify-center '>
