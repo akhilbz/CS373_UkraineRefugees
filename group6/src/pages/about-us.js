@@ -13,7 +13,7 @@ let teamMembers = [
         name: 'Samuel Osibamowo',
         role: 'Full Stack Engineer',
         imageUrl: "/samuel-headshot.jpeg",
-        bio: 'I am a Junior Computer Science Major and getting a minor in Buisness. Samuel loves coding! In my free time, I enjoy drawing and skateboarding',
+        bio: 'I am a Junior Computer Science Major and getting a minor in Buisness. Samuel loves coding! In my free time, I enjoy drawing and skateboarding.',
         commits: 50,
         issues: 10,
         tests: 0,
@@ -37,7 +37,7 @@ let teamMembers = [
         name: 'Derek Chen',
         role: 'Back End Engineer',
         imageUrl: "/1704181702021.jpg",
-        bio: 'I am a Junior computer science major with a minor in business. In my free time I develop mods for Minecraft and edit videos ',
+        bio: 'I am a Junior computer science major with a minor in business. In my free time I develop mods for Minecraft and edit videos.',
         commits: 50,
         issues: 10,
         tests: 0,
@@ -177,18 +177,42 @@ export default function AboutUs() {
                 setTotalCommits(commitsCount);
                 console.log('COMMITS: ', contributorRes);
 
-                const closedIssuesResponse = await axios.get(
-                    `https://gitlab.com/api/v4/projects/${projectId}/issues?state=closed`, {
+
+
+                
+                // const closedIssuesResponse = await axios.get(
+                //     `https://gitlab.com/api/v4/projects/${projectId}/issues?state=closed`, {
+                //         headers: {
+                //             'PRIVATE-TOKEN': gitLabToken,
+                //         },
+                //     }
+                // );
+                // const issueRes = closedIssuesResponse.data
+                // const closedIssuesCount = closedIssuesResponse.data.length;
+                // setTotalClosedIssues(closedIssuesCount);
+                // console.log('ISSUES: ', issueRes);
+
+                // Initialize variables for fetching all closed issues
+                let allClosedIssues = [];
+                let page = 1;
+                const perPage = 100; // Max allowed value
+                let fetchedIssuesCount = 0;
+
+                do {
+                    const closedIssuesResponse = await axios.get(`https://gitlab.com/api/v4/projects/${projectId}/issues?state=closed&per_page=${perPage}&page=${page}`, {
                         headers: {
                             'PRIVATE-TOKEN': gitLabToken,
                         },
-                    }
-                );
-                const issueRes = closedIssuesResponse.data
-                const closedIssuesCount = closedIssuesResponse.data.length;
+                    });
+                    const issues = closedIssuesResponse.data;
+                    allClosedIssues = allClosedIssues.concat(issues);
+                    fetchedIssuesCount = issues.length;
+                    page += 1;
+                } while (fetchedIssuesCount === perPage); // Continue fetching until a page is not full, indicating the last page of issues
+
+                const closedIssuesCount = allClosedIssues.length;
                 setTotalClosedIssues(closedIssuesCount);
-                
-                console.log('ISSUES: ', issueRes);
+                console.log('ISSUES: ', allClosedIssues);
                 
                 const updatedTeamMembers = teamMembers.map(member => {
                     // Logic to update each member's commits and issues based on the fetched data
@@ -199,7 +223,7 @@ export default function AboutUs() {
                         commits = 2;
                     }
                     commits += contributorRes.find(contributor => contributor.name === member.gitLabName)?.commits || member.commits;
-                    const issues = issueRes.filter(issue => issue.assignee && issue.assignee.username === member.username).length;
+                    const issues = allClosedIssues.filter(issue => issue.assignee && issue.assignee.username === member.username).length;
 
                     if (member.gitLabName == 'chumaanigbogu') {
                         console.log("CHUMAS COMMITS: ", commits);
