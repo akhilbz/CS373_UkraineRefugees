@@ -1,30 +1,35 @@
-image: node:16
+# image: node
 
-stages:
-  - install
-  - build
+# stages:
+#   - install
+#   - build
 
-cache:
-  paths:
-    - group6/node_modules/
+# cache:
+#   paths:
+#     - group6/node_modules/
 
-install_dependencies:
-  stage: install
-  script:
-    - cd group6
-    - npm install
-  only:
-    - merge_requests
-    - main
+# install_dependencies:
+#   stage: install
+#   script:
+#     - cd group6
+#     - npm install
+#   only:
+#     - merge_requests
+#     - main
 
-build:
+# build:
+#   stage: build
+#   script:
+#     - cd group6
+#     - npm run build
+#   artifacts:
+#     paths:
+#       - group6/.next
+#   only:
+#     - merge_requests
+#     - main
+
+build-job:
   stage: build
   script:
-    - cd group6
-    - npm run build
-  artifacts:
-    paths:
-      - group6/.next
-  only:
-    - merge_requests
-    - main
+    - echo "Hello, $GITLAB_USER_LOGIN!"
