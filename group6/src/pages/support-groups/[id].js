@@ -13,7 +13,7 @@ export default function TestimonialPage() {
 
   // Optionally, handle loading or undefined state
   if (!supportGroup) {
-    return <div>Loading...</div>; // or any other loading state
+    return <div className='flex justify-center align-middle'>Loading...</div>; // or any other loading state
   }
 
   return (

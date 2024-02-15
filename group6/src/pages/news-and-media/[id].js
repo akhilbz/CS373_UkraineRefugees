@@ -2,6 +2,7 @@ import NavBar from '../NavBar';
 import { useRouter } from 'next/router';
 import { useSelector } from 'react-redux';
 import { useJsApiLoader, GoogleMap, Marker, } from '@react-google-maps/api';
+import Grid from '@mui/material/Grid';
 
 export default function TestimonialPage() {
   const router = useRouter();
@@ -24,7 +25,7 @@ export default function TestimonialPage() {
 
   // Optionally, handle loading or undefined state
   if (!newsMedia) {
-    return <div>Loading...</div>; // or any other loading state
+    return <div className='flex justify-center align-middle'>Loading...</div>; // or any other loading state
   }
 
 
@@ -74,6 +75,23 @@ export default function TestimonialPage() {
                   <a href={newsMedia?.link ?? 'www.google.com'} target="_blank" rel="noopener noreferrer">{newsMedia?.link ?? 'www.google.com'}</a></span></h1>
               </div>
             </div>
+            <div className="w-full pt-5 pb-5">
+          <div className="w-full flex justify-center text-3xl pb-5 font-light">
+            <h1>Recent News and Resources:</h1>
+          </div>
+          <Grid container spacing={3} className='flex justify-center '>
+            <Grid item xs={6} md={2.5} className='flex justify-center '>
+                <Card className='rounded-2xl h-[400px] w-[275px]'>
+                  <SupportCard support_groups_data={supportGroups} />
+                </Card>
+              </Grid>
+              <Grid item xs={6} md={2.5} className='flex justify-center '>
+                <Card className='rounded-2xl h-[400px] w-[275px]'>
+                  <MediaCard media_data={newsMedia} />
+                </Card>
+              </Grid>
+          </Grid>
+        </div>
           </div>
         </div>
       </main>
