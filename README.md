@@ -14,6 +14,34 @@
 - **Website URL:** [www.UkraineCrisis.me](https://www.UkraineCrisis.me)
 - **API Documentation:** [https://documenter.getpostman.com/view/32956503/2sA2r53kYq](https://documenter.getpostman.com/view/32956503/2sA2r53kYq)
 
+### GIT SHA
+| Phase | SHA |
+| ----- | --- |
+| 1          |        |
+| 2          |        |
+| 3          |        |
+| 4          |        |
+
+### Phase Leader
+| Phase        | Phase Leader | Responsibilities |
+| ----- | ------------ |------------|
+| 1          | Chuma                         | Delegating tasks, and motivating team                         |
+| 2          |                          |                          |
+| 3          |                          |                          |
+| 4          |                          |                          |
+
+**GitLab Pipeline:** [https://gitlab.com/davindertoor77/cs373-group-17/-/pipelines](https://gitlab.com/davindertoor77/cs373-group-17/-/pipelines)
+
+## Estimated/Actual Completion Time
+### Phase 1
+| Member    | Estimated | Actual |
+| ----------- | --------- | ------ |
+| Samuel                  |  12                |      10        |
+| Chuma                  |  4                |   8           |
+| Alex                 |   7               |   12           |
+| Akhilesh            |  8                |  18            |
+| Derek                 |  5                | 7             |
+
 
 ### Project Proposal
 The goal of our project is to bring attention to the ongoing crisis in Ukraine and how it has affected the lives of individuals who have been impacted.
