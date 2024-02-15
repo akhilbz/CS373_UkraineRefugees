@@ -30,7 +30,7 @@
 | 3          |                          |                          |
 | 4          |                          |                          |
 
-**GitLab Pipeline:** [https://gitlab.com/ajimenez1173/cs373-group-6/-/pipelines/1177300873](https://gitlab.com/ajimenez1173/cs373-group-6/-/pipelines/1177300873)
+**GitLab Pipeline:** [https://gitlab.com/ajimenez1173/cs373-group-6/-/pipelines/1177324288](https://gitlab.com/ajimenez1173/cs373-group-6/-/pipelines/1177324288)
 
 ## Estimated/Actual Completion Time
 ### Phase 1
