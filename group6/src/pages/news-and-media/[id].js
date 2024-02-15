@@ -40,16 +40,18 @@ export default function TestimonialPage() {
                 <img src={newsMedia?.image  ?? "_img_url_"} className=" max-h-[250px] rounded-2xl "/>
               </div>
               <div className='w-full'>
-                <div className=" rounded-tr-2xl rounded-bl-2xl pb-2 flex items-end flex-col justify-end w-auto h-auto bg-yellow-600">
+                <div className=" rounded-tr-2xl pb-2 flex items-end flex-col justify-end w-auto h-auto bg-yellow-600">
                     <h1 className=' py-1 pr-3 flex justify-end text-xl font-light'>{`Publisher: ${newsMedia?.publisher ?? "_publisher_"}`}</h1>
                     <h2 className=' flex w-full justify-end pr-3 text-xl font-light'>{`Date Published: ${newsMedia?.date ?? "_date_"}`}</h2>
                     <h2 className=' flex w-full justify-end pr-3 text-xl font-light'>{`Source Type: ${newsMedia?.source ?? "_source_"}`}</h2>
                     <h2 className=' flex w-full justify-end pr-3 text-xl font-light'>{`Location: ${newsMedia?.location ?? "_location_"}`}</h2>
                 </div>
-                <p className='p-2 text-lg flex justify-end w-full font-light'>{`"${newsMedia?.caption ?? "_caption_"}"`}</p>
+                <div className="bg-white rounded-bl-2xl">
+                  <p className='p-2  text-lg text-yellow-600 flex justify-end w-full font-light'>{`"${newsMedia?.caption ?? "_caption_"}"`}</p>
+                </div>
               </div>
             </div>
-            <div className='w-full flex justify-center h-[350px] rounded-[50px]'>
+            <div className='pt-2 pb-4 w-full flex justify-center h-[350px] rounded-[50px]'>
             <GoogleMap 
               center={center}
               zoom={5}
