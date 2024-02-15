@@ -29,7 +29,7 @@ let teamMembers = [
         commits: 0,
         issues: 10,
         tests: 0,
-        gitLabName: 'chumaanigbogu',
+        gitLabName: 'Chuma Anigbogu',
         username: 'chumaanigbogu',
     },
     {
@@ -200,6 +200,11 @@ export default function AboutUs() {
                     }
                     commits += contributorRes.find(contributor => contributor.name === member.gitLabName)?.commits || member.commits;
                     const issues = issueRes.filter(issue => issue.assignee && issue.assignee.username === member.username).length;
+
+                    if (member.gitLabName == 'chumaanigbogu') {
+                        console.log("CHUMAS COMMITS: ", commits);
+                        console.log("CHUMAS ISSUES: ", issues);
+                    }
                     
                     return { ...member, commits, issues };
                 });
