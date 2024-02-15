@@ -4,7 +4,7 @@ import Link from 'next/link';
 export default function MediaCard({ media_data }) {
 
     return (
-        <div className="flex flex-col rounded-2xl bg-white h-full"> {/* Ensure full height and column layout */}
+        <div className="flex flex-col rounded-2xl h-full"> {/* Ensure full height and column layout */}
             <div className="flex-grow"> {/* Flex-grow to fill space */}
                 <div className="flex justify-center bg-black">
                     <img src={media_data.image} className="h-[200px] object-cover w-full"/>

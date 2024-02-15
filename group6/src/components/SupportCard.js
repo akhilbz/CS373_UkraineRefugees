@@ -4,7 +4,7 @@ import Link from 'next/link';
 export default function SupportCard({ support_groups_data }) {
 
     return (
-        <div className="flex flex-col rounded-2xl bg-white h-full"> {/* Ensure full height and column layout */}
+        <div className="flex flex-col rounded-2xl h-full"> {/* Ensure full height and column layout */}
             <div className="flex-grow"> {/* Flex-grow to fill space */}
                 <div className="rounded-t-2xl  flex min-h-[50px] max-h-[170px] justify-center items-center bg-yellow-600">
                     <h1 className="text-white text-2xl font-light text-center">{support_groups_data.organization}</h1>

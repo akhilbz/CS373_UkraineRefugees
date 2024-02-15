@@ -148,7 +148,18 @@ export default function Home() {
         caption: "Civilians have been bombed, killed and injured in their thousands. Infrastructure has been shelled – and millions displaced. Today, these images of conflict evoke Gaza, but 120 days ago were more associated with Ukraine following the Russian invasion of the former Soviet republic in February 2022.",
         image: 'https://www.aljazeera.com/wp-content/uploads/2024/02/Olena-1706867436.jpg?resize=770%2C513&quality=80',
         link: 'https://www.aljazeera.com/news/2024/2/2/ukrainian-refugees-divided-on-israels-war-on-gaza-but-feel-for-civilians'
-    }]
+    },
+    {
+      id: 6,
+      title: "What do Ukrainian refugees make of Israel’s war on Gaza?",
+      date: "February 2, 2024",
+      publisher: "Aljazeera",
+      source: "Article",
+      location: "Ukraine",
+      caption: "Civilians have been bombed, killed and injured in their thousands. Infrastructure has been shelled – and millions displaced. Today, these images of conflict evoke Gaza, but 120 days ago were more associated with Ukraine following the Russian invasion of the former Soviet republic in February 2022.",
+      image: 'https://www.aljazeera.com/wp-content/uploads/2024/02/Olena-1706867436.jpg?resize=770%2C513&quality=80',
+      link: 'https://www.aljazeera.com/news/2024/2/2/ukrainian-refugees-divided-on-israels-war-on-gaza-but-feel-for-civilians'
+  }]
 
     /* Support Groups Data */
     const support_groups = [{

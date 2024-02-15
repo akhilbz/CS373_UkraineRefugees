@@ -1,4 +1,8 @@
 import NavBar from '../NavBar';
+import MediaCard from '@/components/MediaCard';
+import SupportCard from '@/components/SupportCard';
+import Grid from '@mui/material/Grid'; 
+import Card from '@mui/material/Card';
 import { useRouter } from 'next/router';
 import { useSelector } from 'react-redux';
 import { useJsApiLoader, GoogleMap, Marker, } from '@react-google-maps/api';
@@ -16,6 +20,14 @@ export default function TestimonialPage() {
   // Use useSelector without await, as it is synchronous
   const refTestimonial = useSelector(state => 
     state.refTestimonials.find((item, index) => index === parseInt(id, 10) - 1)
+  );
+
+  const supportGroups = useSelector(state => 
+    state.supportGroups.find((item, index) => index === parseInt(id, 10) - 1)
+  );
+
+  const newsMedia = useSelector(state => 
+    state.newsMedia.find((item, index) => index === parseInt(id, 10) - 1)
   );
 
   if (!isLoaded) {
@@ -67,6 +79,25 @@ export default function TestimonialPage() {
               </div>
             </div>
           </div>
+        </div>
+
+        {/* Connections */}
+        <div className="w-full pt-5 pb-5">
+          <div className="w-full flex justify-center text-3xl pb-5 font-light">
+            <h1>Recent News and Resources:</h1>
+          </div>
+          <Grid container spacing={3} className='flex justify-center '>
+            <Grid item xs={6} md={2.5} className='flex justify-center '>
+                <Card className='rounded-2xl h-[400px] w-[275px]'>
+                  <SupportCard support_groups_data={supportGroups} />
+                </Card>
+              </Grid>
+              <Grid item xs={6} md={2.5} className='flex justify-center '>
+                <Card className='rounded-2xl h-[400px] w-[275px]'>
+                  <MediaCard media_data={newsMedia} />
+                </Card>
+              </Grid>
+          </Grid>
         </div>
       </main>
     </div>

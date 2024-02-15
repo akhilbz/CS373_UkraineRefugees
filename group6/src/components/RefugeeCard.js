@@ -4,7 +4,7 @@ import Link from 'next/link';
 export default function RefugeeCard({ refugee_data }) {
     
     return (
-        <div className="flex flex-col rounded-2xl bg-white h-full"> {/* Use flex column layout and ensure full height */}
+        <div className="flex flex-col rounded-2xl h-full"> {/* Use flex column layout and ensure full height */}
             <div className="flex-grow"> {/* Content grows to take available space */}
                 <div className="flex justify-center bg-black">
                     <img src={refugee_data.image} className="h-[200px] object-cover w-full"/> {/* Ensure image covers the width */}
