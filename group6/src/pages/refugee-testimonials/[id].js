@@ -70,7 +70,7 @@ export default function TestimonialPage() {
               <div className="bg-blue-700 my-2 rounded-2xl">
                 <h1 className='text-2xl font-light pt-3'>{`Name: ${refTestimonial?.name ?? "_name_"}`}</h1>
                 <h2 className='text-xl font-light'>{`${refTestimonial?.date ?? "_date_"}`}</h2>
-                <h3 className='text-xl font-light'>{`${refTestimonial?.timeDisplaced ?? "_timeDisplaced_"}`}</h3>
+                <h3 className='text-xl font-light'>Time Displaced: {refTestimonial?.timeDisplaced ?? "_timeDisplaced_"}</h3>
                 <p className='text-lg p-2'>{`"${refTestimonial?.caption ?? "_caption_"}"`}</p>
               </div>
               <div className='bg-white text-yellow-600 rounded-2xl p-2'>

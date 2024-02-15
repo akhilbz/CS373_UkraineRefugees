@@ -2,7 +2,6 @@ import React from "react";
 import Link from 'next/link';
 
 export default function MediaCard({ media_data }) {
-    // Function to truncate text if it exceeds a certain length
     const truncateText = (text, maxLength) => {
         if (text.length > maxLength) {
             return text.slice(0, maxLength) + "...";
@@ -11,15 +10,15 @@ export default function MediaCard({ media_data }) {
     };
 
     return (
-        <div className="flex flex-col rounded-2xl h-full overflow-hidden"> {/* Ensure full height and column layout with overflow hidden */}
-            <div className="flex-grow"> {/* Flex-grow to fill space */}
+        <div className="flex flex-col rounded-2xl h-full overflow-hidden"> {}
+            <div className="flex-grow"> {}
                 <div className="flex justify-center bg-black">
                     {/* Resize image to fit */}
                     <img src={media_data.image} className="h-[200px] w-full object-cover" />
                 </div>
                 <div className="border-b-[1px]">
                     <div className="m-2">
-                        {/* Truncate title if it exceeds a certain length */}
+                        {}
                         <h1 className="font-semibold">{truncateText(media_data.title, 30)}</h1>
                         <div className="flex justify-between">
                             <p className="text-xs">{media_data.source}</p>
@@ -27,8 +26,8 @@ export default function MediaCard({ media_data }) {
                         </div>
                     </div>
                 </div>
-                <div className="m-2 overflow-ellipsis"> {/* Content area */}
-                    {/* Truncate caption if it exceeds a certain length */}
+                <div className="m-2 overflow-ellipsis"> {}
+                    {}
                     <p className="line-clamp-2 text-sm">{truncateText(media_data.caption, 150)}</p>
                 </div>
                 {/* New line for "Location" */}
