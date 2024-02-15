@@ -2,7 +2,6 @@ import NavBar from '../NavBar';
 import { useRouter } from 'next/router';
 import { useSelector } from 'react-redux';
 import { useJsApiLoader, GoogleMap, Marker, } from '@react-google-maps/api';
-import Grid from '@mui/material/Grid';
 
 export default function TestimonialPage() {
   const router = useRouter();
@@ -25,7 +24,7 @@ export default function TestimonialPage() {
 
   // Optionally, handle loading or undefined state
   if (!newsMedia) {
-    return <div className='flex justify-center align-middle'>Loading...</div>; // or any other loading state
+    return <div>Loading...</div>; // or any other loading state
   }
 
 
@@ -67,31 +66,14 @@ export default function TestimonialPage() {
             </GoogleMap>
             </div>
             <div className="w-[1000px] flex flex-col  items-center justify-between">
-              <div className="w-[750px] flex justify-start pb-2">
-                  <h1 className='text-2xl font-light'>Read More at:</h1>
-              </div>
-              <div className='rounded-2xl flex justify-center items-center w-[800px] h-[50px]  bg-white'>
-              <h1 className='text-center text-md text-yellow-600'><span className=' hover:underline'>
-                  <a href={newsMedia?.link ?? 'www.google.com'} target="_blank" rel="noopener noreferrer">{newsMedia?.link ?? 'www.google.com'}</a></span></h1>
-              </div>
+                <div className="w-[750px] flex justify-start pb-2">
+                    <h1 className='text-2xl font-light'>Read More at:</h1>
+                </div>
+                <div className='rounded-2xl flex justify-center items-center w-[800px] h-[50px]  bg-white'>
+                <h1 className='text-center text-md text-yellow-600'><span className=' hover:underline'>
+                    <a href={newsMedia?.link ?? 'www.google.com'} target="_blank" rel="noopener noreferrer">{newsMedia?.link ?? 'www.google.com'}</a></span></h1>
+                </div>
             </div>
-            <div className="w-full pt-5 pb-5">
-          <div className="w-full flex justify-center text-3xl pb-5 font-light">
-            <h1>Recent News and Resources:</h1>
-          </div>
-          <Grid container spacing={3} className='flex justify-center '>
-            <Grid item xs={6} md={2.5} className='flex justify-center '>
-                <Card className='rounded-2xl h-[400px] w-[275px]'>
-                  <SupportCard support_groups_data={supportGroups} />
-                </Card>
-              </Grid>
-              <Grid item xs={6} md={2.5} className='flex justify-center '>
-                <Card className='rounded-2xl h-[400px] w-[275px]'>
-                  <MediaCard media_data={newsMedia} />
-                </Card>
-              </Grid>
-          </Grid>
-        </div>
           </div>
         </div>
       </main>
