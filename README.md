@@ -70,9 +70,9 @@ We will programmatically scrape data from the following sources:
    - **Instances:** 3
 
 ### Sorting and Filtering
-- **Support Groups:** Date, Name, Location, Common Services/Type, Resources
+- **Support Groups:** Date, Name, Location, Status, Contact
 - **News Media:** Publication Date, Name, Location, Type of source, Publisher
-- **Refugee Profile:** Age group, Location, Name, Distance Immigrated, Date of Story
+- **Refugee Profile:** Title, Location, Name, Distance Immigrated, Date of Story
 
 ### Connections
 Each model will connect to instances of at least two other models, enhancing the richness and interactivity of the data.
