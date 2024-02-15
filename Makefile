@@ -3,6 +3,11 @@ run:
 	cd ./group6 && npm run build
 
 
+# get git log
+PhaseOne.log.txt:
+	git log > PhaseOne.log.txt
+
+
 #add all then show status
 add:
 	git add -A
