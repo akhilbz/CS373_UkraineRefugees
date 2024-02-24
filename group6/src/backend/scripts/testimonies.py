@@ -5,6 +5,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import NoSuchElementException
 
 def getTestimonials():
+    print("GOT INTO FUNCTION1")
     testimonials = []
 
     options = webdriver.ChromeOptions()
@@ -13,11 +14,12 @@ def getTestimonials():
     driver.get("https://www.redcross.org/about-us/news-and-events/news/2022/voices-of-ukraine-refugees-tell-their-stories.html")
 
     def scrapePage():
+        print("STARTING TESTIMONAL PAGE SCRAPE")
         elements = WebDriverWait(driver, 10).until(
-            EC.presence_of_all_elements_located((By.CLASS_NAME, ".section-control parbase"))  # Update with the correct selector
+            EC.presence_of_all_elements_located((By.CSS_SELECTOR, ".section-control.parbase"))
         )
-        
-        print(elements) # see what we got
+
+        print("ELEMENTS: ", elements) # see what we got
 
         for element in elements:
             # Extract data here
