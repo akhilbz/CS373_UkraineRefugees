@@ -26,16 +26,17 @@ def getNews():
     try:
         # Wait until the element you want to interact with is loaded
         WebDriverWait(driver, 10).until(
-            EC.presence_of_element_located((By.CLASS_NAME, 'rich-text-editor-content'))
+            EC.presence_of_element_located((By.TAG_NAME, 'body'))
         )
 
         # Now using Selenium to interact with the page
-        # scraper = BeautifulSoup(driver.page_source, 'html.parser')
-        # stories = scraper.find(class_='rich-text-editor-content')
-        # titles = stories.find_all('b')
+        scraper = BeautifulSoup(driver.page_source, 'html.parser')
+        stories = scraper.find_all(class_='rplc-teaser-search')
 
-        # for title in titles:
-        #     print(title.text)
+        for story in stories:
+            print(story.text)
+            
+
 
         # Example of clicking a link (modify the selector as per your requirement)
         # link = driver.find_element_by_link_text('Link Text Here')
@@ -49,4 +50,4 @@ def getNews():
         # Clean up, close the browser
         driver.quit()
 
-    return titles[0].text if titles else "No title found"
+    return stories[1].text

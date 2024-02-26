@@ -22,7 +22,7 @@ def testimonies():
 
 @application.route('/news', methods=['GET'])
 @cross_origin()
-def testimonies():
+def news():
     print("GRABBING NEWS")
     return getNews()
 
