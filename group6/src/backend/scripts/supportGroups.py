@@ -44,6 +44,14 @@ def getGroups():
                 links.append(a['href'])
             b_elments = p.find_all('br')
             about.append(p.text.strip())
+
+        # Change this later/refine it cuz it's 3 AM and im tired loll
+        tab55 = p.find(id="tab-55")
+        card_list = tab55.find(class_="tabgrid__card-list")
+        for card in card_list:
+            print(card.text)
+
+
             
 
         # If you only want the first <strong> text found
