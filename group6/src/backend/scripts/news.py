@@ -56,7 +56,7 @@ def fetch_news_data(query):
                     ]
                     if field
                 )
-                >= 4
+                >= 5
             ):
                 seen_titles.add(title)
 
