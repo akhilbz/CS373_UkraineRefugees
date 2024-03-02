@@ -32,12 +32,12 @@ def fetch_news_data(query):
 
         for article in articles:
             author = article.get("author", "")
-            title = article.get("title", "")
+            title = article.get("title", "").strip()
             description = article.get("description", "")
-            published_at = article.get("publishedAt", "")
+            published_at = article.get("publishedAt", "").strip()
             source = article.get("source", {})
             source_name = source.get("name", "")
-            content = article.get("content", "")
+            content = article.get("content", "").strip()
             url_to_image = article.get("urlToImage", "")
 
             # Check if title is unique, at most two fields are empty, and the title is in English
