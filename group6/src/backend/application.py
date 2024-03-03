@@ -1,9 +1,8 @@
 from flask import Flask
 from flask_cors import CORS, cross_origin
-
 from scripts.testimonies import getTestimonials
 from scripts.news import getNews
-from scripts.supportGroups import getGroups
+from scripts.supportGroups import getInfo
 
 
 
@@ -31,7 +30,7 @@ def news():
 @cross_origin()
 def supportGroup():
     print("GRABBING Support Group")
-    return getGroups()
+    return getInfo()
 
 if __name__ == '__main__':
     application.run(port=8000)
