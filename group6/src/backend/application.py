@@ -1,13 +1,33 @@
 from flask import Flask
+from flask_sqlalchemy import SQLAlchemy
 from flask_cors import CORS, cross_origin
+from flask_migrate import Migrate
 from scripts.testimonies import getTestimonials
 from scripts.news import getNews
 from scripts.supportGroups import getInfo
 
 
 
-application = Flask(__name__)
+application = Flask(__name__) # Create a Flask instance
+application.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:mySQL01$$@localhost/ukraine_crisis_db' # Add MySQL Database
+db = SQLAlchemy(application)
+
 CORS(application)
+migrate = Migrate(application, db)  
+
+
+# News Model
+class NewsModel(db.Model):
+    id = db.Column(db.Integer, primary_key=True) # main key to the news intance
+    author = db.Column(db.String(255), nullable=False)
+    title = db.Column(db.String(255), nullable=False)
+    description = db.Column(db.Text, nullable=False)  
+    published_at = db.Column(db.DateTime, nullable=False)  
+    source_name = db.Column(db.String(255), nullable=False) 
+    content = db.Column(db.Text, nullable=False)  
+    image_url = db.Column(db.String(255), nullable=True)
+    date_added = db.Column(db.DateTime, nullable=False)
+
 
 @application.route('/')
 def home():
