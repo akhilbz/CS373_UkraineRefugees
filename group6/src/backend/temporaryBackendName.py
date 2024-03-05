@@ -10,12 +10,12 @@ db = SQLAlchemy(model_class=Base)
 
 flaskApp = Flask(__name__)
 # configure the SQLite database, relative to the app instance folder
-flaskApp.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///project.db"
+flaskApp.config["SQLALCHEMY_DATABASE_URI"] = "mysql+pymysql://ukraine_team_6:team6Ukraine$@ukraine-refugees-db.cbkes4k4cdrq.us-east-2.rds.amazonaws.com/ukraine_crisis_db"
 # initialize the app with the extension
 db.init_app(flaskApp)
 
 # News Model
-class News(db.Model):
+class NewsModel(db.Model):
     id = db.Column(db.Integer, primary_key=True) # main key to the news intance
     author = db.Column(db.String(255), nullable=False)
     title = db.Column(db.String(255), nullable=False)
@@ -26,11 +26,29 @@ class News(db.Model):
     image_url = db.Column(db.String(255), nullable=True)
     date_added = db.Column(db.DateTime, nullable=False)
 
+class AsylumCountryModel(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(255), nullable=False)
+    capital = db.Column(db.String(255), nullable=False)
+    region = db.Column(db.String(255), nullable=False)
+    population = db.Column(db.Integer, nullable=False)
+    languages = db.Column(db.String(255), nullable=False)
+    flag = db.Column(db.Text, nullable=True)
+
+class SupportGroupsModel(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(255), nullable=False)
+    location = db.Column(db.String(255), nullable=False)
+    phn_no = db.Column(db.String(16), nullable=False)
+    rating = db.Column(db.Integer, nullable=False)
+    region = db.Column(db.String(255), nullable=False)
+    website_url = db.Column(db.Text, nullable=False)
+
 # Route to fetch news data from the database
 @flaskApp.route('/api/news', methods=['GET'])
 def get_news():
     try:
-        news_data = News.query.all()
+        news_data = NewsModel.query.all()
 
         # Convert the query result to a list of dictionaries
         news_list = []

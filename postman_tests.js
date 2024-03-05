@@ -28,3 +28,4 @@ pm.test("Check type of response for refugee testimonials", function () {
     pm.response.to.have.status(200);
     pm.expect(typeof pm.response.json()).to.equal("object");
 });
+ 
