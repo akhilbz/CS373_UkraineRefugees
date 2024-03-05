@@ -1,6 +1,7 @@
 alembic==1.13.1
 attrs==23.2.0
 beautifulsoup4==4.12.3
+black==24.2.0
 blinker==1.7.0
 bs4==0.0.2
 certifi==2024.2.2
@@ -19,13 +20,17 @@ Jinja2==3.1.3
 langid==1.1.6
 Mako==1.3.2
 MarkupSafe==2.1.5
+mypy-extensions==1.0.0
 numpy==1.26.4
 outcome==1.3.0.post0
 packaging==23.2
+pathspec==0.12.1
+platformdirs==4.2.0
 pycparser==2.21
 PyMySQL==1.1.0
 PySocks==1.7.1
 python-dotenv==1.0.1
+python-restcountries==2.0.0
 requests==2.31.0
 selenium==4.18.1
 sniffio==1.3.1
