@@ -23,14 +23,14 @@ class NewsModel(db.Model):
     author = db.Column(db.String(255), nullable=False)
     title = db.Column(db.String(255), nullable=False)
     description = db.Column(db.Text, nullable=False)
-    published_at = db.Column(db.DateTime, nullable=False)
+    published_at = db.Column(db.String(255), nullable=False)
     source_name = db.Column(db.String(255), nullable=False)
     content = db.Column(db.Text, nullable=False)
     image_url = db.Column(db.Text, nullable=True)
     date_added = db.Column(db.DateTime, nullable=False)
 
 
-class CountryModel(db.Model):
+class AsylumCountryModel(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(255), nullable=False)
     capital = db.Column(db.String(255), nullable=False)
@@ -39,7 +39,15 @@ class CountryModel(db.Model):
     languages = db.Column(db.String(255), nullable=False)
     flag = db.Column(db.Text, nullable=True)
 
-
+class SupportGroupsModel(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(255), nullable=False)
+    location = db.Column(db.String(255), nullable=False)
+    phn_no = db.Column(db.String(16), nullable=False)
+    rating = db.Column(db.Integer, nullable=False)
+    region = db.Column(db.String(255), nullable=False)
+    website_url = db.Column(db.Text, nullable=False)
+    
 @application.route("/")
 def home():
     return "Welcome to Ukraine Crisis API"
