@@ -59,6 +59,27 @@ def countries():
     print("GRABBING COUNTRIES")
     return getCountries()
 
+def populate_countries():
+    countries_data = getCountries()  
+
+    for country_info in countries_data:
+        country = AsylumCountryModel(
+            name=country_info["name"],
+            capital=country_info.get("capital", "Not Available"),
+            region=country_info.get("region", "Not Available"),
+            population=country_info.get("population", 0),
+            languages=country_info.get("languages", "Not Available"),
+            flag=country_info.get("flag", "Not Available"),
+        )
+        db.session.add(country)
+    
+    try:
+        db.session.commit()
+    except Exception as e:
+        db.session.rollback()  # Rollback the changes on error
+        print(f"Error: {e}")  # Log or print the error
+    finally:
+        db.session.close()  # Close the session
 
 @application.route("/news", methods=["GET"])
 @cross_origin()
