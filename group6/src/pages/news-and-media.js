@@ -16,10 +16,13 @@ export default function mediaModel() {
     const [newsPerPage] = useState(2);
     const [post, setPost] = useState(null);
     let tempURL = "http://localhost:5000/api/sample-get";
+    // tempURL = "https://httpbin.org/get";
+
+    // This should be a list of objects returned as JSON
     useEffect(() => {
         axios.get(tempURL).then((response) => {
+            console.log(response);
             setPost(response.data);
-            console.log(post);
         }).catch(error => {
             console.error('Error fetching data:', error);
           });
