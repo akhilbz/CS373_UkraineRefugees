@@ -10,6 +10,9 @@ def getInfo():
     dups=[]
     add = True
     options = webdriver.ChromeOptions()
+    options.add_argument('--headless')
+    options.add_argument('--no-sandbox')
+    options.add_argument('--disable-dev-shm-usage')
     # Your options setup remains unchanged
     service = Service(ChromeDriverManager().install())
     driver = webdriver.Chrome(service=service, options=options)
@@ -583,6 +586,3 @@ def getInfo():
         print(f"An error occurred: {e}")
     print(len(groups))
     return groups
-
-
-getInfo()

@@ -45,3 +45,4 @@ webdriver-manager==4.0.1
 Werkzeug==3.0.1
 wsproto==1.2.0
 gunicorn
+watchdog==2.1.6
