@@ -9,7 +9,7 @@ from scripts.supportGroups import getInfo
 
 application = Flask(__name__)  # Create a Flask instance
 application.config["SQLALCHEMY_DATABASE_URI"] = (
-    "mysql+pymysql://root:mySQL01$$@localhost/ukraine_crisis_db"  # Add MySQL Database
+    "mysql+pymysql://ukraine_team_6:team6Ukraine$@ukraine-refugees-db.cbkes4k4cdrq.us-east-2.rds.amazonaws.com/ukraine_crisis_db"  # Add MySQL Database
 )
 db = SQLAlchemy(application)
 
