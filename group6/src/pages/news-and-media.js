@@ -8,12 +8,23 @@ import MediaCard from '@/components/MediaCard';
 import Button from '@mui/material/Button';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
+import axios from "axios";
 
 export default function mediaModel() {
     const newsMedia = useSelector(state => state.newsMedia);
     const [currentPage, setCurrentPage] = useState(1);
     const [newsPerPage] = useState(2);
-
+    const [post, setPost] = useState(null);
+    let tempURL = "http://localhost:5000/api/sample-get";
+    useEffect(() => {
+        axios.get(tempURL).then((response) => {
+            setPost(response.data);
+            console.log(post);
+        }).catch(error => {
+            console.error('Error fetching data:', error);
+          });
+    }, []);
+    
     const indexOfLastNews = currentPage * newsPerPage;
     const indexOfFirstNews = indexOfLastNews - newsPerPage;
     const currentNews = newsMedia.slice(indexOfFirstNews, indexOfLastNews);

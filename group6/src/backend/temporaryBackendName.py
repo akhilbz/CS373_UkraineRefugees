@@ -14,15 +14,17 @@ flaskApp.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///project.db"
 # initialize the app with the extension
 db.init_app(flaskApp)
 
+# News Model
 class News(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    author = db.Column(db.String(255))
-    title = db.Column(db.String(255))
-    description = db.Column(db.Text)
-    publishedAt = db.Column(db.DateTime)
-    name = db.Column(db.String(255))
-    content = db.Column(db.Text)
-    urlToImage = db.Column(db.String(255))
+    id = db.Column(db.Integer, primary_key=True) # main key to the news intance
+    author = db.Column(db.String(255), nullable=False)
+    title = db.Column(db.String(255), nullable=False)
+    description = db.Column(db.Text, nullable=False)  
+    published_at = db.Column(db.DateTime, nullable=False)  
+    source_name = db.Column(db.String(255), nullable=False) 
+    content = db.Column(db.Text, nullable=False)  
+    image_url = db.Column(db.String(255), nullable=True)
+    date_added = db.Column(db.DateTime, nullable=False)
 
 # Route to fetch news data from the database
 @flaskApp.route('/api/news', methods=['GET'])
