@@ -52,15 +52,15 @@ def get_news():
 
         # Convert the query result to a list of dictionaries
         news_list = []
-        for news_item in news_data:
+        for item in news_data:
             news_dict = {
-                'author': news_item.author,
-                'title': news_item.title,
-                'description': news_item.description,
-                'publishedAt': news_item.publishedAt,
-                'name': news_item.name,
-                'content': news_item.content,
-                'urlToImage': news_item.urlToImage
+                'author': item.author,
+                'title': item.title,
+                'description': item.description,
+                'publishedAt': item.publishedAt,
+                'name': item.name,
+                'content': item.content,
+                'urlToImage': item.urlToImage
             }
             news_list.append(news_dict)
 
@@ -68,6 +68,28 @@ def get_news():
     except Exception as e:
         return jsonify({'error': str(e)}), 500
 
+# Route to fetch news data from the database
+@flaskApp.route('/api/asylum-countries', methods=['GET'])
+def get_asylum_countries():
+    try:
+        asylum_data = AsylumCountryModel.query.all()
+
+        # Convert the query result to a list of dictionaries
+        asylum_list = []
+        for item in asylum_data:
+            country_dict = {
+                'name': item.name,
+                'capital': item.capital,
+                'region': item.region,
+                'population': item.population,
+                'languages': item.languages,
+                'flag': item.flag
+            }
+            asylum_list.append(country_dict)
+
+        return jsonify(asylum_list)
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
 
 # Sample data 
 temp = [
