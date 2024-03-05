@@ -7,15 +7,69 @@ from webdriver_manager.chrome import ChromeDriverManager
 
 def getInfo():
     groups = []
+    finalGroups = []
     dups=[]
     add = True
+    instance = 0
     options = webdriver.ChromeOptions()
-    options.add_argument('--headless')
-    options.add_argument('--no-sandbox')
-    options.add_argument('--disable-dev-shm-usage')
     # Your options setup remains unchanged
     service = Service(ChromeDriverManager().install())
     driver = webdriver.Chrome(service=service, options=options)
+
+    pictureLinks = [
+    "https://irusa.org/wp-content/uploads/2020/04/news-image.jpg",
+    "https://6480645.fs1.hubspotusercontent-na1.net/hubfs/6480645/Imported_Blog_Media/WorldVision-Logo-1.jpg",
+    "https://waysidechapel.org/wp-content/uploads/2017/04/Childrens-Hunger-Fund-FINAL-1200x628.jpg",
+    "https://worldaffairscouncil.org/wp-content/uploads/2017/10/shelter-box-presentationjuly2010-version-4-1-7281.jpg",
+    "https://pbs.twimg.com/profile_images/1610321236592041989/2tNcIxhC_400x400.jpg",
+    "https://www.globalgiving.org/pfil/organ/868/orglogo.jpg",
+    "https://www.rescue.org/sites/default/files/2022-09/og-image-default.jpeg",
+    "https://www.healthynewbornnetwork.org/hnn-content/uploads/SC_USA_Logo_RedBlack_Stacked-003.jpg",
+    "https://assets.classy.org/1739162/83b116ee-6173-11ea-96af-0a0f862183bb.jpg",
+    "https://d2g8igdw686xgo.cloudfront.net/76563015_17000535801900_r.png",
+    "https://thechildrenarewaiting.org/wp-content/uploads/2022/05/ACHI-PrimaryLogo_CMYK_LIGHT-BG.png",
+    "https://images.squarespace-cdn.com/content/v1/5c7ae7ce9b7d1579245505d1/bc68df21-0fb2-4fad-b47e-5830ff92fe4e/FMSC-White-RGB.jpg",
+    "https://uploads.concordia.net/2018/07/30141013/AC.png",
+    "https://seeklogo.com/images/G/globalgiving-logo-32B0289F4E-seeklogo.com.png",
+    "https://www.allhandsandhearts.org/wp-content/uploads/2022/04/All-Hands-Hearts_logo_L-type-Purple-V2-3.png",
+    "https://good360.org/wp-content/uploads/2020/11/Good360-Logo-500x.jpg",
+    "https://iphce.org/wp-content/uploads/2021/04/samaritans-purse.png",
+    "https://www.episcopalrelief.org/wp-content/uploads/2019/01/logo.png",
+    "https://www.projecthope.org/wp-content/uploads/2018/09/featured-image-rebrand-splash2.png",
+    "https://lirp.cdn-website.com/0741528c/dms3rep/multi/opt/HOPEww_Logo_Tagline_Black-Blue_TransparentBckgrd--281-29-1920w.png",
+    "https://cdn.www.wesleyan.org/wesleyanit/wp-content/uploads/2022/07/13161734/WHI-16_9-800x450.jpg",
+    "https://mcdowell.church/wp-content/uploads/2021/09/MWFB.001.jpeg",
+    "https://assets.classy.org/1530825/295c35be-d54f-11ec-9dcf-0e47ba516a91.png",
+    "https://d3osv5nby63e7f.cloudfront.net/customers/lifesong/logo_39015.png",
+    "https://m25m.org/wp-content/uploads/2015/03/M25M-2017-Logo_WEB.png",
+    "https://chambermaster.blob.core.windows.net/images/customers/34/members/1297/logos/MEMBER_PAGE_HEADER/logo.png",
+    "https://www.ob.org/wp-content/uploads/2020/07/2020_ob-logoflame-400x300-featured.jpg",
+    "https://pbs.twimg.com/media/EnMQZjpXIAAqO5Z.jpg",
+    "https://assets-global.website-files.com/58bede11383ef761786b3dc6/5afc927e5faa7134be8921a6_Icon_name_Rside_blue_print_LifeChangers_WHITE-SUBHEADER.png",
+    "https://upload.wikimedia.org/wikipedia/commons/4/4c/Mercy_Corps_Logo.png",
+    "https://cdn.cervistech.com/acts/images/logo/medshare.png",
+    "https://cdn.greatnonprofits.org/images/logos/400dpiLogo30.jpg",
+    "https://projectcure.org/app/uploads/2020/12/cropped-cropped-PC_Stacked_RedBox_Logo_Color_Web-1.jpeg",
+    "https://www.qlik.com/blog/assets/uploads/images/direct-relief.jpg",
+    "https://upload.wikimedia.org/wikipedia/commons/5/53/Handicap_International_Logo_2018.png",
+    "https://www.map.org/wp-content/uploads/2022/12/New-MAP-Logo-2022-rgb-1.png",
+    "https://images.squarespace-cdn.com/content/v1/63409d0482a14127ed59d9f4/bdb4e0aa-d572-46c6-9ccf-a8b6f5465b70/Untitled+design+%2847%29.png",
+    "https://wineindustryadvisor.com/wp-content/uploads/2020/05/world-central-kitchen-logo-vector.png",
+    "https://www.ifcj.org/wp-content/uploads/default-social.jpg",
+    "https://www.thoughtco.com/thmb/QaORdfDJQ5C7uzGwO5OPyS4ZG2o=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/GettyImages-139835605-58e720045f9b58ef7e76b23d-5b5f5c6346e0fb00257b4990.jpg",
+    "https://www.doctorswithoutborders.org/themes/custom/msf/meta_image.png",
+    "https://www.stjude.org/about-st-jude/faq/whats-alsac/_jcr_content/image.img.800.high.jpg/1454001469576.jpg",
+    "https://media2.charityengine.net/WF/_transactionServerFiles/745/2019/5/14/wwp-no-gift-jpg.jpg",
+    "https://t2t.org/wp-content/uploads/2014/02/T2T_Color.png",
+    "https://cdn.vox-cdn.com/thumbor/iABdwUEdWUMuXvTt4cYoSah0Am8=/0x0:7802x5204/1200x800/filters:focal(3277x1978:4525x3226)/cdn.vox-cdn.com/uploads/chorus_image/image/70566385/GettyImages_1238785426.0.jpg",
+    "https://i.ytimg.com/vi/X4bPR_JjjIM/maxresdefault.jpg",
+    "https://assets.classy.org/17752532/fe55c4da-1d64-11ed-98eb-0a58a9feac03.png",
+    "https://static.tgbwidget.com/organization_logo%2F7f2d7557-41c1-4be9-88a1-98359673188f.jpeg",
+    "https://cassaday.com/wp-content/uploads/2022/08/united-help-ukraine-logo.png",
+    "https://christianaidministries.org/wp-content/uploads/christian-aid-ministries-1-primary-logo-buttress-blue-rgb-900px-w-72ppi-768x382.png"
+    ]
+
+    
 
     driver.get('https://www.charitynavigator.org/discover-charities/where-to-give/ukranian-crisis/#charity_list')
     
@@ -82,15 +136,26 @@ def getInfo():
                 web_url = web_url_element.get_attribute('href')
             except:
                 web_url = "Web URL not found"
+
+
+            try:
+                picture_element = WebDriverWait(driver, 1).until(
+                EC.presence_of_element_located((By.CSS_SELECTOR, 'img'))
+                )
+                picture = web_url_element.get_attribute('img')
+                picture = pictureLinks[instance]
+            except:
+                picture = pictureLinks[instance]
         
-            # Print or save the scraped data
             if add:
                 temp = {"Name": name, "Location": location, "Rating":rating, "Mission_statement": mission_statement, "Phone": phone_number, "Website": web_url}
                 if temp not in groups:
                     groups.append(temp)
-                    print(f"Name: {name}, Location: {location}, Rating: {rating}, Mission Statement: {mission_statement}, Phone: {phone_number}, Website: {web_url}")
+                    temp2 = {"Name": name, "Location": location, "Rating":rating, "Mission_statement": mission_statement, "Phone": phone_number, "Website": web_url, "Picture" : picture}
+                    finalGroups.append(temp2)
+                    instance+=1
+                    #print(f"Name: {name}, Location: {location}, Rating: {rating}, Mission Statement: {mission_statement}, Phone: {phone_number}, Website: {web_url}, Picture : {picture}")
                 dups.append(name)
-                print(len(groups))
             if len(groups) >= 37:
                 break
         driver.back()  # Navigate back to the main list to continue the loop
@@ -138,13 +203,25 @@ def getInfo():
                 web_url = web_url_element.get_attribute('href')
             except:
                 web_url = "Web URL not found"
+
+
+            try:
+                picture_element = WebDriverWait(driver, 1).until(
+                EC.presence_of_element_located((By.CSS_SELECTOR, 'img'))
+                )
+                picture = web_url_element.get_attribute('img')
+                picture = pictureLinks[instance]
+            except:
+                picture = pictureLinks[instance]
         
-            # Print or save the scraped data
             if add:
                 temp = {"Name": name, "Location": location, "Rating":rating, "Mission_statement": mission_statement, "Phone": phone_number, "Website": web_url}
                 if temp not in groups:
                     groups.append(temp)
-                    print(f"Name: {name}, Location: {location}, Rating: {rating}, Mission Statement: {mission_statement}, Phone: {phone_number}, Website: {web_url}")
+                    temp2 = {"Name": name, "Location": location, "Rating":rating, "Mission_statement": mission_statement, "Phone": phone_number, "Website": web_url, "Picture" : picture}
+                    finalGroups.append(temp2)
+                    instance+=1
+                    #print(f"Name: {name}, Location: {location}, Rating: {rating}, Mission Statement: {mission_statement}, Phone: {phone_number}, Website: {web_url}, Picture : {picture}")
                 dups.append(name)
             if (len(groups) >=44):
                 break
@@ -157,7 +234,11 @@ def getInfo():
     cards = driver.find_elements(By.CSS_SELECTOR, '.tabgrid__card-item')
     counter = 0
     for card in cards:
-        name = card.find_element(By.CSS_SELECTOR, '.tab-card__right > p > a').text.strip()
+        try:
+            name = card.find_element(By.CSS_SELECTOR, '.tab-card__right > p > a').text.strip()
+        except: 
+            add = False
+
         if add == False:
             add = False
         else:
@@ -171,7 +252,7 @@ def getInfo():
         
             try:
                 # Assuming mission statement is available on the detail page, adjust the selector as needed
-                mission_statement = WebDriverWait(driver, 10).until(
+                mission_statement = WebDriverWait(driver, 1).until(
                     EC.presence_of_element_located((By.CSS_SELECTOR, 'your-mission-statement-selector'))
                 ).text
             except:
@@ -193,71 +274,26 @@ def getInfo():
                 web_url = web_url_element.get_attribute('href')
             except:
                 web_url = "Web URL not found"
-        
-            # Print or save the scraped data
-            if add:
-                temp = {"Name": name, "Location": location, "Rating":rating, "Mission_statement": mission_statement, "Phone": phone_number, "Website": web_url}
-                if temp not in groups:
-                    groups.append(temp)
-                    print(f"Name: {name}, Location: {location}, Rating: {rating}, Mission Statement: {mission_statement}, Phone: {phone_number}, Website: {web_url}")
-                dups.append(name)
-        driver.back()  # Navigate back to the main list to continue the loop
-
-
-    driver.get('https://www.charitynavigator.org/discover-charities/where-to-give/ukranian-crisis/')
-    
-    # No changes needed for the initial setup and navigation
-
-    cards = driver.find_elements(By.CSS_SELECTOR, '.tabgrid__card-item')
-    counter = 0
-    for card in cards:
-        element = WebDriverWait(driver, 10).until(
-            EC.presence_of_element_located((By.XPATH, '//*[@id="48"]'))
-            )
-        name = card.find_element(By.CSS_SELECTOR, '.tab-card__right > p > a').text.strip()
-        if add == False:
-            add = False
-        else:
-            location = card.find_element(By.CSS_SELECTOR, '.tab-card__right > p:nth-child(2)').text.strip()
-            rating = card.find_element(By.CSS_SELECTOR, '.tab-card__ratings').text.strip().replace('%', '')
-        
-
-            # Adjust to scrape mission statement and phone number as needed
-            detail_link = card.find_element(By.CSS_SELECTOR, '.tab-card__right > p > a').get_attribute('href')
-            driver.get(detail_link)  # Navigate to the charity's page
-        
-            try:
-                # Assuming mission statement is available on the detail page, adjust the selector as needed
-                mission_statement = WebDriverWait(driver, 10).until(
-                    EC.presence_of_element_located((By.CSS_SELECTOR, 'your-mission-statement-selector'))
-                ).text
-            except:
-                mission_statement = "Mission statement not found"
-        
-            try:
-                # Assuming phone number is available on the detail page, adjust the selector as needed
-                phone_number = WebDriverWait(driver, 10).until(
-                    EC.presence_of_element_located((By.CSS_SELECTOR, 'a[href^="tel:"]'))
-                ).get_attribute('aria-label')
-            except:
-                phone_number = "Phone number not found"
             
             try:
-                # Assuming the web URL is available on the detail page, adjust the selector as needed
-                web_url_element = WebDriverWait(driver, 10).until(
-                EC.presence_of_element_located((By.CSS_SELECTOR, 'a[target="_blank"][href][aria-label$="nonprofit website"]'))
+                picture_element = WebDriverWait(driver, 1).until(
+                EC.presence_of_element_located((By.CSS_SELECTOR, 'img'))
                 )
-                web_url = web_url_element.get_attribute('href')
+                picture = web_url_element.get_attribute('img')
+                picture = pictureLinks[instance]
             except:
-                web_url = "Web URL not found"
+                picture = pictureLinks[instance]
         
-            # Print or save the scraped data
             if add:
                 temp = {"Name": name, "Location": location, "Rating":rating, "Mission_statement": mission_statement, "Phone": phone_number, "Website": web_url}
                 if temp not in groups:
                     groups.append(temp)
-                    print(f"Name: {name}, Location: {location}, Rating: {rating}, Mission Statement: {mission_statement}, Phone: {phone_number}, Website: {web_url}")
+                    temp2 = {"Name": name, "Location": location, "Rating":rating, "Mission_statement": mission_statement, "Phone": phone_number, "Website": web_url, "Picture" : picture}
+                    finalGroups.append(temp2)
+                    instance+=1
+                    #print(f"Name: {name}, Location: {location}, Rating: {rating}, Mission Statement: {mission_statement}, Phone: {phone_number}, Website: {web_url}, Picture : {picture}")
                 dups.append(name)
+            add = True
         driver.back()  # Navigate back to the main list to continue the loop
     options = webdriver.ChromeOptions()
     # Your options setup remains unchanged
@@ -315,9 +351,19 @@ def getInfo():
         # Split the message at the first period and keep the first part
         first_part_of_message = full_message.split('.')[0]
 
+        try:
+            picture_element = WebDriverWait(driver, 1).until(
+            EC.presence_of_element_located((By.CSS_SELECTOR, 'img'))
+            )
+            picture = web_url_element.get_attribute('img')
+            picture = pictureLinks[instance]
+        except:
+            picture = pictureLinks[instance]
 
-        temp = {"Name": text, "Location": location_info, "Rating":percentage, "Mission_statement": first_part_of_message, "Phone": phone_text, "Website": website_url}
-        groups.append(temp)
+        instance+=1
+
+        temp = {"Name": text, "Location": location_info, "Rating":percentage, "Mission_statement": first_part_of_message, "Phone": phone_text, "Website": website_url, "Picture": picture}
+        finalGroups.append(temp)
         dups.append(text)
 
 
@@ -330,10 +376,8 @@ def getInfo():
         all_organization_name_elements = driver.find_elements(By.CSS_SELECTOR, 'h2.tw-mt-0.tw-font-sofia-pro.tw-font-semibold')
         second_organization_name = all_organization_name_elements[1].text.strip()
 
-        print(f"Organization Name: {second_organization_name}")
         location_info = "Wheaton IL"
 
-        print(f"Location/Status: {location_info}")
 
         # Scrape the percentage info
         percentage_element = WebDriverWait(driver, 10).until(
@@ -341,7 +385,6 @@ def getInfo():
         )
         percentage = driver.find_elements(By.CSS_SELECTOR,'h1.tw-font-sofia-pro.tw-font-normal')
         secondPercentage = percentage[1].text.strip()
-        print(f"Percentage: {secondPercentage}")
 
         driver.get('https://www.charitynavigator.org/ein/351835273')
 
@@ -352,14 +395,12 @@ def getInfo():
 
         # Extract just the numeric part if needed
        
-        print(f"Phone number: {phone_text}")
 
         website_element = WebDriverWait(driver, 10).until(
             EC.visibility_of_element_located((By.CSS_SELECTOR, 'span.icon-text-indent > a[target="_blank"][href]'))
         )
         website_url = website_element.get_attribute('href')
 
-        print(f"Website URL: {website_url}")
 
         # Locate the <span> element with the class "truncate" and extract the text
         message_element = WebDriverWait(driver, 10).until(
@@ -368,11 +409,20 @@ def getInfo():
         full_message = message_element.text.strip()
         # Split the message at the first period and keep the first part
         first_part_of_message = full_message.split('.')[0]
-        print(f"Message: {first_part_of_message}")
 
+        try:
+            picture_element = WebDriverWait(driver, 1).until(
+            EC.presence_of_element_located((By.CSS_SELECTOR, 'img'))
+            )
+            picture = web_url_element.get_attribute('img')
+            picture = pictureLinks[instance]
+        except:
+            picture = pictureLinks[instance]
 
-        temp = {"Name": second_organization_name, "Location": location_info, "Rating":secondPercentage, "Mission_statement": first_part_of_message, "Phone": phone_text, "Website": website_url}
-        groups.append(temp)
+        instance+=1
+
+        temp = {"Name": second_organization_name, "Location": location_info, "Rating":secondPercentage, "Mission_statement": first_part_of_message, "Phone": phone_text, "Website": website_url, "Picture": picture}
+        finalGroups.append(temp)
         dups.append(text)
 
 
@@ -386,10 +436,8 @@ def getInfo():
         all_organization_name_elements = driver.find_elements(By.CSS_SELECTOR, 'h2.tw-mt-0.tw-font-sofia-pro.tw-font-semibold')
         second_organization_name = all_organization_name_elements[2].text.strip()
 
-        print(f"Organization Name: {second_organization_name}")
         location_info = "Minneapolis, MN"
 
-        print(f"Location/Status: {location_info}")
 
         # Scrape the percentage info
         percentage_element = WebDriverWait(driver, 10).until(
@@ -397,7 +445,6 @@ def getInfo():
         )
         percentage = driver.find_elements(By.CSS_SELECTOR,'h1.tw-font-sofia-pro.tw-font-normal')
         secondPercentage = percentage[2].text.strip()
-        print(f"Percentage: {secondPercentage}")
 
         driver.get('https://www.charitynavigator.org/ein/411307457')
 
@@ -408,14 +455,12 @@ def getInfo():
 
         # Extract just the numeric part if needed
        
-        print(f"Phone number: {phone_text}")
 
         website_element = WebDriverWait(driver, 10).until(
             EC.visibility_of_element_located((By.CSS_SELECTOR, 'span.icon-text-indent > a[target="_blank"][href]'))
         )
         website_url = website_element.get_attribute('href')
 
-        print(f"Website URL: {website_url}")
 
         # Locate the <span> element with the class "truncate" and extract the text
         try:
@@ -426,13 +471,21 @@ def getInfo():
         except:
             first_part_of_message = "We save children's lives by transforming pediatric heart care in underserved parts of the world."
         # Split the message at the first period and keep the first part
-        print(f"Message: {first_part_of_message}")
 
-        temp = {"Name": second_organization_name, "Location": location_info, "Rating":secondPercentage, "Mission_statement": first_part_of_message, "Phone": phone_text, "Website": website_url}
-        groups.append(temp)
+        try:
+            picture_element = WebDriverWait(driver, 1).until(
+            EC.presence_of_element_located((By.CSS_SELECTOR, 'img'))
+            )
+            picture = web_url_element.get_attribute('img')
+            picture = pictureLinks[instance]
+        except:
+            picture = pictureLinks[instance]
+
+        instance+=1
+
+        temp = {"Name": second_organization_name, "Location": location_info, "Rating":secondPercentage, "Mission_statement": first_part_of_message, "Phone": phone_text, "Website": website_url, "Picture": picture}
+        finalGroups.append(temp)
         dups.append(text)
-
-
 
 
         driver.get('https://www.charitynavigator.org/search?q=ukraine&sort=rating')
@@ -441,7 +494,6 @@ def getInfo():
         )
         all_organization_name_elements = driver.find_elements(By.CSS_SELECTOR, 'h2.tw-mt-0.tw-font-sofia-pro.tw-font-semibold')
         second_organization_name = all_organization_name_elements[3].text.strip()
-
         location_info = "Falls Church, VA"
 
 
@@ -477,9 +529,21 @@ def getInfo():
         except:
             first_part_of_message = "We save children's lives by transforming pediatric heart care in underserved parts of the world."
         # Split the message at the first period and keep the first part
+        
+        try:
+            picture_element = WebDriverWait(driver, 1).until(
+            EC.presence_of_element_located((By.CSS_SELECTOR, 'img'))
+            )
+            picture = web_url_element.get_attribute('img')
+            picture = pictureLinks[instance]
+        except:
+            picture = pictureLinks[instance]
 
-        temp = {"Name": second_organization_name, "Location": location_info, "Rating":secondPercentage, "Mission_statement": first_part_of_message, "Phone": phone_text, "Website": website_url}
-        groups.append(temp)
+        instance+=1
+
+
+        temp = {"Name": second_organization_name, "Location": location_info, "Rating":secondPercentage, "Mission_statement": first_part_of_message, "Phone": phone_text, "Website": website_url, "Picture": picture}
+        finalGroups.append(temp)
         dups.append(text)
 
 
@@ -492,7 +556,6 @@ def getInfo():
         )
         all_organization_name_elements = driver.find_elements(By.CSS_SELECTOR, 'h2.tw-mt-0.tw-font-sofia-pro.tw-font-semibold')
         second_organization_name = all_organization_name_elements[4].text.strip()
-
         location_info = "FairFax, VA"
 
         # Scrape the percentage info
@@ -526,10 +589,22 @@ def getInfo():
         except:
             first_part_of_message = "We save children's lives by transforming pediatric heart care in underserved parts of the world."
         # Split the message at the first period and keep the first part
+        
+        try:
+            picture_element = WebDriverWait(driver, 1).until(
+            EC.presence_of_element_located((By.CSS_SELECTOR, 'img'))
+            )
+            picture = web_url_element.get_attribute('img')
+            picture = pictureLinks[instance]
+        except:
+            picture = pictureLinks[instance]
+
+        instance+=1
 
 
-        temp = {"Name": second_organization_name, "Location": location_info, "Rating":secondPercentage, "Mission_statement": first_part_of_message, "Phone": phone_text, "Website": website_url}
-        groups.append(temp)
+
+        temp = {"Name": second_organization_name, "Location": location_info, "Rating":secondPercentage, "Mission_statement": first_part_of_message, "Phone": phone_text, "Website": website_url, "Picture": picture}
+        finalGroups.append(temp)
         dups.append(text)
 
 
@@ -541,7 +616,6 @@ def getInfo():
         )
         all_organization_name_elements = driver.find_elements(By.CSS_SELECTOR, 'h2.tw-mt-0.tw-font-sofia-pro.tw-font-semibold')
         second_organization_name = all_organization_name_elements[5].text.strip()
-
         location_info = "FairFax, VA"
 
 
@@ -578,11 +652,23 @@ def getInfo():
         except:
             first_part_of_message = "We save children's lives by transforming pediatric heart care in underserved parts of the world."
         
-        temp = {"Name": second_organization_name, "Location": location_info, "Rating":secondPercentage, "Mission_statement": first_part_of_message, "Phone": phone_text, "Website": website_url}
-        groups.append(temp)
+        try:
+            picture_element = WebDriverWait(driver, 1).until(
+            EC.presence_of_element_located((By.CSS_SELECTOR, 'img'))
+            )
+            picture = web_url_element.get_attribute('img')
+            picture = pictureLinks[instance]
+        except:
+            picture = pictureLinks[instance]
+
+        instance+=1
+
+
+        temp = {"Name": second_organization_name, "Location": location_info, "Rating":secondPercentage, "Mission_statement": first_part_of_message, "Phone": phone_text, "Website": website_url, "Picture": picture}
+        finalGroups.append(temp)
         dups.append(text)
         
     except Exception as e:
-        print(f"An error occurred: {e}")
-    print(len(groups))
-    return groups
+        print(f"An error occurred in the last few: {e}")
+    print(len(finalGroups))
+    return finalGroups
