@@ -24,7 +24,7 @@ class NewsModel(db.Model):
     source_name = db.Column(db.String(255), nullable=False) 
     content = db.Column(db.Text, nullable=False)  
     image_url = db.Column(db.String(255), nullable=True)
-    date_added = db.Column(db.DateTime, nullable=False)
+    # date_added = db.Column(db.DateTime, nullable=False)
 
 class AsylumCountryModel(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -41,7 +41,7 @@ class SupportGroupsModel(db.Model):
     location = db.Column(db.String(255), nullable=False)
     phn_no = db.Column(db.String(16), nullable=False)
     rating = db.Column(db.Integer, nullable=False)
-    region = db.Column(db.String(255), nullable=False)
+    # region = db.Column(db.String(255), nullable=False)
     website_url = db.Column(db.Text, nullable=False)
 
 @flaskApp.route("/")
@@ -61,10 +61,10 @@ def get_db_news():
                 'author': item.author,
                 'title': item.title,
                 'description': item.description,
-                'publishedAt': item.publishedAt,
-                'name': item.name,
+                'publishedAt': item.published_at,
+                'name': item.source_name,
                 'content': item.content,
-                'urlToImage': item.urlToImage
+                'urlToImage': item.image_url
             }
             news_list.append(news_dict)
 
@@ -126,7 +126,6 @@ def get_db_support_groups():
                 'location': item.location,
                 'phn_no': item.phn_no,
                 'rating': item.rating,
-                'region': item.region,
                 'website_url': item.website_url
             }
             support_groups_list.append(support_group_dict)
