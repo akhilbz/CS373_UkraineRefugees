@@ -72,6 +72,28 @@ def get_db_news():
     except Exception as e:
         return jsonify({'error': str(e)}), 500
 
+# Route to fetch support group data from the database
+@flaskApp.route('/api/news/<id>', methods=['GET'])
+def get_db_support_groups():
+    try:
+        support_group = SupportGroupsModel.query.filter_by(id=id).first()
+        if support_group:
+            support_group_dict = {
+                'id': support_group.id,
+                'name': support_group.name,
+                'location': support_group.location,
+                'phn_no': support_group.phn_no,
+                'rating': support_group.rating,
+                'region': support_group.region,
+                'website_url': support_group.website_url
+            }
+            return jsonify(support_group_dict)
+        else:
+            return jsonify({'error': 'Support group not found'}), 404
+
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
 # Route to fetch country data from the database
 @flaskApp.route('/api/asylum-countries', methods=['GET'])
 def get_db_asylum_countries():
