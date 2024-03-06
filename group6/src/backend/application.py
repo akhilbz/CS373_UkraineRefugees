@@ -49,7 +49,7 @@ class SupportGroupsModel(db.Model):
     
 @application.route("/")
 def home():
-    return "Welcome to Ukraine Crisis API"
+    return "Welcome to Ukraine Crisis API v1"
 
 
 @application.route("/countries", methods=["GET"])

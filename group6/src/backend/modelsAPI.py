@@ -44,6 +44,10 @@ class SupportGroupsModel(db.Model):
     region = db.Column(db.String(255), nullable=False)
     website_url = db.Column(db.Text, nullable=False)
 
+@flaskApp.route("/")
+def home():
+    return "Welcome to Ukraine Crisis API v1"
+
 # Route to fetch news data from the database
 @flaskApp.route('/api/news', methods=['GET'])
 def get_news():
