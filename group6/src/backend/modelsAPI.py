@@ -91,6 +91,24 @@ def get_asylum_countries():
     except Exception as e:
         return jsonify({'error': str(e)}), 500
 
+@flaskApp.route('/api/asylum-countries/<country>', methods=['GET'])
+def get_news(country):
+    try:
+        country_data = AsylumCountryModel.query.filter_by(name=country).first()
+        if(not country_data) :
+            raise Exception("Country not found")
+        country_dict = {
+            'name': country_data.name,
+            'capital': country_data.capital,
+            'region': country_data.region,
+            'population': country_data.population,
+            'languages': country_data.languages,
+            'flag': country_data.flag
+        }
+        return jsonify(country_dict)
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
 # Route to fetch support group data from the database
 @flaskApp.route('/api/support-groups', methods=['GET'])
 def get_support_groups():
