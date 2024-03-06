@@ -71,25 +71,25 @@ def get_db_news():
         return jsonify(news_list)
     except Exception as e:
         return jsonify({'error': str(e)}), 500
-
-# Route to fetch support group data from the database
-@flaskApp.route('/api/news/<id>', methods=['GET'])
-def get_db_support_groups():
+    
+@flaskApp.route('/api/news/<int:id>', methods=['GET'])
+def get_news_by_id(id):
     try:
-        support_group = SupportGroupsModel.query.filter_by(id=id).first()
-        if support_group:
-            support_group_dict = {
-                'id': support_group.id,
-                'name': support_group.name,
-                'location': support_group.location,
-                'phn_no': support_group.phn_no,
-                'rating': support_group.rating,
-                'region': support_group.region,
-                'website_url': support_group.website_url
+        news_item = NewsModel.query.filter_by(id=id).first()
+        if news_item:
+            news_item_dict = {
+                'id': news_item.id,
+                'author': news_item.author,
+                'title': news_item.title,
+                'description': news_item.description,
+                'publishedAt': news_item.publishedAt,
+                'name': news_item.name,
+                'content': news_item.content,
+                'urlToImage': news_item.urlToImage
             }
-            return jsonify(support_group_dict)
+            return jsonify(news_item_dict)
         else:
-            return jsonify({'error': 'Support group not found'}), 404
+            return jsonify({'error': 'News item not found'}), 404
 
     except Exception as e:
         return jsonify({'error': str(e)}), 500
@@ -157,6 +157,28 @@ def get_db_support_groups():
     except Exception as e:
         return jsonify({'error': str(e)}), 500
 
+# Route to fetch support group data from the database
+@flaskApp.route('/api/support-groups/<id>', methods=['GET'])
+def get_db_support_groups():
+    try:
+        support_group = SupportGroupsModel.query.filter_by(id=id).first()
+        if support_group:
+            support_group_dict = {
+                'id': support_group.id,
+                'name': support_group.name,
+                'location': support_group.location,
+                'phn_no': support_group.phn_no,
+                'rating': support_group.rating,
+                'region': support_group.region,
+                'website_url': support_group.website_url
+            }
+            return jsonify(support_group_dict)
+        else:
+            return jsonify({'error': 'Support group not found'}), 404
+
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+    
 # Sample data 
 temp = [
     {"id": 1, "title": "News 1", "author": "Author 1"},
