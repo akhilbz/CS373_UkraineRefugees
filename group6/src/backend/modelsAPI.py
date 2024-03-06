@@ -46,7 +46,7 @@ class SupportGroupsModel(db.Model):
 
 @flaskApp.route("/")
 def home():
-    return "Welcome to Ukraine Crisis API v1"
+    return "Welcome to Ukraine Crisis API v2"
 
 # Route to fetch news data from the database
 @flaskApp.route('/api/news', methods=['GET'])
