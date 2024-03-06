@@ -44,9 +44,10 @@ class SupportGroupsModel(db.Model):
     name = db.Column(db.String(255), nullable=False)
     location = db.Column(db.String(255), nullable=False)
     phn_no = db.Column(db.String(16), nullable=False)
-    rating = db.Column(db.Integer, nullable=False)
-    region = db.Column(db.String(255), nullable=False)
+    rating = db.Column(db.Double, nullable=False)
+    mission_stmt = db.Column(db.Text, nullable=False)
     website_url = db.Column(db.Text, nullable=False)
+    picture_url = db.Column(db.Text, nullable=False)
     
 @application.route("/")
 def home():
@@ -87,6 +88,22 @@ def news():
     print("GRABBING NEWS")
     return getNews()
 
+def populate_news():
+    news_data = getNews()
+    
+    for news in news_data:
+        news = NewsModel(
+            
+        )
+        db.session.add(news)
+    
+    try:
+        db.session.commit()
+    except Exception as e:
+        db.session.rollback()  # Rollback the changes on error
+        print(f"Error: {e}")  # Log or print the error
+    finally:
+        db.session.close()  # Close the session
 
 @application.route("/supportGroups", methods=["GET"])
 @cross_origin()
@@ -94,7 +111,28 @@ def supportGroup():
     print("GRABBING Support Group")
     return getInfo()
 
+def populate_support_group():
+    support_group_data = getInfo()
+    
+    for support_group in support_group_data:
+        support_group_instance = SupportGroupsModel(
+            name=support_group["Name"],
+            location=support_group.get("Location", "Not Available"),
+            phn_no=support_group.get("Phone", "Not Available"),
+            rating=support_group.get("Rating", -1),
+            mission_stmt=support_group.get("Mission_statement", "Mission statement not found"),
+            website_url=support_group.get("Website", "Not Available"),
+            picture_url=support_group.get("Picture", "Not Available")
+        )
+        db.session.add(support_group_instance)
+    
+    try:
+        db.session.commit()
+    except Exception as e:
+        db.session.rollback()  # Rollback the changes on error
+        print(f"Error: {e}")  # Log or print the error
+    finally:
+        db.session.close()  # Close the session
 
 if __name__ == "__main__":
     application.run(port=5000, debug=True)
-
