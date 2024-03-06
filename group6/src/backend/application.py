@@ -21,14 +21,12 @@ migrate = Migrate(application, db)
 class NewsModel(db.Model):
     id = db.Column(db.Integer, primary_key=True)  # main key to the news intance
     author = db.Column(db.String(255), nullable=False)
-    title = db.Column(db.String(255), nullable=False)
+    title = db.Column(db.Text, nullable=False)
     description = db.Column(db.Text, nullable=False)
     published_at = db.Column(db.String(255), nullable=False)
     source_name = db.Column(db.String(255), nullable=False)
     content = db.Column(db.Text, nullable=False)
     image_url = db.Column(db.Text, nullable=True)
-    date_added = db.Column(db.DateTime, nullable=False)
-
 
 class AsylumCountryModel(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -90,12 +88,18 @@ def news():
 
 def populate_news():
     news_data = getNews()
-    
+    print(news_data)
     for news in news_data:
-        news = NewsModel(
-            
+        news_instance = NewsModel(
+            author=news.get("author", "Not Listed"),
+            title=news.get("title", "Untitled"),
+            description=news.get("description", "Not Available"),
+            published_at=news.get("publishedAt", "Not Available"),
+            source_name=news["name"],
+            content=news.get("content", "Not Available"),
+            image_url=news.get("urlToImage", "Not Available"),
         )
-        db.session.add(news)
+        db.session.add(news_instance)
     
     try:
         db.session.commit()
@@ -104,6 +108,26 @@ def populate_news():
         print(f"Error: {e}")  # Log or print the error
     finally:
         db.session.close()  # Close the session
+        
+
+    """
+    {'author': 'zerohedge.com', 
+    'title': 'Why "They" Are Still Running Nikki Haley', 
+    'description': 'Why "They" Are Still Running Nikki Haley Authored by Jim Quinn via The Burning Platform blog, “She’s so transparently weak and sort of ridiculous and doesn’t know anything, and just thinks that jumping up and down and making these absurd blanket statements, a…', 
+    'publishedAt': '2024-03-04T22:04:07Z', 
+    'name': 'Biztoc.com', 
+    'content': 'Why "They" Are Still Running Nikki Haley\r\nAuthored by Jim Quinn via The Burning Platform blog,Shes so transparently weak and sort of ridiculous and doesnt know anything, and just thinks that jumping … [+299 chars]', 
+    'urlToImage': 'https://c.biztoc.com/p/7ba5900bbb2dd01d/s.webp'},
+    
+    id = db.Column(db.Integer, primary_key=True)  # main key to the news intance
+    author = db.Column(db.String(255), nullable=False)
+    title = db.Column(db.Text, nullable=False)
+    description = db.Column(db.Text, nullable=False)
+    published_at = db.Column(db.String(255), nullable=False)
+    source_name = db.Column(db.String(255), nullable=False)
+    content = db.Column(db.Text, nullable=False)
+    image_url = db.Column(db.Text, nullable=True)
+    """
 
 @application.route("/supportGroups", methods=["GET"])
 @cross_origin()
