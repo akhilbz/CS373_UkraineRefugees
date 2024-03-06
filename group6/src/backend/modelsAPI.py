@@ -68,7 +68,7 @@ def get_news():
     except Exception as e:
         return jsonify({'error': str(e)}), 500
 
-# Route to fetch news data from the database
+# Route to fetch country data from the database
 @flaskApp.route('/api/asylum-countries', methods=['GET'])
 def get_asylum_countries():
     try:
@@ -88,6 +88,28 @@ def get_asylum_countries():
             asylum_list.append(country_dict)
 
         return jsonify(asylum_list)
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
+# Route to fetch support group data from the database
+@flaskApp.route('/api/support-groups', methods=['GET'])
+def get_support_groups():
+    try:
+        support_groups_data = SupportGroupsModel.query.all()
+        support_groups_list = []
+        for item in support_groups_data:
+            support_group_dict = {
+                'id': item.id,
+                'name': item.name,
+                'location': item.location,
+                'phn_no': item.phn_no,
+                'rating': item.rating,
+                'region': item.region,
+                'website_url': item.website_url
+            }
+            support_groups_list.append(support_group_dict)
+
+        return jsonify(support_groups_list)
     except Exception as e:
         return jsonify({'error': str(e)}), 500
 
