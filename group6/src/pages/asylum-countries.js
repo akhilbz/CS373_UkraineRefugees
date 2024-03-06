@@ -10,7 +10,7 @@ import Button from '@mui/material/Button';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
 
-export default function RefugeeTestimonials() {
+export default function AsylumCountries() {
     const refTestimonials = useSelector(state => state.refTestimonials);
     const dispatch = useDispatch();
     const [currentPage, setCurrentPage] = useState(1);
@@ -30,8 +30,8 @@ export default function RefugeeTestimonials() {
             <NavBar />
             <main>
                 <div className="top-7 flex relative items-center w-full"> 
-                    <h1 className='text-3xl pt-7 font-medium w-full text-center absolute'>Refugee Testimonials</h1> 
-                    <h2 className='absolute pt-7 right-3 font-light text-xl'>Total Testimonials: {refTestimonials.length}</h2> 
+                    <h1 className='text-3xl pt-7 font-medium w-full text-center absolute'>Asylum Countries</h1> 
+                    <h2 className='absolute pt-7 right-3 font-light text-xl'>Total Countries: {refTestimonials.length}</h2> 
                 </div>
                 <div className={`pt-28 pb-8 ${isSmallScreen ? 'px-2' : 'px-8'} flex justify-center w-full`}>
                     <Grid container spacing={isSmallScreen ? 2 : 4} className='flex justify-center'>
