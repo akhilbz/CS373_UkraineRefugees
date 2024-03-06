@@ -50,7 +50,7 @@ def home():
 
 # Route to fetch news data from the database
 @flaskApp.route('/api/news', methods=['GET'])
-def get_news():
+def get_db_news():
     try:
         news_data = NewsModel.query.all()
 
@@ -74,7 +74,7 @@ def get_news():
 
 # Route to fetch country data from the database
 @flaskApp.route('/api/asylum-countries', methods=['GET'])
-def get_asylum_countries():
+def get_db_asylum_countries():
     try:
         asylum_data = AsylumCountryModel.query.all()
 
@@ -96,7 +96,7 @@ def get_asylum_countries():
         return jsonify({'error': str(e)}), 500
 
 @flaskApp.route('/api/asylum-countries/<country>', methods=['GET'])
-def get_news(country):
+def get_db_country_singular(country):
     try:
         country_data = AsylumCountryModel.query.filter_by(name=country).first()
         if(not country_data) :
@@ -115,7 +115,7 @@ def get_news(country):
 
 # Route to fetch support group data from the database
 @flaskApp.route('/api/support-groups', methods=['GET'])
-def get_support_groups():
+def get_db_support_groups():
     try:
         support_groups_data = SupportGroupsModel.query.all()
         support_groups_list = []
