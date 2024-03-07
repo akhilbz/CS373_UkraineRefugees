@@ -60,6 +60,7 @@ def get_db_news():
         news_list = []
         for item in news_data:
             news_dict = {
+                'id': item.id,
                 'author': item.author,
                 'title': item.title,
                 'description': item.description,
