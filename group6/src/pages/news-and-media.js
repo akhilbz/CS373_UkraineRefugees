@@ -16,7 +16,7 @@ export default function mediaModel() {
     const [newsPerPage] = useState(2);
     const [post, setPost] = useState(null);
     let tempURL = "http://localhost:5000/api/sample-get";
-    // tempURL = "https://httpbin.org/get";
+    tempURL = "https://cs373-backend.ukrainecrisis.me/api/news";
 
     // This should be a list of objects returned as JSON
     useEffect(() => {
