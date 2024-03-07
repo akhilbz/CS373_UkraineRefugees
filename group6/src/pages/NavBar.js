@@ -14,8 +14,8 @@ const NavBar = () => {
                     <Link href="/about-us" passHref>
                         <div className={`${router.pathname === '/about-us' ? 'font-bold' : ''}`}>About</div>
                     </Link>
-                    <Link href="/refugee-testimonials" passHref>
-                        <div className={`${router.pathname === '/refugee-testimonials' ? 'font-bold' : ''}`}>Refugee Testimonials</div>
+                    <Link href="/asylum-countries" passHref>
+                        <div className={`${router.pathname === '/refugee-testimonials' ? 'font-bold' : ''}`}>Asylum Countries</div>
                     </Link>
                     <Link href="/news-and-media" passHref>
                         <div className={`${router.pathname === '/news-and-media' ? 'font-bold' : ''}`}>News and Media</div>
