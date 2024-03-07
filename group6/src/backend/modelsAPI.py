@@ -84,10 +84,10 @@ def get_news_by_id(id):
                 'author': news_item.author,
                 'title': news_item.title,
                 'description': news_item.description,
-                'publishedAt': news_item.publishedAt,
-                'name': news_item.name,
+                'publishedAt': news_item.published_at,
+                'name': news_item.source_name,
                 'content': news_item.content,
-                'urlToImage': news_item.urlToImage
+                'urlToImage': news_item.image_url
             }
             return jsonify(news_item_dict)
         else:
@@ -159,8 +159,8 @@ def get_db_support_groups():
         return jsonify({'error': str(e)}), 500
 
 # Route to fetch support group data from the database
-@flaskApp.route('/api/support-groups/<id>', methods=['GET'])
-def get_db_support_groups():
+@flaskApp.route('/api/support-groups/<int:id>', methods=['GET'])
+def get_db_support_groups_singular(id):
     try:
         support_group = SupportGroupsModel.query.filter_by(id=id).first()
         if support_group:
@@ -170,7 +170,6 @@ def get_db_support_groups():
                 'location': support_group.location,
                 'phn_no': support_group.phn_no,
                 'rating': support_group.rating,
-                'region': support_group.region,
                 'website_url': support_group.website_url
             }
             return jsonify(support_group_dict)
