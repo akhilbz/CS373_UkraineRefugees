@@ -17,7 +17,7 @@ const NavBar = () => {
                     <Link href="/asylum-countries" passHref>
                         <div className={`${router.pathname === '/refugee-testimonials' ? 'font-bold' : ''}`}>Asylum Countries</div>
                     </Link>
-                    <Link href="/news-and-media" passHref>
+                    <Link href="/news" passHref>
                         <div className={`${router.pathname === '/news-and-media' ? 'font-bold' : ''}`}>News and Media</div>
                     </Link>
                     <Link href="/support-groups" passHref>
