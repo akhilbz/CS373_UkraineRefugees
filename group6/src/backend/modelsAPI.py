@@ -106,6 +106,7 @@ def get_db_asylum_countries():
         asylum_list = []
         for item in asylum_data:
             country_dict = {
+                'id': item.id,
                 'name': item.name,
                 'capital': item.capital,
                 'region': item.region,
@@ -119,13 +120,14 @@ def get_db_asylum_countries():
     except Exception as e:
         return jsonify({'error': str(e)}), 500
 
-@flaskApp.route('/api/asylum-countries/<country>', methods=['GET'])
-def get_db_country_singular(country):
+@flaskApp.route('/api/asylum-countries/<int:id>', methods=['GET'])
+def get_db_country_singular(id):
     try:
-        country_data = AsylumCountryModel.query.filter_by(name=country).first()
+        country_data = AsylumCountryModel.query.filter_by(id=id).first()
         if(not country_data) :
             raise Exception("Country not found")
         country_dict = {
+            'id': country_data.id,
             'name': country_data.name,
             'capital': country_data.capital,
             'region': country_data.region,
