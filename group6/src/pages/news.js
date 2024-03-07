@@ -11,22 +11,32 @@ import { useTheme } from '@mui/material/styles';
 import axios from "axios";
 
 export default function mediaModel() {
-    const newsMedia = useSelector(state => state.newsMedia);
+    // const newsMedia = useSelector(state => state.newsMedia);
+    const [newsMedia, setNewsMedia] = useState([]);
+    const [loading, setLoading] = useState(true);
+
     const [currentPage, setCurrentPage] = useState(1);
-    const [newsPerPage] = useState(2);
+    const [newsPerPage] = useState(6);
     const [post, setPost] = useState(null);
     let tempURL = "http://localhost:5000/api/sample-get";
     tempURL = "https://cs373-backend.ukrainecrisis.me/api/news";
 
-    // This should be a list of objects returned as JSON
     useEffect(() => {
-        axios.get(tempURL).then((response) => {
-            console.log(response);
-            setPost(response.data);
-        }).catch(error => {
-            console.error('Error fetching data:', error);
-          });
+        const fetchNews = async () => {
+            try {
+                setLoading(true);
+                const response = await axios.get('https://cs373-backend.ukrainecrisis.me/api/news');
+                setNewsMedia(response.data);
+                setLoading(false);
+            } catch (error) {
+                console.error('Error fetching asylum countries data:', error);
+                setLoading(false);
+            }
+        };
+
+        fetchNews();
     }, []);
+    console.log(newsMedia)
     
     const indexOfLastNews = currentPage * newsPerPage;
     const indexOfFirstNews = indexOfLastNews - newsPerPage;

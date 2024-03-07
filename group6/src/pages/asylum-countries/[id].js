@@ -123,7 +123,7 @@ const CountryDetailPage = () => {
               </Grid>
               <Grid item xs={6} md={2.5} className='flex justify-center '>
                 <Card className='rounded-2xl h-[400px] w-[275px]'>
-                  {/* <MediaCard media_data={singleNewsInstance} /> */}
+                  <MediaCard media_data={singleNewsInstance} />
                 </Card>
               </Grid>
           </Grid>
