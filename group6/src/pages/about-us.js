@@ -28,7 +28,7 @@ let teamMembers = [
         bio: 'I am a Junior CS student with a minor in Informatics. In my free time, I enjoy playing basketball, listening to music and hanging out with friends.',
         commits: 0,
         issues: 10,
-        tests: 0,
+        tests: 16,
         gitLabName: 'chumaanigbogu',
         username: 'chumaanigbogu',
     },
