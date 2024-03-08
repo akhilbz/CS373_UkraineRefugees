@@ -1,9 +1,9 @@
 stages:
   - build
-  # - b_post
-  # - b_unit
-  # - f_jest
-  # - f_sel
+  - b_post
+  - b_unit
+  - f_jest
+  - f_sel
 
 build_frontend:
   stage: build
@@ -13,9 +13,55 @@ build_frontend:
       - ./group6/node_modules/
       - ./group6/.next/cache/
   script:
-      - cd group6  # Change into the 'group6' directory where your Next.js app is located
+      - cd group6 
       - npm install
       - npm run build
+
+postman_tests:
+    stage: b_post
+    # image: postman/newman:alpine
+    script:
+        - echo "Hello, $GITLAB_USER_LOGIN!"
+        # - cd backend/tests
+        # - newman run postman_tests.json  
+
+unit_tests:
+    stage: b_unit
+    image: python:3
+    script:
+        - echo "Hello, $GITLAB_USER_LOGIN!"
+        # - cd backend/tests 
+        # - python3 -m unittest discover -s . 
+
+jest_tests:
+    stage: f_jest
+    image: node:latest
+    script:
+        - echo "Hello, $GITLAB_USER_LOGIN!"
+        - cd group6 
+        - npm install
+        - npm test 
+
+selenium_tests:
+    stage: f_sel
+    image: python:3
+    before_script:
+        # Setup Chrome driver for Selenium tests
+        # - apt-get update -qy
+        # - apt-get install -y wget gnupg2 apt-utils
+        # - wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add -
+        # - sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list'
+        # - apt-get update -qy
+        # - apt-get install -y google-chrome-stable
+        # - apt-get install -yqq unzip
+        # - wget -O /tmp/chromedriver.zip https://chromedriver.storage.googleapis.com/$(curl -sS chromedriver.storage.googleapis.com/LATEST_RELEASE)/chromedriver_linux64.zip
+        # - unzip /tmp/chromedriver.zip chromedriver -d /usr/local/bin/
+    script:
+          - echo "Hello, $GITLAB_USER_LOGIN!"
+        # - cd src/tests  # Adjust to where your Selenium tests are located
+        # - pip install -r requirements.txt  # Your requirements.txt should contain selenium
+        # - python3 selenium_tests.py  # Make sure selenium_tests.py is at this location
+
 
 # build-job:
 #   stage: build
