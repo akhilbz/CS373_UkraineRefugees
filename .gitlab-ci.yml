@@ -5,6 +5,30 @@ stages:
   - f_test1
   - f_jest
 
+frontend_tests:
+    stage: f_test1
+    image: python:3
+    before_script:
+        - apt-get update -qy
+        - apt-get install -y wget gnupg2 apt-utils
+        - wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add -
+        - sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list'
+        - apt-get update -qy
+        - apt-get install -y google-chrome-stable
+        - CHROMEDRIVER_VERSION=`curl -sS chromedriver.storage.googleapis.com/LATEST_RELEASE`
+        - wget -N http://chromedriver.storage.googleapis.com/$CHROMEDRIVER_VERSION/chromedriver_linux64.zip -P ~/
+        - unzip ~/chromedriver_linux64.zip -d ~/
+        - rm ~/chromedriver_linux64.zip
+        - mv -f ~/chromedriver /usr/local/bin/chromedriver
+        - chown root:root /usr/local/bin/chromedriver
+        - chmod 0755 /usr/local/bin/chromedriver
+        - pip install selenium
+        - pip install -r group6/src/backend/requirements.txt
+    script:
+        - cd group6/src/pages
+        - echo "Hello, $GITLAB_USER_LOGIN!"
+        - python3 FrontEndTests.py
+
 postman_tests:
     stage: b_post
     # image: postman/newman:alpine
@@ -39,30 +63,6 @@ build_frontend:
       - cd group6 
       - npm install
       - npm run build
-
-frontend_tests:
-    stage: f_test1
-    image: python:3
-    before_script:
-        # - apt-get update -qy
-        # - apt-get install -y wget gnupg2 apt-utils
-        # - wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add -
-        # - sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list'
-        # - apt-get update -qy
-        # - apt-get install -y google-chrome-stable
-        # - CHROMEDRIVER_VERSION=`curl -sS chromedriver.storage.googleapis.com/LATEST_RELEASE`
-        # - wget -N http://chromedriver.storage.googleapis.com/$CHROMEDRIVER_VERSION/chromedriver_linux64.zip -P ~/
-        # - unzip ~/chromedriver_linux64.zip -d ~/
-        # - rm ~/chromedriver_linux64.zip
-        # - mv -f ~/chromedriver /usr/local/bin/chromedriver
-        # - chown root:root /usr/local/bin/chromedriver
-        # - chmod 0755 /usr/local/bin/chromedriver
-        # - pip install selenium
-        # - pip install -r group6/src/backend/requirements.txt
-    script:
-        - cd group6/src/pages
-        - echo "Hello, $GITLAB_USER_LOGIN!"
-        # - python3 FrontEndTests.py
 
 jest_tests:
     stage: f_jest
