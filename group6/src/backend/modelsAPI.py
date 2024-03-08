@@ -42,9 +42,10 @@ class SupportGroupsModel(db.Model):
     name = db.Column(db.String(255), nullable=False)
     location = db.Column(db.String(255), nullable=False)
     phn_no = db.Column(db.String(16), nullable=False)
-    rating = db.Column(db.Integer, nullable=False)
-    # region = db.Column(db.String(255), nullable=False)
+    rating = db.Column(db.Double, nullable=False)
+    mission_stmt = db.Column(db.Text, nullable=False)
     website_url = db.Column(db.Text, nullable=False)
+    picture_url = db.Column(db.Text, nullable=False)
 
 @flaskApp.route("/")
 def home():
@@ -153,7 +154,8 @@ def get_db_support_groups():
                 'location': item.location,
                 'phn_no': item.phn_no,
                 'rating': item.rating,
-                'website_url': item.website_url
+                'website_url': item.website_url,
+                'picture_url': item.picture_url
             }
             support_groups_list.append(support_group_dict)
 
@@ -173,7 +175,8 @@ def get_db_support_groups_singular(id):
                 'location': support_group.location,
                 'phn_no': support_group.phn_no,
                 'rating': support_group.rating,
-                'website_url': support_group.website_url
+                'website_url': support_group.website_url,
+                'picture_url': support_group.picture_url
             }
             return jsonify(support_group_dict)
         else:
