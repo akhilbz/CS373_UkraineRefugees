@@ -38,6 +38,8 @@ unit_tests:
 frontend_tests:
     stage: f_test1
     image: python:3
+    before_script:
+        - pip install selenium
     script:
         - cd group6/src/pages
         - python3 FrontEndTests.py
