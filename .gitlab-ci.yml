@@ -1,35 +1,22 @@
-# image: node
+stages:
+  - build
+  # - b_post
+  # - b_unit
+  # - f_jest
+  # - f_sel
 
-# stages:
-#   - install
-#   - build
+build_frontend:
+  stage: build
+  image: node:latest
+  cache:
+    paths:
+      - ./src/.next/cache/  # Assuming Next.js is used, and the cache directory is .next/cache/
+  script:
+      - cd src  # This is where your Next.js app seems to be located
+      - npm install
+      - npm run build  # You may need a build script in your package.json
 
-# cache:
-#   paths:
-#     - group6/node_modules/
-
-# install_dependencies:
-#   stage: install
-#   script:
-#     - cd group6
-#     - npm install
-#   only:
-#     - merge_requests
-#     - main
-
-# build:
+# build-job:
 #   stage: build
 #   script:
-#     - cd group6
-#     - npm run build
-#   artifacts:
-#     paths:
-#       - group6/.next
-#   only:
-#     - merge_requests
-#     - main
-
-build-job:
-  stage: build
-  script:
-    - echo "Hello, $GITLAB_USER_LOGIN!"
+#     - echo "Hello, $GITLAB_USER_LOGIN!"
