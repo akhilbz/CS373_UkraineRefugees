@@ -5,7 +5,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 import unittest
-
+import os
 URL = "https://www.ukrainecrisis.me/"
 
 
@@ -21,7 +21,13 @@ class Test(unittest.TestCase):
         options.add_argument('--no-sandbox')
         # Overcome limited resource problems
         options.add_argument('--disable-dev-shm-usage')
-        cls.driver = webdriver.Chrome(options=options)
+        if os.environ.get("CI") == "true":
+            cls.driver = webdriver.Remote(
+                command_executor="http://selenium__standalone-chrome:4444/wd/hub",
+                options=options,
+            )
+        else:
+            cls.driver = webdriver.Chrome(options=options)
 
     @classmethod
     def tearDownClass(cls):
