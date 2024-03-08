@@ -57,7 +57,7 @@ class EndpointTests(unittest.TestCase):
         self.assertTrue(response.status_code == 200)
         support_dictionary = response.json()
         self.assertTrue(isinstance(support_dictionary, dict))
-        self.assertEqual(len(support_dictionary), 6)
+        self.assertEqual(len(support_dictionary), 7)
         self.assertEqual(support_dictionary["name"], "Islamic Relief USA")
 
 
