@@ -90,13 +90,13 @@ export default function SupportGroupDetailPage() {
                 <p>Rating: {supportGroup.rating}</p>
               </div>
 
-              {/* <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '20px' }}>
+              <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '20px' }}>
                 <img 
                   src={supportGroup.picture_url} 
                   alt={`Cover of ${supportGroup.name}`} 
                   style={{ maxWidth: '100%', height: 'auto', boxShadow: '0 4px 8px 0 rgba(0,0,0,0.2)' }} 
                 />
-              </div> */}
+              </div>
 
               <div className="p-3 w-full text-2xl">
                 <h2>Visit their website:</h2>
