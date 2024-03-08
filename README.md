@@ -47,7 +47,7 @@
 | Member    | Estimated | Actual |
 | ----------- | --------- | ------ |
 | Samuel                  |  15                |      40        |
-| Chuma                  | 12                 |   26           |
+| Chuma                  | 12                 |   32           |
 | Alex                 |    14              |  24            |
 | Akhilesh            |        8          |     17         |
 | Derek                 |   14               |    24          |
@@ -75,14 +75,14 @@ We will programmatically scrape data from the following sources:
    - **Attributes:** Name/Basic Info, Publisher, The Actual News, Different Sources, Date
    - **Instances:** 3
 
-#### 3. Refugee Profile
-   - **Attributes:** Name, Basic info, Current Location, Immigration Distance, Story and Personal Struggles
+#### 3. Asylum Countries
+   - **Attributes:** Name, Capital, Current Location, Immigration Distance, Story and Personal Struggles
    - **Instances:** 3
 
 ### Sorting and Filtering
 - **Support Groups:** Date, Name, Location, Status, Contact
 - **News Media:** Publication Date, Name, Location, Type of source, Publisher
-- **Refugee Profile:** Title, Location, Name, Distance Immigrated, Date of Story
+- **Asylum Countries:** Title, Location, Name, Distance Immigrated, Date of Story
 
 ### Connections
 Each model will connect to instances of at least two other models, enhancing the richness and interactivity of the data.
@@ -90,7 +90,7 @@ Each model will connect to instances of at least two other models, enhancing the
 ### Media Types
 - **Support Groups:** Maps, Videos, Images, Text
 - **News:** Text, Images/Videos/Recordings
-- **Refugee Profile:** Images/Videos, Text, Map
+- **Asylum Countries:** Images/Videos, Text, Map
 
 ### Site Questions
 Our site will provide answers to the following questions:
