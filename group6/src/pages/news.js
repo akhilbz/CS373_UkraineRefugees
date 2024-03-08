@@ -52,10 +52,13 @@ export default function mediaModel() {
         <div>
             <NavBar />
             <main>
-                <div className="top-7 flex relative items-center w-full">
-                    <h1 className='text-3xl pt-7 font-medium w-full text-center absolute'>Media and Articles</h1>
-                    <h2 className='absolute pt-7 right-3 font-light text-xl'>Total Articles: {newsMedia.length}</h2>
-                </div>
+                <header className='flex flex-col items-center justify-between pt-7 w-full'>
+                    <h1 className='text-3xl font-medium mb-4'>Media and Articles</h1>
+                    <div className='flex justify-between w-full px-4'>
+                        <h2 className='font-light text-xl'>Total Articles: {newsMedia.length}</h2>
+                        <h2 className='font-light text-xl'>Page Number: {currentPage}</h2>
+                    </div>
+                </header>
                 <div className={`pt-28 pb-8 ${isSmallScreen ? 'px-4' : 'px-8'} flex justify-center w-full`}>
                     <Grid container spacing={4} className='flex justify-center'>
                         {currentNews.map((newsObject, index) => (

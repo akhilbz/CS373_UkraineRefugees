@@ -49,10 +49,13 @@ export default function AsylumCountries() {
         <div>
             <NavBar />
             <main>
-                <div className="top-7 flex relative items-center w-full">
-                    <h1 className='text-3xl pt-7 font-medium w-full text-center absolute'>Asylum Countries</h1>
-                    <h2 className='absolute pt-7 right-3 font-light text-xl'>Total Countries: {asylumCountries.length}</h2>
-                </div>
+                <header className='flex flex-col items-center justify-between pt-7 w-full'>
+                    <h1 className='text-3xl font-medium mb-4'>Asylum Countries</h1>
+                    <div className='flex justify-between w-full px-4'>
+                        <h2 className='font-light text-xl'>Total Countries: {asylumCountries.length}</h2>
+                        <h2 className='font-light text-xl'>Page Number: {currentPage}</h2>
+                    </div>
+                </header>
                 <div className={`pt-28 pb-8 ${isSmallScreen ? 'px-2' : 'px-8'} flex justify-center w-full`}>
                     <Grid container spacing={isSmallScreen ? 2 : 4} className='flex justify-center'>
                         {currentCountries.map((country, index) => (
