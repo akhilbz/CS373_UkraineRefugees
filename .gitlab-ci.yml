@@ -5,7 +5,6 @@ stages:
   - f_test1
   - b_test1
   - f_jest
-  - f_sel
 
 build_frontend:
   stage: build
@@ -39,6 +38,18 @@ frontend_tests:
     stage: f_test1
     image: python:3
     before_script:
+        - apt-get update -qy
+        - apt-get install -y wget gnupg2 apt-utils
+        - wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add -
+        - sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list'
+        - apt-get update -qy
+        - apt-get install -y google-chrome-stable
+        - apt-get install -yqq unzip
+        - wget -O /tmp/chromedriver.zip https://chromedriver.storage.googleapis.com/$(curl -sS chromedriver.storage.googleapis.com/LATEST_RELEASE)/chromedriver_linux64.zip
+        - unzip /tmp/chromedriver.zip chromedriver -d /usr/local/bin/
+        # Install selenium and webdriver-manager
+        - pip install selenium webdriver-manager
+        # Install other Python requirements
         - pip install -r group6/src/backend/requirements.txt
     script:
         - cd group6/src/pages
@@ -60,25 +71,6 @@ jest_tests:
         - npm install
         - npm test 
 
-selenium_tests:
-    stage: f_sel
-    image: python:3
-    before_script:
-        # Setup Chrome driver for Selenium tests
-        # - apt-get update -qy
-        # - apt-get install -y wget gnupg2 apt-utils
-        # - wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add -
-        # - sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list'
-        # - apt-get update -qy
-        # - apt-get install -y google-chrome-stable
-        # - apt-get install -yqq unzip
-        # - wget -O /tmp/chromedriver.zip https://chromedriver.storage.googleapis.com/$(curl -sS chromedriver.storage.googleapis.com/LATEST_RELEASE)/chromedriver_linux64.zip
-        # - unzip /tmp/chromedriver.zip chromedriver -d /usr/local/bin/
-    script:
-          - echo "Hello, $GITLAB_USER_LOGIN!"
-        # - cd src/tests  # Adjust to where your Selenium tests are located
-        # - pip install -r requirements.txt  # Your requirements.txt should contain selenium
-        # - python3 selenium_tests.py  # Make sure selenium_tests.py is at this location
 
 
 # build-job:
