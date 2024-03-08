@@ -1,5 +1,6 @@
 import { useRouter } from 'next/router';
 import Link from 'next/link';
+import styles from '../styles/Cursor.module.css';
 
 const NavBar = () => {
     const router = useRouter();
@@ -9,15 +10,15 @@ const NavBar = () => {
             <div className="flex items-center justify-center w-full">
                 <div className="flex justify-evenly w-full max-w-5xl">
                     <Link href="/" passHref>
-                        <div className={`${router.pathname === '/' ? 'font-bold' : ''}`}>Home</div>
+                        <div className={`${styles.cursorHover} ${router.pathname === '/' ? 'font-bold' : ''}`}>Home</div>
                     </Link>
                     <Link href="/about-us" passHref>
                         <div className={`${router.pathname === '/about-us' ? 'font-bold' : ''}`}>About</div>
                     </Link>
-                    <Link href="/refugee-testimonials" passHref>
-                        <div className={`${router.pathname === '/refugee-testimonials' ? 'font-bold' : ''}`}>Refugee Testimonials</div>
+                    <Link href="/asylum-countries" passHref>
+                        <div className={`${router.pathname === '/refugee-testimonials' ? 'font-bold' : ''}`}>Asylum Countries</div>
                     </Link>
-                    <Link href="/news-and-media" passHref>
+                    <Link href="/news" passHref>
                         <div className={`${router.pathname === '/news-and-media' ? 'font-bold' : ''}`}>News and Media</div>
                     </Link>
                     <Link href="/support-groups" passHref>

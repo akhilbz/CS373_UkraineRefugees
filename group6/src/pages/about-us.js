@@ -28,8 +28,8 @@ let teamMembers = [
         bio: 'I am a Junior CS student with a minor in Informatics. In my free time, I enjoy playing basketball, listening to music and hanging out with friends.',
         commits: 0,
         issues: 10,
-        tests: 0,
-        gitLabName: 'Chuma Anigbogu',
+        tests: 16,
+        gitLabName: 'chumaanigbogu',
         username: 'chumaanigbogu',
     },
     {
@@ -121,17 +121,17 @@ const dataSources = [
     {
         id: 1,
         name: 'Data Source 1',
-        link: 'https://apnews.com/hub/russia-ukraine',
+        link: 'https://newsapi.org/',
     },
     {
         id: 2,
         name: 'Data Source 2',
-        link: 'https://www.redcross.org/about-us/news-and-events/news/2022/voices-of-ukraine-refugees-tell-their-stories.html',
+        link: 'https://restcountries.com/',
     },
     {
         id: 3,
         name: 'Data Source 3',
-        link: 'https://www.weho.org/services/human-services/resources-for-ukrainian-refugees',
+        link: 'https://www.charitynavigator.org/discover-charities/where-to-give/ukranian-crisis/#charity_list',
     },
 ]
 
