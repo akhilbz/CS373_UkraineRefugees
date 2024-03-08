@@ -89,6 +89,15 @@ export default function SupportGroupDetailPage() {
                 <p>Phone Number: {supportGroup.phn_no}</p>
                 <p>Rating: {supportGroup.rating}</p>
               </div>
+
+              {/* <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '20px' }}>
+                <img 
+                  src={supportGroup.picture_url} 
+                  alt={`Cover of ${supportGroup.name}`} 
+                  style={{ maxWidth: '100%', height: 'auto', boxShadow: '0 4px 8px 0 rgba(0,0,0,0.2)' }} 
+                />
+              </div> */}
+
               <div className="p-3 w-full text-2xl">
                 <h2>Visit their website:</h2>
                 <a href={supportGroup.website_url} target="_blank" rel="noopener noreferrer" className='text-blue-600 hover:underline'>{supportGroup.website_url}</a>
@@ -110,6 +119,7 @@ export default function SupportGroupDetailPage() {
                   </GoogleMap>
                 )}
               </div>
+              
             </div>
           </div>
         </div>

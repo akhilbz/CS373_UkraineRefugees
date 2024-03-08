@@ -22,9 +22,9 @@
     "mysql": "^2.18.1",
     "next": "14.1.0",
     "prettier": "^3.2.5",
-    "react": "^18",
+    "react": "^17.0.2",
     "react-bootstrap": "^2.9.0-beta.1",
-    "react-dom": "^18",
+    "react-dom": "^17.0.2",
     "react-redux": "^9.1.0"
   },
   "devDependencies": {
