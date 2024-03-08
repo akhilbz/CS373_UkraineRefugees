@@ -1,8 +1,8 @@
 stages:
+  - f_test1
   - b_post
   - b_test1
   - build
-  - f_test1
   - f_jest
 
 frontend_tests:
