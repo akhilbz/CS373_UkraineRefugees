@@ -30,7 +30,7 @@ let teamMembers = [
         commits: 0,
         issues: 10,
         tests: 16,
-        gitLabName: 'Chuma Anigbogu',
+        gitLabName: 'chumaanigbogu',
         username: 'chumaanigbogu',
     },
     {
@@ -41,7 +41,7 @@ let teamMembers = [
         bio: 'I am a Junior computer science major with a minor in business. In my free time I develop mods for Minecraft and edit videos.',
         commits: 50,
         issues: 10,
-        tests: 13,
+        tests: 16,
         gitLabName: 'Derek Chen',
         username: 'derex1987',
     },
@@ -255,9 +255,9 @@ export default function AboutUs() {
                     <div className={styles.contentWrapper}>
 
                         <div className={styles.ourCauseContianer}>
-                            <h1 className={styles.ourCauseHeader}>About Our Cause</h1>
+                            <h1 className={styles.ourCauseHeader}>About Our Cause and Integrating Data</h1>
                             <p className={styles.ourCauseText}>
-                                Our site is dedicated to raising awareness among those affected by the ongoing situation in Ukraine. We aim to provide our users with the opportunity to explore stories of the numerous refugees, discover resources and support groups that raise awareness or funds for the cause, and keep you updated on the current events unfolding in Ukraine.
+                                Our site is dedicated to raising awareness among those affected by the ongoing situation in Ukraine. We aim to provide our users with the opportunity to explore stories of the numerous refugees, discover resources and support groups that raise awareness or funds for the cause, and keep you updated on the current events unfolding in Ukraine. Our project utilized a combination of data sources, including a news API, asylum country API, and information we scraped from charity/support organizations, to comprehensively analyze and address the Ukraine crisis. This integration allowed us to gain a well-rounded understanding of the situation by considering news updates, asylum-related data, and the support network available through various organizations.
                             </p>
                         </div>
 
@@ -365,7 +365,7 @@ export default function AboutUs() {
                             </div>
                         ))}
                     </div>
-
+                    
                 </div>
             </main>
         </div>
