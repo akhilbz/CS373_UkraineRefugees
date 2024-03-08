@@ -13,6 +13,7 @@
 
 - **Website URL:** [www.UkraineCrisis.me](https://www.UkraineCrisis.me)
 - **API Documentation:** [https://documenter.getpostman.com/view/32956503/2sA2r53kYq](https://documenter.getpostman.com/view/32956503/2sA2r53kYq)
+- **Backend URL:** [cs373-backend.ukrainecrisis.me](https://cs373-backend.ukrainecrisis.me/)
 
 ### GIT SHA
 | Phase | SHA |
@@ -26,7 +27,7 @@
 | Phase        | Phase Leader | Responsibilities |
 | ----- | ------------ |------------|
 | 1          | Chuma                         | Delegating tasks, and motivating team                         |
-| 2          |                          |                          |
+| 2          |Samuel                          |Getting the group past walls and hurdles                          |
 | 3          |                          |                          |
 | 4          |                          |                          |
 
@@ -41,6 +42,15 @@
 | Alex                 |   7               |   12           |
 | Akhilesh            |  8                |  18            |
 | Derek                 |  5                | 7             |
+
+### Phase 2
+| Member    | Estimated | Actual |
+| ----------- | --------- | ------ |
+| Samuel                  |  15                |      40        |
+| Chuma                  | 12                 |   26           |
+| Alex                 |    14              |  24            |
+| Akhilesh            |        8          |     17         |
+| Derek                 |   14               |    24          |
 
 
 ### Project Proposal
