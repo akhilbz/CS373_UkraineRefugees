@@ -39,6 +39,7 @@ frontend_tests:
     stage: f_test1
     image: python:3
     before_script:
+        - cd group6/src/backend
         - pip install -r requirements.txt
     script:
         - cd group6/src/pages
