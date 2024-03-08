@@ -14,9 +14,14 @@ class Test(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         options = webdriver.ChromeOptions()
-        # Your options setup remains unchanged
-        service = Service(ChromeDriverManager().install())
-        cls.driver = webdriver.Chrome(service=service, options=options)
+        options.add_argument('--headless')
+        # No GPU support in headless mode
+        options.add_argument('--disable-gpu')
+        # Bypass OS security model, necessary for Docker
+        options.add_argument('--no-sandbox')
+        # Overcome limited resource problems
+        options.add_argument('--disable-dev-shm-usage')
+        cls.driver = webdriver.Chrome(options=options)
         cls.driver.get(URL)
 
     @classmethod
