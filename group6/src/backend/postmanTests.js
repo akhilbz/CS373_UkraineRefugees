@@ -30,6 +30,7 @@ pm.test("Support group data has expected attributes", function () {
     pm.expect(responseBody).to.have.property("phn_no");
     pm.expect(responseBody).to.have.property("rating");
     pm.expect(responseBody).to.have.property("website_url");
+// pm.expect(responseBody).to.have.property("picture_url");
 });
 
 // Check if the response status is 200 OK
@@ -82,6 +83,7 @@ pm.test("Support group data has expected attributes", function () {
     pm.expect(responseBody).to.have.property("phn_no");
     pm.expect(responseBody).to.have.property("rating");
     pm.expect(responseBody).to.have.property("website_url");
+    // pm.expect(responseBody).to.have.property("picture_url");
 });
 
 // Check if the response status is 200 OK
