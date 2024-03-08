@@ -18,13 +18,28 @@ describe('AsylumCountriesCard', () => {
     flag: 'test-flag-url'
   };
 
-  it('renders country details correctly', () => {
+  it('renders country name correctly', () => {
     render(<AsylumCountriesCard country_data={countryData} />);
-
     expect(screen.getByText(/Test Country/i)).toBeInTheDocument();
+  });
+
+  it('renders country capital correctly', () => {
+    render(<AsylumCountriesCard country_data={countryData} />);
     expect(screen.getByText(/Test Capital/i)).toBeInTheDocument();
+  });
+
+  it('renders country region correctly', () => {
+    render(<AsylumCountriesCard country_data={countryData} />);
     expect(screen.getByText(/Test Region/i)).toBeInTheDocument();
-    expect(screen.getByText(/1,000,000/i)).toBeInTheDocument(); // population should be formatted
+  });
+
+  it('renders country population correctly', () => {
+    render(<AsylumCountriesCard country_data={countryData} />);
+    expect(screen.getByText(/1,000,000/i)).toBeInTheDocument();
+  });
+
+  it('renders country language correctly', () => {
+    render(<AsylumCountriesCard country_data={countryData} />);
     expect(screen.getByText(/Test Language/i)).toBeInTheDocument();
   });
 });

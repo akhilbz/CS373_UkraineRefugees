@@ -17,11 +17,18 @@ describe('MediaCard', () => {
     description: 'Test media description. This is a long description that needs to be truncated.'
   };
 
-  it('renders media details correctly', () => {
+  it('renders media title correctly', () => {
     render(<MediaCard media_data={mediaData} />);
-
     expect(screen.getByText(/Test Media Title/i)).toBeInTheDocument();
+  });
+
+  it('renders media source correctly', () => {
+    render(<MediaCard media_data={mediaData} />);
     expect(screen.getByText(/Test Media Source/i)).toBeInTheDocument();
+  });
+
+  it('renders "Read More" button correctly', () => {
+    render(<MediaCard media_data={mediaData} />);
     expect(screen.getByText(/Read More/i)).toBeInTheDocument();
   });
 });
