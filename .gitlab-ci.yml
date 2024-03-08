@@ -10,6 +10,7 @@ backend_tests:
     stage: b_test1
     image: python:3
     script:
+        - pip install -r group6/src/backend/requirements.txt
         - cd group6/src/backend
         - python3 tests.py
 
