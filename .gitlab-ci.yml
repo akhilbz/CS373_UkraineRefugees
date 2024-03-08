@@ -8,6 +8,8 @@ stages:
 frontend_tests:
     stage: f_test1
     image: python:3
+    services:
+        - selenium/standalone-chrome
     before_script:
         # - apt-get update -qy
         # - apt-get install -y wget gnupg2 apt-utils
@@ -25,7 +27,6 @@ frontend_tests:
         - pip3 install selenium
         - pip install -r group6/src/backend/requirements.txt
     script:
-        - selenium/standalone-chrome
         - cd group6/src/pages
         - echo "Hello, $GITLAB_USER_LOGIN!"
         - python3 FrontEndTests.py
