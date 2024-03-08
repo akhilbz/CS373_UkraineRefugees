@@ -65,17 +65,38 @@ const CountryDetailPage = () => {
     };
     
     const mapContainerStyle = {
-        width: '80vw', // This will make the map width responsive to the viewport width
-        height: '50vh', // Adjust the height as per your design needs
-        margin: '0 auto', // Auto margins for horizontal centering
-        borderRadius: '20px', // Optional: if you want rounded corners for the map container
-        boxShadow: '0 4px 8px 0 rgba(0,0,0,0.2)', // Optional: if you want to add a shadow to match other elements
+        width: '80vw',
+        height: '50vh', 
+        margin: '0 auto', 
+        borderRadius: '20px',
       };
+
+    // Additional styles to ensure content is displayed properly
+    const cardStyle = {
+      maxWidth: '275px', 
+      margin: 'auto', 
+    };
+
+    const gridContainerStyle = {
+      marginTop: '20px',
+      position: 'relative', 
+    };
+
+    const mainContainerStyle = {
+      padding: '20px',
+      fontFamily: 'Arial, sans-serif',
+      maxWidth: '1000px',
+      margin: '20px auto',
+      backgroundColor: 'rgba(255, 255, 255, 0.8)', 
+      borderRadius: '20px',
+      overflow: 'hidden',
+      color: 'black',
+    };
 
   return (
     <div>
       <NavBar />
-      <main style={{ padding: '20px', fontFamily: 'Arial, sans-serif' }}>
+      <main style={mainContainerStyle}>
         <h1 style={{ textAlign: 'center', fontSize: '24px', margin: '20px 0' }}>{country.name}</h1>
         <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '20px' }}>
           <img 
@@ -90,23 +111,23 @@ const CountryDetailPage = () => {
           <p><strong>Population:</strong> {country.population.toLocaleString()}</p>
           <p><strong>Languages:</strong> {country.languages}</p>
           
-          <div className='flex justify-center h-[300px]  rounded-[16px]'>
-          {isLoaded && (
-            <GoogleMap
-              mapContainerStyle={mapContainerStyle}
-              center={center}
-              zoom={8}
-              options={{
-                zoomControl: false,
-                streetViewControl: false,
-                mapTypeControl: false,
-                fullscreenControl: false,
-              }}
-            >
-              <Marker position={center} />
-            </GoogleMap>
-          )}
-        </div>
+          <div className='w-full flex justify-center'>
+            {isLoaded && (
+              <GoogleMap
+                mapContainerStyle={mapContainerStyle}
+                center={center}
+                zoom={8}
+                options={{
+                  zoomControl: false,
+                  streetViewControl: false,
+                  mapTypeControl: false,
+                  fullscreenControl: false,
+                }}
+              >
+                <Marker position={center} />
+              </GoogleMap>
+            )}
+          </div>
 
         </div>
         {/* Other content sections can be added here */}
@@ -115,17 +136,17 @@ const CountryDetailPage = () => {
           <div className="w-full flex justify-center text-3xl pb-5 font-light">
             <h1>Recent News and Resources:</h1>
           </div>
-          <Grid container spacing={3} className='flex justify-center '>
-            <Grid item xs={6} md={2.5} className='flex justify-center '>
-              <Card className='rounded-2xl h-[400px] w-[275px]'>
-                {/* <SupportCard support_groups_data={singleGroupsInstance} /> */}
+          <Grid container spacing={3} style={gridContainerStyle}>
+            <Grid item xs={12} md={6}>
+            <Card className='rounded-2xl' style={{ width: '100%', maxHeight: '400px' }}>
+                <SupportCard support_groups_data={singleGroupsInstance} />
               </Card>
-              </Grid>
-              <Grid item xs={6} md={2.5} className='flex justify-center '>
-                <Card className='rounded-2xl h-[400px] w-[275px]'>
-                  <MediaCard media_data={singleNewsInstance} />
-                </Card>
-              </Grid>
+            </Grid>
+            <Grid item xs={12} md={6}>
+            <Card className='rounded-2xl' style={{ width: '100%', maxHeight: '400px' }}>
+                <MediaCard media_data={singleNewsInstance} />
+              </Card>
+            </Grid>
           </Grid>
         </div>
 

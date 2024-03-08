@@ -55,11 +55,11 @@ const NewsDetailPage = () => {
   };
 
   const mapContainerStyle = {
-    width: '80vw', // This will make the map width responsive to the viewport width
-    height: '50vh', // Adjust the height as per your design needs
-    margin: '0 auto', // Auto margins for horizontal centering
-    borderRadius: '20px', // Optional: if you want rounded corners for the map container
-    boxShadow: '0 4px 8px 0 rgba(0,0,0,0.2)', // Optional: if you want to add a shadow to match other elements
+    width: '80vw',
+    height: '50vh',
+    margin: '0 auto',
+    borderRadius: '20px',
+    boxShadow: '0 4px 8px 0 rgba(0,0,0,0.2)',
   };
 
   if (loading) {
@@ -73,8 +73,8 @@ const NewsDetailPage = () => {
   return (
     <div>
       <NavBar />
-      <main style={{ padding: '20px', fontFamily: 'Arial, sans-serif' }}>
-        <h1 style={{ textAlign: 'center', fontSize: '24px', margin: '20px 0' }}>{newsItem.title}</h1>
+      <main style={{ padding: '20px', fontFamily: 'Arial, sans-serif', maxWidth: '1000px', margin: '0 auto', backgroundColor: 'rgba(255, 255, 255, 0.8)', borderRadius: '20px', overflow: 'hidden', color: 'black' }}>
+        <h1 style={{ textAlign: 'center', fontSize: '24px', marginTop: '20px' }}>{newsItem.title}</h1>
         <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '20px' }}>
           <img 
             src={newsItem.urlToImage} 
@@ -84,14 +84,15 @@ const NewsDetailPage = () => {
         </div>
         <div style={{ textAlign: 'center', margin: '10px 0' }}>
           <p><strong>Author:</strong> {newsItem.author}</p>
-          <p><strong>Published At:</strong> {newsItem.dateString}</p>
+          <p><strong>Published At:</strong> {formatDate(newsItem.publishedAt)}</p>
           <p><strong>Source Name:</strong> {newsItem.name}</p>
           <div style={{ textAlign: 'justify', marginTop: '20px' }}>
             <p>{newsItem.description}</p>
             <p>{newsItem.content}</p>
           </div>
         </div>
-        <div className='flex justify-center h-[300px]  rounded-[16px]'>
+        {/* Add a container to wrap the Google Map and set a max-width */}
+        <div className='w-full flex justify-center'>
           {isLoaded && (
             <GoogleMap
               mapContainerStyle={mapContainerStyle}
@@ -108,19 +109,19 @@ const NewsDetailPage = () => {
             </GoogleMap>
           )}
         </div>
-        {/* Other content sections can be added here */}
-        <Grid container spacing={3} className='flex justify-center '>
-            <Grid item xs={6} md={2.5} className='flex justify-center '>
-              <Card className='rounded-2xl h-[400px] w-[275px]'>
-                <AsylumCountriesCard country_data={singleCountryInstance} />
-              </Card>
-              </Grid>
-              <Grid item xs={6} md={2.5} className='flex justify-center '>
-                <Card className='rounded-2xl h-[400px] w-[275px]'>
-                  {/* <SupportCard support_groups_data={singleGroupsInstance} /> */}
-                </Card>
-              </Grid>
+        {/* Adjust the Grid container to add top margin */}
+        <Grid container spacing={3} style={{ marginTop: '20px' }}>
+          <Grid item xs={12} md={6} style={{ display: 'flex', justifyContent: 'center' }}>
+            <Card className='rounded-2xl' style={{ width: '100%', maxHeight: '400px' }}>
+              <AsylumCountriesCard country_data={singleCountryInstance} />
+            </Card>
           </Grid>
+          <Grid item xs={12} md={6} style={{ display: 'flex', justifyContent: 'center' }}>
+            <Card className='rounded-2xl' style={{ width: '100%', maxHeight: '400px' }}>
+              <SupportCard support_groups_data={singleGroupsInstance} />
+            </Card>
+          </Grid>
+        </Grid>
       </main>
     </div>
   );

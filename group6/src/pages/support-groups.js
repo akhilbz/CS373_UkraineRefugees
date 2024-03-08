@@ -1,5 +1,5 @@
 import NavBar from './NavBar'; 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
@@ -7,11 +7,16 @@ import Grid from '@mui/material/Grid';
 import Card from '@mui/material/Card';
 import Button from '@mui/material/Button';
 import SupportCard from '@/components/SupportCard';
+import { setSupportGroups } from '@/actions';
+import axios from 'axios';
+
 
 export default function SupportGroups() {
-    const supportGroups = useSelector(state => state.supportGroups);
+    const [supportGroups, setSupportGroups] = useState([]);
+    const [loading, setLoading] = useState(true);
+
     const [currentPage, setCurrentPage] = useState(1);
-    const [groupsPerPage] = useState(2); // Adjust the number of groups per page as needed
+    const [groupsPerPage] = useState(6); // Adjust the number of groups per page as needed
 
     const indexOfLastGroup = currentPage * groupsPerPage;
     const indexOfFirstGroup = indexOfLastGroup - groupsPerPage;
@@ -21,6 +26,28 @@ export default function SupportGroups() {
     const isSmallScreen = useMediaQuery(theme.breakpoints.down('md'));
 
     const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
+    useEffect(() => {
+        const fetchSupportGrpups = async () => {
+            try {
+                setLoading(true);
+                const response = await axios.get('https://cs373-backend.ukrainecrisis.me/api/support-groups');
+                setSupportGroups(response.data);
+                setLoading(false);
+            } catch (error) {
+                console.error('Error fetching support group data:', error);
+                setLoading(false);
+            }
+        };
+
+        fetchSupportGrpups();
+    }, []);
+
+    if (loading) {
+        return <div>Loading...</div>;
+    }
+
+    console.log(supportGroups)
 
     return (
         <div>
