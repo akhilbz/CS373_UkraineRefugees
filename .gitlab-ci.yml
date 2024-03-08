@@ -1,9 +1,23 @@
 stages:
+  - b_post
   - b_test1
   - build
-  - b_post
   - f_test1
   - f_jest
+
+postman_tests:
+    stage: b_post
+    # image: postman/newman:alpine
+    before_script:
+        # Installing Postman CLI
+        - curl -o- "https://dl-cli.pstmn.io/install/linux64.sh" | sh
+
+    script:
+        # Login using your Postman API keys
+        - postman login --with-api-key PMAK-65eaa9907c467d0001814743-ad530e207e94581bbc8ce61ebf7a48b8fd
+        - postman collection run 32956503-3be14ec6-6aea-4120-aa4f-4ffb7a845853
+        # Lint your API using Postman CLI
+        # - postman api lint 60d2f810-d71d-478c-8f12-4cf592f02747
 
 backend_tests:
     stage: b_test1
@@ -25,14 +39,6 @@ build_frontend:
       - cd group6 
       - npm install
       - npm run build
-
-postman_tests:
-    stage: b_post
-    # image: postman/newman:alpine
-    script:
-        - echo "Hello, $GITLAB_USER_LOGIN!"
-        # - cd backend/tests
-        # - newman run postman_tests.json  
 
 frontend_tests:
     stage: f_test1
