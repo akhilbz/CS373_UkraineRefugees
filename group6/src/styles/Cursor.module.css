@@ -1,6 +1,9 @@
+.cursorHover:hover {
+    cursor: pointer;
+}
 
-
-
-.cursor-hover:hover {
-    cursor: crosshair;
+.activeLink {
+    font-weight: bold;
+    color: rgb(197, 175, 76);
+    text-decoration: underline;
 }
