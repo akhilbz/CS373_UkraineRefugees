@@ -1,16 +1,31 @@
+from urllib3.util.retry import Retry
 import modelsAPI
 import unittest
 import requests
 
+from requests.adapters import HTTPAdapter
 
 BASE_URL = "http://cs373-backend.ukrainecrisis.me"
+
+# Create a session object
+session = requests.Session()
+
+# Define the retry strategy
+retries = Retry(total=5,
+                backoff_factor=0.1,
+                status_forcelist=[500, 502, 503, 504])
+
+# Mount it for both http and https usage
+adapter = HTTPAdapter(max_retries=retries)
+session.mount('http://', adapter)
+session.mount('https://', adapter)
 
 
 class EndpointTests(unittest.TestCase):
 
     def test0(self):
         # Test All News Endpoint
-        response = requests.get(BASE_URL + "/api/news")
+        response = session.get(BASE_URL + "/api/news")
         self.assertTrue(response.status_code == 200)
         news_list = response.json()
         self.assertTrue(isinstance(news_list, list))
@@ -18,7 +33,7 @@ class EndpointTests(unittest.TestCase):
 
     def test1(self):
         # Test All Countries Endpoint
-        response = requests.get(BASE_URL + "/api/asylum-countries")
+        response = session.get(BASE_URL + "/api/asylum-countries")
         self.assertTrue(response.status_code == 200)
         countries_list = response.json()
         self.assertTrue(isinstance(countries_list, list))
@@ -26,7 +41,7 @@ class EndpointTests(unittest.TestCase):
 
     def test2(self):
         # Test All Support Groups Endpoint
-        response = requests.get(BASE_URL + "/api/support-groups")
+        response = session.get(BASE_URL + "/api/support-groups")
         self.assertTrue(response.status_code == 200)
         groups_list = response.json()
         self.assertTrue(isinstance(groups_list, list))
@@ -34,7 +49,7 @@ class EndpointTests(unittest.TestCase):
 
     def test3(self):
         # Test Singular News Endpoint
-        response = requests.get(BASE_URL + "/api/news/1")
+        response = session.get(BASE_URL + "/api/news/1")
         self.assertTrue(response.status_code == 200)
         news_dictionary = response.json()
         self.assertTrue(isinstance(news_dictionary, dict))
@@ -43,7 +58,7 @@ class EndpointTests(unittest.TestCase):
 
     def test4(self):
         # Test Singular Country Endpoint
-        response = requests.get(BASE_URL + "/api/asylum-countries/1")
+        response = session.get(BASE_URL + "/api/asylum-countries/1")
         self.assertTrue(response.status_code == 200)
         countries_dictionary = response.json()
         self.assertTrue(isinstance(countries_dictionary, dict))
@@ -53,7 +68,7 @@ class EndpointTests(unittest.TestCase):
 
     def test5(self):
         # Test Singular Support Group Endpoint
-        response = requests.get(BASE_URL + "/api/support-groups/1")
+        response = session.get(BASE_URL + "/api/support-groups/1")
         self.assertTrue(response.status_code == 200)
         support_dictionary = response.json()
         self.assertTrue(isinstance(support_dictionary, dict))
