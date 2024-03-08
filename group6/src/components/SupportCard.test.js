@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen, cleanup} from '@testing-library/react';
+import { render, screen, cleanup } from '@testing-library/react';
 import SupportCard from './SupportCard';
 
 describe('SupportCard', () => {
@@ -16,13 +16,23 @@ describe('SupportCard', () => {
     website_url: 'TEMP'
   };
 
-  it('renders support group details correctly', () => {
+  it('renders support group phone number correctly', () => {
     render(<SupportCard support_groups_data={supportGroupData} />);
-
-    // expect(screen.getByText(/Test Support Group/i)).toBeInTheDocument();
     expect(screen.getByText(/123-456-7890/i)).toBeInTheDocument();
+  });
+
+  it('renders support group rating correctly', () => {
+    render(<SupportCard support_groups_data={supportGroupData} />);
     expect(screen.getByText(/Rating: 4/i)).toBeInTheDocument();
+  });
+
+  it('renders support group location correctly', () => {
+    render(<SupportCard support_groups_data={supportGroupData} />);
     expect(screen.getByText(/Test Location/i)).toBeInTheDocument();
+  });
+
+  it('renders "Explore" button correctly', () => {
+    render(<SupportCard support_groups_data={supportGroupData} />);
     expect(screen.getByRole('button', { name: /Explore/i })).toBeInTheDocument();
   });
 });
