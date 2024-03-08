@@ -1,3 +1,4 @@
+import React from 'react'; // Add this line at the top of your file
 import NavBar from '../NavBar';
 import MediaCard from '@/components/MediaCard';
 import SupportCard from '@/components/SupportCard';

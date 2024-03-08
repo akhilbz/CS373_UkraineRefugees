@@ -1,3 +1,4 @@
+import React from 'react'; // Add this line at the top of your file
 import NavBar from './NavBar';
 import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';

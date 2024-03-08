@@ -1,3 +1,4 @@
+import React from 'react'; // Add this line at the top of your file
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import styles from '../styles/Cursor.module.css';

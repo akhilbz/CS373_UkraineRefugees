@@ -1,3 +1,4 @@
+import React from 'react'; // Add this line at the top of your file
 import "@/styles/globals.css";
 import { Provider } from 'react-redux';
 import store from '../store';

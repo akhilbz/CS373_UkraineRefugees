@@ -1,3 +1,4 @@
+import React from 'react'; // Add this line at the top of your file
 import axios from 'axios';
 import Image from "next/image";
 import styles from '../styles/AboutUs.module.css'

@@ -1,3 +1,4 @@
+import React from 'react'; // Add this line at the top of your file
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { setRefTestimonials, setNewsMedia, setSupportGroups } from '@/actions';
