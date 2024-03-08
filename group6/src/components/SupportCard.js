@@ -27,6 +27,8 @@ export default function SupportCard({ support_groups_data }) {
                     <a href={support_groups_data.website_url} target="_blank" rel="noopener noreferrer" className="text-xs hover:underline">
                         <span className="font-semibold">Website: </span>{support_groups_data.website_url}
                     </a>
+                    {/* Displaying the image under the "Website" link */}
+                    <img src={support_groups_data.picture_url} alt="Website Image" className="mt-2" />
                 </div>
             </div>
             <div className="flex justify-center pb-1">
