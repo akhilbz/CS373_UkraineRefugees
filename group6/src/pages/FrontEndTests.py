@@ -22,7 +22,6 @@ class Test(unittest.TestCase):
         # Overcome limited resource problems
         options.add_argument('--disable-dev-shm-usage')
         cls.driver = webdriver.Chrome(options=options)
-        cls.driver.get(URL)
 
     @classmethod
     def tearDownClass(cls):
