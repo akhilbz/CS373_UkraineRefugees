@@ -10,8 +10,9 @@ build_frontend:
   image: node:latest
   cache:
     paths:
-      - ./src/.next/cache/  # Assuming Next.js is used, and the cache directory is .next/cache/
+      - ./group6/src/.next/cache/  # Assuming Next.js is used, and the cache directory is .next/cache/
   script:
+      - ls -la  # List all files and directories for debugging purposes
       - cd src  # This is where your Next.js app seems to be located
       - npm install
       - npm run build  # You may need a build script in your package.json
