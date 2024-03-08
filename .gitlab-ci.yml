@@ -1,10 +1,17 @@
 stages:
+  - b_test1
   - build
   - b_post
   - b_unit
   - f_test1
-  - b_test1
   - f_jest
+
+backend_tests:
+    stage: b_test1
+    image: python:3
+    script:
+        - cd group6/src/backend
+        - python3 tests.py
 
 build_frontend:
   stage: build
@@ -56,13 +63,6 @@ frontend_tests:
     script:
         - cd group6/src/pages
         - python3 FrontEndTests.py
-
-backend_tests:
-    stage: b_test1
-    image: python:3
-    script:
-        - cd group6/src/backend
-        - python3 tests.py
 
 jest_tests:
     stage: f_jest
