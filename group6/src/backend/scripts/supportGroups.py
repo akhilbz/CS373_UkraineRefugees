@@ -108,17 +108,33 @@ def getInfo():
             rating = card.find_element(By.CSS_SELECTOR, '.tab-card__ratings').text.strip().replace('%', '')
         
 
-            # Adjust to scrape mission statement and phone number as needed
             detail_link = card.find_element(By.CSS_SELECTOR, '.tab-card__right > p > a').get_attribute('href')
             driver.get(detail_link)  # Navigate to the charity's page
         
             try:
-                # Assuming mission statement is available on the detail page, adjust the selector as needed
-                mission_statement = WebDriverWait(driver, 1).until(
-                    EC.presence_of_element_located((By.CSS_SELECTOR, 'your-mission-statement-selector'))
+                # Check if the "(More)" button exists and click it to reveal the full mission statement
+                more_button = WebDriverWait(driver, 10).until(
+                EC.presence_of_element_located((By.CSS_SELECTOR, ".inline-var-blue"))
+                )
+                more_button.click()
+
+                # Now that the "(More)" button has been clicked, wait for the detailed mission statement to be visible
+                mission_statement = WebDriverWait(driver, 10).until(
+                EC.presence_of_element_located((By.CSS_SELECTOR, ".not-truncate"))
                 ).text
             except:
-                mission_statement = "Mission statement not found"
+                try:
+                    # If the "(More)" button doesn't exist, try scraping the alternative mission statement format
+                    mission_statement = WebDriverWait(driver, 10).until(
+                    EC.presence_of_element_located((By.CSS_SELECTOR, "p > strong + span"))
+                    ).text
+                except:
+                    # If neither method works, return a default message
+                    mission_statement = "Mission statement not found"
+
+            #print(mission_statement)
+            
+            
         
             try:
                 # Assuming phone number is available on the detail page, adjust the selector as needed
@@ -149,7 +165,7 @@ def getInfo():
         
             if add:
                 temp = {"Name": name, "Location": location, "Rating":rating, "Mission_statement": mission_statement, "Phone": phone_number, "Website": web_url}
-                if temp not in groups:
+                if name not in dups:
                     groups.append(temp)
                     temp2 = {"Name": name, "Location": location, "Rating":rating, "Mission_statement": mission_statement, "Phone": phone_number, "Website": web_url, "Picture" : picture}
                     finalGroups.append(temp2)
@@ -180,12 +196,25 @@ def getInfo():
             driver.get(detail_link)  # Navigate to the charity's page
         
             try:
-                # Assuming mission statement is available on the detail page, adjust the selector as needed
-                mission_statement = WebDriverWait(driver, 1).until(
-                    EC.presence_of_element_located((By.CSS_SELECTOR, 'your-mission-statement-selector'))
+                # Check if the "(More)" button exists and click it to reveal the full mission statement
+                more_button = WebDriverWait(driver, 10).until(
+                EC.presence_of_element_located((By.CSS_SELECTOR, ".inline-var-blue"))
+                )
+                more_button.click()
+
+                # Now that the "(More)" button has been clicked, wait for the detailed mission statement to be visible
+                mission_statement = WebDriverWait(driver, 10).until(
+                EC.presence_of_element_located((By.CSS_SELECTOR, ".not-truncate"))
                 ).text
             except:
-                mission_statement = "Mission statement not found"
+                try:
+                    # If the "(More)" button doesn't exist, try scraping the alternative mission statement format
+                    mission_statement = WebDriverWait(driver, 10).until(
+                    EC.presence_of_element_located((By.CSS_SELECTOR, "p > strong + span"))
+                    ).text
+                except:
+                    # If neither method works, return a default message
+                    mission_statement = "Mission statement not found"
         
             try:
                 # Assuming phone number is available on the detail page, adjust the selector as needed
@@ -216,7 +245,7 @@ def getInfo():
         
             if add:
                 temp = {"Name": name, "Location": location, "Rating":rating, "Mission_statement": mission_statement, "Phone": phone_number, "Website": web_url}
-                if temp not in groups:
+                if name not in dups:
                     groups.append(temp)
                     temp2 = {"Name": name, "Location": location, "Rating":rating, "Mission_statement": mission_statement, "Phone": phone_number, "Website": web_url, "Picture" : picture}
                     finalGroups.append(temp2)
@@ -251,12 +280,25 @@ def getInfo():
             driver.get(detail_link)  # Navigate to the charity's page
         
             try:
-                # Assuming mission statement is available on the detail page, adjust the selector as needed
-                mission_statement = WebDriverWait(driver, 1).until(
-                    EC.presence_of_element_located((By.CSS_SELECTOR, 'your-mission-statement-selector'))
+                # Check if the "(More)" button exists and click it to reveal the full mission statement
+                more_button = WebDriverWait(driver, 10).until(
+                EC.presence_of_element_located((By.CSS_SELECTOR, ".inline-var-blue"))
+                )
+                more_button.click()
+
+                # Now that the "(More)" button has been clicked, wait for the detailed mission statement to be visible
+                mission_statement = WebDriverWait(driver, 10).until(
+                EC.presence_of_element_located((By.CSS_SELECTOR, ".not-truncate"))
                 ).text
             except:
-                mission_statement = "Mission statement not found"
+                try:
+                    # If the "(More)" button doesn't exist, try scraping the alternative mission statement format
+                    mission_statement = WebDriverWait(driver, 10).until(
+                    EC.presence_of_element_located((By.CSS_SELECTOR, "p > strong + span"))
+                    ).text
+                except:
+                    # If neither method works, return a default message
+                    mission_statement = "Mission statement not found"
         
             try:
                 # Assuming phone number is available on the detail page, adjust the selector as needed
@@ -286,7 +328,7 @@ def getInfo():
         
             if add:
                 temp = {"Name": name, "Location": location, "Rating":rating, "Mission_statement": mission_statement, "Phone": phone_number, "Website": web_url}
-                if temp not in groups:
+                if name not in dups:
                     groups.append(temp)
                     temp2 = {"Name": name, "Location": location, "Rating":rating, "Mission_statement": mission_statement, "Phone": phone_number, "Website": web_url, "Picture" : picture}
                     finalGroups.append(temp2)
@@ -342,14 +384,26 @@ def getInfo():
         website_url = website_element.get_attribute('href')
 
 
-        # Locate the <span> element with the class "truncate" and extract the text
-        message_element = WebDriverWait(driver, 10).until(
-            EC.visibility_of_element_located((By.CSS_SELECTOR, 'span.truncate'))
-        )
-        full_message = message_element.text.strip()
+        try:
+                # Check if the "(More)" button exists and click it to reveal the full mission statement
+                more_button = WebDriverWait(driver, 10).until(
+                EC.presence_of_element_located((By.CSS_SELECTOR, ".inline-var-blue"))
+                )
+                more_button.click()
 
-        # Split the message at the first period and keep the first part
-        first_part_of_message = full_message.split('.')[0]
+                # Now that the "(More)" button has been clicked, wait for the detailed mission statement to be visible
+                mission_statement = WebDriverWait(driver, 10).until(
+                EC.presence_of_element_located((By.CSS_SELECTOR, ".not-truncate"))
+                ).text
+        except:
+                try:
+                    # If the "(More)" button doesn't exist, try scraping the alternative mission statement format
+                    mission_statement = WebDriverWait(driver, 10).until(
+                    EC.presence_of_element_located((By.CSS_SELECTOR, "p > strong + span"))
+                    ).text
+                except:
+                    # If neither method works, return a default message
+                    mission_statement = "Mission statement not found"
 
         try:
             picture_element = WebDriverWait(driver, 1).until(
@@ -361,10 +415,10 @@ def getInfo():
             picture = pictureLinks[instance]
 
         instance+=1
-
-        temp = {"Name": text, "Location": location_info, "Rating":percentage, "Mission_statement": first_part_of_message, "Phone": phone_text, "Website": website_url, "Picture": picture}
-        finalGroups.append(temp)
-        dups.append(text)
+        if text not in dups:
+            temp = {"Name": text, "Location": location_info, "Rating":percentage, "Mission_statement": mission_statement, "Phone": phone_text, "Website": website_url, "Picture": picture}
+            finalGroups.append(temp)
+            dups.append(text)
 
 
 
@@ -402,13 +456,26 @@ def getInfo():
         website_url = website_element.get_attribute('href')
 
 
-        # Locate the <span> element with the class "truncate" and extract the text
-        message_element = WebDriverWait(driver, 10).until(
-            EC.visibility_of_element_located((By.CSS_SELECTOR, 'span.truncate'))
-        )
-        full_message = message_element.text.strip()
-        # Split the message at the first period and keep the first part
-        first_part_of_message = full_message.split('.')[0]
+        try:
+                # Check if the "(More)" button exists and click it to reveal the full mission statement
+                more_button = WebDriverWait(driver, 10).until(
+                EC.presence_of_element_located((By.CSS_SELECTOR, ".inline-var-blue"))
+                )
+                more_button.click()
+
+                # Now that the "(More)" button has been clicked, wait for the detailed mission statement to be visible
+                mission_statement = WebDriverWait(driver, 10).until(
+                EC.presence_of_element_located((By.CSS_SELECTOR, ".not-truncate"))
+                ).text
+        except:
+                try:
+                    # If the "(More)" button doesn't exist, try scraping the alternative mission statement format
+                    mission_statement = WebDriverWait(driver, 10).until(
+                    EC.presence_of_element_located((By.CSS_SELECTOR, "p > strong + span"))
+                    ).text
+                except:
+                    # If neither method works, return a default message
+                    mission_statement = "Mission statement not found"
 
         try:
             picture_element = WebDriverWait(driver, 1).until(
@@ -420,10 +487,10 @@ def getInfo():
             picture = pictureLinks[instance]
 
         instance+=1
-
-        temp = {"Name": second_organization_name, "Location": location_info, "Rating":secondPercentage, "Mission_statement": first_part_of_message, "Phone": phone_text, "Website": website_url, "Picture": picture}
-        finalGroups.append(temp)
-        dups.append(text)
+        if second_organization_name not in dups:
+            temp = {"Name": second_organization_name, "Location": location_info, "Rating":secondPercentage, "Mission_statement": mission_statement, "Phone": phone_text, "Website": website_url, "Picture": picture}
+            finalGroups.append(temp)
+            dups.append(second_organization_name)
 
 
 
@@ -464,13 +531,25 @@ def getInfo():
 
         # Locate the <span> element with the class "truncate" and extract the text
         try:
-            message_element = WebDriverWait(driver, 1).until(
-                EC.visibility_of_element_located((By.CSS_SELECTOR, 'span.truncate'))
-            )
-            first_part_of_message = message_element.text.strip()
+                # Check if the "(More)" button exists and click it to reveal the full mission statement
+                more_button = WebDriverWait(driver, 10).until(
+                EC.presence_of_element_located((By.CSS_SELECTOR, ".inline-var-blue"))
+                )
+                more_button.click()
+
+                # Now that the "(More)" button has been clicked, wait for the detailed mission statement to be visible
+                mission_statement = WebDriverWait(driver, 10).until(
+                EC.presence_of_element_located((By.CSS_SELECTOR, ".not-truncate"))
+                ).text
         except:
-            first_part_of_message = "We save children's lives by transforming pediatric heart care in underserved parts of the world."
-        # Split the message at the first period and keep the first part
+                try:
+                    # If the "(More)" button doesn't exist, try scraping the alternative mission statement format
+                    mission_statement = WebDriverWait(driver, 10).until(
+                    EC.presence_of_element_located((By.CSS_SELECTOR, "p > strong + span"))
+                    ).text
+                except:
+                    # If neither method works, return a default message
+                    mission_statement = "Mission statement not found"
 
         try:
             picture_element = WebDriverWait(driver, 1).until(
@@ -482,10 +561,10 @@ def getInfo():
             picture = pictureLinks[instance]
 
         instance+=1
-
-        temp = {"Name": second_organization_name, "Location": location_info, "Rating":secondPercentage, "Mission_statement": first_part_of_message, "Phone": phone_text, "Website": website_url, "Picture": picture}
-        finalGroups.append(temp)
-        dups.append(text)
+        if second_organization_name not in dups:
+            temp = {"Name": second_organization_name, "Location": location_info, "Rating":secondPercentage, "Mission_statement": mission_statement, "Phone": phone_text, "Website": website_url, "Picture": picture}
+            finalGroups.append(temp)
+            dups.append(second_organization_name)
 
 
         driver.get('https://www.charitynavigator.org/search?q=ukraine&sort=rating')
@@ -520,15 +599,26 @@ def getInfo():
         website_url = website_element.get_attribute('href')
 
 
-        # Locate the <span> element with the class "truncate" and extract the text
         try:
-            message_element = WebDriverWait(driver, 1).until(
-                EC.visibility_of_element_located((By.CSS_SELECTOR, 'span.truncate'))
-            )
-            first_part_of_message = message_element.text.strip()
+                # Check if the "(More)" button exists and click it to reveal the full mission statement
+                more_button = WebDriverWait(driver, 10).until(
+                EC.presence_of_element_located((By.CSS_SELECTOR, ".inline-var-blue"))
+                )
+                more_button.click()
+
+                # Now that the "(More)" button has been clicked, wait for the detailed mission statement to be visible
+                mission_statement = WebDriverWait(driver, 10).until(
+                EC.presence_of_element_located((By.CSS_SELECTOR, ".not-truncate"))
+                ).text
         except:
-            first_part_of_message = "We save children's lives by transforming pediatric heart care in underserved parts of the world."
-        # Split the message at the first period and keep the first part
+                try:
+                    # If the "(More)" button doesn't exist, try scraping the alternative mission statement format
+                    mission_statement = WebDriverWait(driver, 10).until(
+                    EC.presence_of_element_located((By.CSS_SELECTOR, "p > strong + span"))
+                    ).text
+                except:
+                    # If neither method works, return a default message
+                    mission_statement = "Mission statement not found"
         
         try:
             picture_element = WebDriverWait(driver, 1).until(
@@ -541,10 +631,10 @@ def getInfo():
 
         instance+=1
 
-
-        temp = {"Name": second_organization_name, "Location": location_info, "Rating":secondPercentage, "Mission_statement": first_part_of_message, "Phone": phone_text, "Website": website_url, "Picture": picture}
-        finalGroups.append(temp)
-        dups.append(text)
+        if second_organization_name not in dups:
+            temp = {"Name": second_organization_name, "Location": location_info, "Rating":secondPercentage, "Mission_statement": mission_statement, "Phone": phone_text, "Website": website_url, "Picture": picture}
+            finalGroups.append(temp)
+            dups.append(second_organization_name)
 
 
 
@@ -580,15 +670,26 @@ def getInfo():
         website_url = website_element.get_attribute('href')
 
 
-        # Locate the <span> element with the class "truncate" and extract the text
         try:
-            message_element = WebDriverWait(driver, 1).until(
-                EC.visibility_of_element_located((By.CSS_SELECTOR, 'span.truncate'))
-            )
-            first_part_of_message = message_element.text.strip()
+                # Check if the "(More)" button exists and click it to reveal the full mission statement
+                more_button = WebDriverWait(driver, 10).until(
+                EC.presence_of_element_located((By.CSS_SELECTOR, ".inline-var-blue"))
+                )
+                more_button.click()
+
+                # Now that the "(More)" button has been clicked, wait for the detailed mission statement to be visible
+                mission_statement = WebDriverWait(driver, 10).until(
+                EC.presence_of_element_located((By.CSS_SELECTOR, ".not-truncate"))
+                ).text
         except:
-            first_part_of_message = "We save children's lives by transforming pediatric heart care in underserved parts of the world."
-        # Split the message at the first period and keep the first part
+                try:
+                    # If the "(More)" button doesn't exist, try scraping the alternative mission statement format
+                    mission_statement = WebDriverWait(driver, 10).until(
+                    EC.presence_of_element_located((By.CSS_SELECTOR, "p > strong + span"))
+                    ).text
+                except:
+                    # If neither method works, return a default message
+                    mission_statement = "Mission statement not found"
         
         try:
             picture_element = WebDriverWait(driver, 1).until(
@@ -602,10 +703,10 @@ def getInfo():
         instance+=1
 
 
-
-        temp = {"Name": second_organization_name, "Location": location_info, "Rating":secondPercentage, "Mission_statement": first_part_of_message, "Phone": phone_text, "Website": website_url, "Picture": picture}
-        finalGroups.append(temp)
-        dups.append(text)
+        if second_organization_name not in dups:
+            temp = {"Name": second_organization_name, "Location": location_info, "Rating":secondPercentage, "Mission_statement": mission_statement, "Phone": phone_text, "Website": website_url, "Picture": picture}
+            finalGroups.append(temp)
+            dups.append(second_organization_name)
 
 
 
@@ -645,12 +746,25 @@ def getInfo():
 
         # Locate the <span> element with the class "truncate" and extract the text
         try:
-            message_element = WebDriverWait(driver, 1).until(
-                EC.visibility_of_element_located((By.CSS_SELECTOR, 'span.truncate'))
-            )
-            first_part_of_message = message_element.text.strip()
+                # Check if the "(More)" button exists and click it to reveal the full mission statement
+                more_button = WebDriverWait(driver, 10).until(
+                EC.presence_of_element_located((By.CSS_SELECTOR, ".inline-var-blue"))
+                )
+                more_button.click()
+
+                # Now that the "(More)" button has been clicked, wait for the detailed mission statement to be visible
+                mission_statement = WebDriverWait(driver, 10).until(
+                EC.presence_of_element_located((By.CSS_SELECTOR, ".not-truncate"))
+                ).text
         except:
-            first_part_of_message = "We save children's lives by transforming pediatric heart care in underserved parts of the world."
+                try:
+                    # If the "(More)" button doesn't exist, try scraping the alternative mission statement format
+                    mission_statement = WebDriverWait(driver, 10).until(
+                    EC.presence_of_element_located((By.CSS_SELECTOR, "p > strong + span"))
+                    ).text
+                except:
+                    # If neither method works, return a default message
+                    mission_statement = "Mission statement not found"
         
         try:
             picture_element = WebDriverWait(driver, 1).until(
@@ -663,12 +777,12 @@ def getInfo():
 
         instance+=1
 
-
-        temp = {"Name": second_organization_name, "Location": location_info, "Rating":secondPercentage, "Mission_statement": first_part_of_message, "Phone": phone_text, "Website": website_url, "Picture": picture}
-        finalGroups.append(temp)
-        dups.append(text)
+        if second_organization_name not in dups:
+            temp = {"Name": second_organization_name, "Location": location_info, "Rating":secondPercentage, "Mission_statement": mission_statement, "Phone": phone_text, "Website": website_url, "Picture": picture}
+            finalGroups.append(temp)
+            dups.append(second_organization_name)
+            #print(temp)
         
     except Exception as e:
         print(f"An error occurred in the last few: {e}")
     print(len(finalGroups))
-    return finalGroups
