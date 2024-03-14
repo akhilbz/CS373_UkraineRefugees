@@ -9,12 +9,23 @@ import Button from '@mui/material/Button';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
 import { useJsApiLoader, GoogleMap, Marker, } from '@react-google-maps/api';
+import TextField from '@mui/material/TextField';
+import InputAdornment from '@mui/material/InputAdornment';
+import SearchIcon from '@mui/icons-material/Search';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import InputLabel from '@mui/material/InputLabel';
+import Select from '@mui/material/Select';
+import SupportCard from '@/components/SupportCard';
 
 export default function AsylumCountries() {
     const [asylumCountries, setAsylumCountries] = useState([]);
     const [loading, setLoading] = useState(true);
     const [currentPage, setCurrentPage] = useState(1);
     const [countriesPerPage] = useState(6); // Adjust this value as per your design needs
+    const [sortOption, setSortOption] = useState('default');
+    const [orderBy, setOrderBy] = useState('default');
+    const [searchQuery, setSearchQuery] = useState('');
 
     // Determine the current countries to display based on the current page
     const indexOfLastCountry = currentPage * countriesPerPage;
@@ -40,11 +51,26 @@ export default function AsylumCountries() {
         };
 
         fetchAsylumCountries();
-    }, []);
+    }, [sortOption]);
 
     if (loading) {
         return <div>Loading...</div>;
     }
+    
+    const handleSortChange = (event) => {
+        setSortOption(event.target.value);
+        // Need To handle searching Not sure if we do it here or in our API?
+    };
+
+    const handleOrderChange = (event) => {
+        setOrderBy(event.target.value);
+        // Need To handle searching Not sure if we do it here or in our API?
+    };
+
+    const handleSearchChange = (event) => {
+        setSearchQuery(event.target.value);
+        // Need To handle searching Not sure if we do it here or in our API?
+    };
 
     return (
         <div>
@@ -52,6 +78,56 @@ export default function AsylumCountries() {
             <main>
                 <header className='flex flex-col items-center justify-between pt-7 w-full'>
                     <h1 className='text-3xl font-medium mb-4'>Asylum Countries</h1>
+                    <div className='flex flex-wrap justify-center gap-4 mb-4'>
+                        <TextField
+                            fullWidth
+                            variant="filled"
+                            id="search-bar"
+                            type="search"
+                            value={searchQuery}
+                            onChange={handleSearchChange}
+                            placeholder="Search"
+                            InputProps={{
+                                startAdornment: (
+                                    <InputAdornment position="start">
+                                        <SearchIcon />
+                                    </InputAdornment>
+                                ),
+                            }}
+                            style={{ backgroundColor: 'white' }}
+                        />
+                        <FormControl variant="filled" style={{ backgroundColor: 'white', minWidth: 120 }}>
+                            <InputLabel id="sort-label">Sort by</InputLabel>
+                            <Select
+                                labelId="sort-label"
+                                id="sort-select"
+                                value={sortOption}
+                                onChange={handleSortChange}
+                            >
+                                <MenuItem value="default">Default</MenuItem>
+                                <MenuItem value="name">Name</MenuItem>
+                                <MenuItem value="Capital">Capital</MenuItem>
+                                <MenuItem value="Region">Region</MenuItem>
+                                <MenuItem value="Population">Population</MenuItem>
+                                <MenuItem value="Languages">Languages</MenuItem>
+                                {/* Add other sorting options here */}
+                            </Select>
+                        </FormControl>
+                        <FormControl variant="filled" style={{ backgroundColor: 'white', minWidth: 120 }}>
+                            <InputLabel id="order-label">Order by</InputLabel>
+                            <Select
+                                labelId="order-label"
+                                id="order-select"
+                                value={orderBy}
+                                onChange={handleOrderChange}
+                            >
+                                <MenuItem value="default">Default</MenuItem>
+                                <MenuItem value="asc">Ascending</MenuItem>
+                                <MenuItem value="desc">Descending</MenuItem>
+                                {/* Add other ordering options here */}
+                            </Select>
+                        </FormControl>
+                    </div>
                     <div className='flex justify-between w-full px-4'>
                         <h2 className='font-light text-xl'>Total Countries: {asylumCountries.length}</h2>
                         <h2 className='font-light text-xl'>Page Number: {currentPage}</h2>
