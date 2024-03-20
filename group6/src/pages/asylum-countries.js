@@ -41,7 +41,14 @@ export default function AsylumCountries() {
         const fetchAsylumCountries = async () => {
             try {
                 setLoading(true);
-                const response = await axios.get('https://cs373-backend.ukrainecrisis.me/api/asylum-countries');
+                const response = await axios.get('http://127.0.0.1:5000/api/asylum-countries', {
+                    params: {
+                        sort_by: sortOption,
+                        order: orderBy
+                    }
+                });
+                
+
                 setAsylumCountries(response.data);
                 setLoading(false);
             } catch (error) {
@@ -51,7 +58,7 @@ export default function AsylumCountries() {
         };
 
         fetchAsylumCountries();
-    }, [sortOption]);
+    }, [sortOption, orderBy]);
 
     if (loading) {
         return <div>Loading...</div>;
@@ -106,10 +113,10 @@ export default function AsylumCountries() {
                             >
                                 <MenuItem value="default">Default</MenuItem>
                                 <MenuItem value="name">Name</MenuItem>
-                                <MenuItem value="Capital">Capital</MenuItem>
-                                <MenuItem value="Region">Region</MenuItem>
-                                <MenuItem value="Population">Population</MenuItem>
-                                <MenuItem value="Languages">Languages</MenuItem>
+                                <MenuItem value="capital">Capital</MenuItem>
+                                <MenuItem value="region">Region</MenuItem>
+                                <MenuItem value="population">Population</MenuItem>
+                                <MenuItem value="languages">Languages</MenuItem>
                                 {/* Add other sorting options here */}
                             </Select>
                         </FormControl>

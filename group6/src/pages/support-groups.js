@@ -39,7 +39,12 @@ export default function SupportGroups() {
         const fetchSupportGroups = async () => {
             try {
                 setLoading(true);
-                const response = await axios.get('https://cs373-backend.ukrainecrisis.me/api/support-groups');
+                const response = await axios.get('http://127.0.0.1:5000/api/support-groups', {
+                    params: {
+                        sort_by: sortOption,
+                        order: orderBy
+                    }
+                });
                 setSupportGroups(response.data);
                 setLoading(false);
             } catch (error) {
@@ -49,7 +54,7 @@ export default function SupportGroups() {
         };
 
         fetchSupportGroups();
-    }, [sortOption]); // Include sortOption in the dependency array if sorting logic is to be applied here
+    }, [sortOption, orderBy]); // Include sortOption in the dependency array if sorting logic is to be applied here
 
     if (loading) {
         return <div>Loading...</div>;
@@ -104,10 +109,10 @@ export default function SupportGroups() {
                             >
                                 <MenuItem value="default">Default</MenuItem>
                                 <MenuItem value="name">Name</MenuItem>
-                                <MenuItem value="Location">Location</MenuItem>
-                                <MenuItem value="Rating">Rating</MenuItem>
-                                <MenuItem value="PhoneNumber">Phone Number</MenuItem>
-                                <MenuItem value="name">Website</MenuItem>
+                                <MenuItem value="location">Location</MenuItem>
+                                <MenuItem value="rating">Rating</MenuItem>
+                                <MenuItem value="phn_no">Phone Number</MenuItem>
+                                <MenuItem value="website">Website</MenuItem>
                                 {/* Add other sorting options here */}
                             </Select>
                         </FormControl>

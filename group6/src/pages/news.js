@@ -37,7 +37,12 @@ export default function mediaModel() {
         const fetchNews = async () => {
             try {
                 setLoading(true);
-                const response = await axios.get('https://cs373-backend.ukrainecrisis.me/api/news');
+                const response = await axios.get('http://127.0.0.1:5000/api/news', {
+                    params: {
+                        sort_by: sortOption,
+                        order: orderBy
+                    }
+                });
                 setNewsMedia(response.data);
                 setLoading(false);
             } catch (error) {
@@ -47,7 +52,7 @@ export default function mediaModel() {
         };
 
         fetchNews();
-    }, [sortOption]);
+    }, [sortOption, orderBy]);
     console.log(newsMedia)
     
     const indexOfLastNews = currentPage * newsPerPage;
@@ -108,10 +113,10 @@ export default function mediaModel() {
                                 onChange={handleSortChange}
                             >
                                 <MenuItem value="default">Default</MenuItem>
-                                <MenuItem value="name">Name</MenuItem>
+                                <MenuItem value="title">Title</MenuItem>
                                 <MenuItem value="date">Date</MenuItem>
                                 <MenuItem value="source">Source</MenuItem>
-                                <MenuItem value="Author">Author</MenuItem>
+                                <MenuItem value="author">Author</MenuItem>
                                 <MenuItem value="story">Story</MenuItem>
                             </Select>
                         </FormControl>
