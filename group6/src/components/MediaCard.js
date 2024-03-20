@@ -28,6 +28,8 @@ export default function MediaCard({ media_data }) {
                             {/* Display formatted publication date */}
                             <p className="text-xs">{new Date(media_data.publishedAt).toLocaleDateString()}</p>
                         </div>
+                        {/* Display author */}
+                        <p className="text-xs font-semibold">{`Author: ${media_data.author}`}</p>
                     </div>
                 </div>
                 <div className="m-2 overflow-ellipsis"> {/* Content section */}

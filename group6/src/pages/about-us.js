@@ -41,7 +41,7 @@ let teamMembers = [
         bio: 'I am a Junior computer science major with a minor in business. In my free time I develop mods for Minecraft and edit videos.',
         commits: 50,
         issues: 10,
-        tests: 16,
+        tests: 12,
         gitLabName: 'Derek Chen',
         username: 'derex1987',
     },
