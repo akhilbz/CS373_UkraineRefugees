@@ -15,6 +15,12 @@ import Select from '@mui/material/Select';
 import SupportCard from '@/components/SupportCard';
 import NavBar from './NavBar';
 import axios from 'axios';
+import Checkbox from '@mui/material/Checkbox';
+import FormGroup from '@mui/material/FormGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Popover from '@mui/material/Popover';
+import ListSubheader from '@mui/material/ListSubheader';
+import List from '@mui/material/List';
 
 export default function SupportGroups() {
     const [supportGroups, setSupportGroups] = useState([]);
@@ -34,6 +40,27 @@ export default function SupportGroups() {
     const isSmallScreen = useMediaQuery(theme.breakpoints.down('md'));
 
     const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
+    const [selectedRating, setSelectedRating] = useState([]);
+    const [selectedLocation, setSelectedLocation] = useState([]);
+    const [anchorElRating, setAnchorElRating] = useState(null);
+    const [anchorElLocation, setAnchorElLocation] = useState(null);
+
+    const handleClick = (event) => {
+        setAnchorEl(event.currentTarget);
+    };
+
+    const handleClose = () => {
+        setAnchorEl(null);
+    };
+
+    // Open state for Authors Popover
+    const openRating = Boolean(anchorElRating);
+    const ratingId = openRating ? 'rating-popover' : undefined;
+
+    // Open state for Sources Popover
+    const openLocation = Boolean(anchorElLocation);
+    const locationId = openLocation ? 'location-popover' : undefined;
 
     useEffect(() => {
         const fetchSupportGroups = async () => {
@@ -75,30 +102,263 @@ export default function SupportGroups() {
         // Need To handle searching Not sure if we do it here or in our API?
     };
 
+    const handleLocationChange = (event) => {
+        if (event.target.checked) {
+            setSelectedLocation([...selectedLocation, event.target.name]);
+        } else {
+            setSelectedLocation(selectedLocation.filter(source => source !== event.target.name));
+        }
+    };
+
+    const handleRatingChange = (event) => {
+        if (event.target.checked) {
+            setSelectedRating([...selectedRating, event.target.name]);
+        } else {
+            setSelectedRating(selectedRating.filter(author => author !== event.target.name));
+        }
+    };
+
+    const handleRatingClick = (event) => {
+        setAnchorElRating(event.currentTarget);
+    };
+
+    const handleRatingClose = () => {
+        setAnchorElRating(null);
+    };
+
+    // Event handlers for Sources
+    const handleLocationClick = (event) => {
+        setAnchorElLocation(event.currentTarget);
+    };
+
+    const handleLocationClose = () => {
+        setAnchorElLocation(null);
+    };
+
     return (
         <div>
             <NavBar />
             <main>
                 <header className='flex flex-col items-center justify-between pt-7 w-full'>
-                    <h1 className='text-3xl font-medium mb-4'>Ukraine Refugee Support Groups</h1>
-                    <div className='flex flex-wrap justify-center gap-4 mb-4'>
-                        <TextField
-                            fullWidth
-                            variant="filled"
-                            id="search-bar"
-                            type="search"
-                            value={searchQuery}
-                            onChange={handleSearchChange}
-                            placeholder="Search"
-                            InputProps={{
-                                startAdornment: (
-                                    <InputAdornment position="start">
-                                        <SearchIcon />
-                                    </InputAdornment>
-                                ),
+                    <h1 className='text-3xl font-medium mb-4'>Asylum Countries</h1>
+                    <div className='flex items-center w-full px-4'>
+                        {/* Filters section For Authors */}
+                        <div className='flex justify-left  px-1 mb-1'>
+                            <Button
+                                aria-describedby={ratingId}
+                                variant="outlined"
+                                onClick={handleRatingClick}
+                                style={{
+                                    fontWeight: 'bold',
+                                    borderColor: 'white',
+                                    borderWidth: '2px',
+                                    color: 'white'
+                                }}
+                            >
+                                Rating
+                            </Button>
+                            <Button
+                                aria-describedby={locationId}
+                                variant="outlined"
+                                onClick={handleLocationClick}
+                                style={{
+                                    fontWeight: 'bold',
+                                    borderColor: 'white',
+                                    borderWidth: '2px',
+                                    color: 'white',
+                                    marginLeft: '20px'
+                                }}
+                            >
+                                Location
+                            </Button>
+                        </div>
+                        <Popover
+                            id={ratingId}
+                            open={openRating}
+                            anchorEl={anchorElRating}
+                            onClose={handleRatingClose}
+                            anchorOrigin={{
+                                vertical: 'bottom',
+                                horizontal: 'left',
                             }}
-                            style={{ backgroundColor: 'white' }}
-                        />
+                        >
+                            <List
+                                sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}
+                                component="nav"
+                                subheader={
+                                    <ListSubheader component="div" id="nested-list-subheader">
+                                        Select Rating
+                                    </ListSubheader>
+                                }
+                            >
+                                <FormGroup>
+                                    <FormControlLabel
+                                        control={
+                                            <Checkbox
+                                                checked={selectedRating.includes('100')}
+                                                onChange={handleRatingChange}
+                                                name="100"
+                                            />
+                                        }
+                                        label="100"
+                                    />
+                                    <FormControlLabel
+                                        control={
+                                            <Checkbox
+                                                checked={selectedRating.includes('95-99')}
+                                                onChange={handleRatingChange}
+                                                name="95-99"
+                                            />
+                                        }
+                                        label="95-99"
+                                    />
+                                    <FormControlLabel
+                                        control={
+                                            <Checkbox
+                                                checked={selectedRating.includes('90-94')}
+                                                onChange={handleRatingChange}
+                                                name="90-94"
+                                            />
+                                        }
+                                        label="90-94"
+                                    />
+                                    <FormControlLabel
+                                        control={
+                                            <Checkbox
+                                                checked={selectedRating.includes('90<')}
+                                                onChange={handleRatingChange}
+                                                name="90<"
+                                            />
+                                        }
+                                        label="Below 90"
+                                    />
+                                </FormGroup>
+                            </List>
+                        </Popover>
+                        <Popover
+                            id={locationId}
+                            open={openLocation}
+                            anchorEl={anchorElLocation}
+                            onClose={handleLocationClose}
+                            anchorOrigin={{
+                                vertical: 'bottom',
+                                horizontal: 'left',
+                            }}
+                        >
+                            <List
+                                sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}
+                                component="nav"
+                                subheader={
+                                    <ListSubheader component="div" id="nested-list-subheader">
+                                        Select Locations
+                                    </ListSubheader>
+                                }
+                            >
+                                <FormGroup>
+                                    <FormControlLabel
+                                        control={
+                                            <Checkbox
+                                                checked={selectedLocation.includes('Alexandria , VA')}
+                                                onChange={handleLocationChange}
+                                                name="Alexandria , VA"
+                                            />
+                                        }
+                                        label="Alexandria, VA"
+                                    />
+                                    <FormControlLabel
+                                        control={
+                                            <Checkbox
+                                                checked={selectedLocation.includes('Cincinnati , OH')}
+                                                onChange={handleLocationChange}
+                                                name="Cincinnati , OH"
+                                            />
+                                        }
+                                        label="Cincinnati, OH"
+                                    />
+                                    <FormControlLabel
+                                        control={
+                                            <Checkbox
+                                                checked={selectedLocation.includes('FairFax, VA')}
+                                                onChange={handleLocationChange}
+                                                name="FairFax, VA"
+                                            />
+                                        }
+                                        label="Fairfax, VA"
+                                    />
+                                    <FormControlLabel
+                                        control={
+                                            <Checkbox
+                                                checked={selectedLocation.includes('Minneapolis, MN')}
+                                                onChange={handleLocationChange}
+                                                name="Minneapolis, MN"
+                                            />
+                                        }
+                                        label="Minneapolis, MN"
+                                    />
+                                    <FormControlLabel
+                                        control={
+                                            <Checkbox
+                                                checked={selectedLocation.includes('New York , NY')}
+                                                onChange={handleLocationChange}
+                                                name="New York , NY"
+                                            />
+                                        }
+                                        label="New York, NY"
+                                    />
+                                    <FormControlLabel
+                                        control={
+                                            <Checkbox
+                                                checked={selectedLocation.includes('Santa Barbara , CA')}
+                                                onChange={handleLocationChange}
+                                                name="Santa Barbara , CA"
+                                            />
+                                        }
+                                        label="Santa Barbara, CA"
+                                    />
+                                    <FormControlLabel
+                                        control={
+                                            <Checkbox
+                                                checked={selectedLocation.includes('Washington , DC')}
+                                                onChange={handleLocationChange}
+                                                name="Washington , DC"
+                                            />
+                                        }
+                                        label="Washington, DC"
+                                    />
+                                    <FormControlLabel
+                                        control={
+                                            <Checkbox
+                                                checked={selectedLocation.includes('Others')}
+                                                onChange={handleLocationChange}
+                                                name="Others"
+                                            />
+                                        }
+                                        label="Others"
+                                    />
+                                </FormGroup>
+                            </List>
+                        </Popover>
+
+                        {/* Center - Search bar */}
+                        <div className='flex justify-center flex-grow pl-'>
+                            <TextField
+                                variant="filled"
+                                id="search-bar"
+                                type="search"
+                                value={searchQuery}
+                                onChange={handleSearchChange}
+                                placeholder="Search"
+                                InputProps={{
+                                    startAdornment: (
+                                        <InputAdornment position="start">
+                                            <SearchIcon />
+                                        </InputAdornment>
+                                    ),
+                                }}
+                                style={{ width: '80%' }}  // Adjust width as needed to fit design
+                            />
+                        </div>
+
                         <FormControl variant="filled" style={{ backgroundColor: 'white', minWidth: 120 }}>
                             <InputLabel id="sort-label">Sort by</InputLabel>
                             <Select
