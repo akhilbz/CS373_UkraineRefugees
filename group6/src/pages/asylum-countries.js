@@ -17,6 +17,12 @@ import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
 import Select from '@mui/material/Select';
 import SupportCard from '@/components/SupportCard';
+import Checkbox from '@mui/material/Checkbox';
+import FormGroup from '@mui/material/FormGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Popover from '@mui/material/Popover';
+import ListSubheader from '@mui/material/ListSubheader';
+import List from '@mui/material/List';
 
 export default function AsylumCountries() {
     const [asylumCountries, setAsylumCountries] = useState([]);
@@ -26,6 +32,27 @@ export default function AsylumCountries() {
     const [sortOption, setSortOption] = useState('default');
     const [orderBy, setOrderBy] = useState('default');
     const [searchQuery, setSearchQuery] = useState('');
+
+    const [selectedRegions, setSelectedRegions] = useState([]);
+    const [selectedLanguages, setSelectedLanguages] = useState([]);
+    const [anchorElRegions, setAnchorElRegions] = useState(null);
+    const [anchorElLanguages, setAnchorElLanguages] = useState(null);
+
+    const handleClick = (event) => {
+        setAnchorEl(event.currentTarget);
+    };
+
+    const handleClose = () => {
+        setAnchorEl(null);
+    };
+
+    // Open state for Authors Popover
+    const openRegion = Boolean(anchorElRegions);
+    const regionId = openRegion ? 'region-popover' : undefined;
+
+    // Open state for Sources Popover
+    const openLanguages = Boolean(anchorElLanguages);
+    const languagesId = openLanguages ? 'languages-popover' : undefined;
 
     // Determine the current countries to display based on the current page
     const indexOfLastCountry = currentPage * countriesPerPage;
@@ -79,30 +106,264 @@ export default function AsylumCountries() {
         // Need To handle searching Not sure if we do it here or in our API?
     };
 
+    const handleLanguagesChange = (event) => {
+        if (event.target.checked) {
+            setSelectedLanguages([...selectedLanguages, event.target.name]);
+        } else {
+            setSelectedLanguages(selectedLanguages.filter(source => source !== event.target.name));
+        }
+    };
+
+    const handleRegionsChange = (event) => {
+        if (event.target.checked) {
+            setSelectedRegions([...selectedRegions, event.target.name]);
+        } else {
+            setSelectedRegions(selectedRegions.filter(author => author !== event.target.name));
+        }
+    };
+
+    const handleRegionsClick = (event) => {
+        setAnchorElRegions(event.currentTarget);
+    };
+
+    const handleRegionsClose = () => {
+        setAnchorElRegions(null);
+    };
+
+    // Event handlers for Sources
+    const handleLanguagesClick = (event) => {
+        setAnchorElLanguages(event.currentTarget);
+    };
+
+    const handleLanguagesClose = () => {
+        setAnchorElLanguages(null);
+    };
+
     return (
         <div>
             <NavBar />
             <main>
                 <header className='flex flex-col items-center justify-between pt-7 w-full'>
                     <h1 className='text-3xl font-medium mb-4'>Asylum Countries</h1>
-                    <div className='flex flex-wrap justify-center gap-4 mb-4'>
-                        <TextField
-                            fullWidth
-                            variant="filled"
-                            id="search-bar"
-                            type="search"
-                            value={searchQuery}
-                            onChange={handleSearchChange}
-                            placeholder="Search"
-                            InputProps={{
-                                startAdornment: (
-                                    <InputAdornment position="start">
-                                        <SearchIcon />
-                                    </InputAdornment>
-                                ),
+                    <div className='flex items-center w-full px-4'>
+                        {/* Filters section For Authors */}
+                        <div className='flex justify-left  px-1 mb-1'>
+                            <Button
+                                aria-describedby={regionId}
+                                variant="outlined"
+                                onClick={handleRegionsClick}
+                                style={{
+                                    fontWeight: 'bold',
+                                    borderColor: 'white',
+                                    borderWidth: '2px',
+                                    color: 'white'
+                                }}
+                            >
+                                Regions
+                            </Button>
+                            <Button
+                                aria-describedby={languagesId}
+                                variant="outlined"
+                                onClick={handleLanguagesClick}
+                                style={{
+                                    fontWeight: 'bold',
+                                    borderColor: 'white',
+                                    borderWidth: '2px',
+                                    color: 'white',
+                                    marginLeft: '20px'
+                                }}
+                            >
+                                Languages
+                            </Button>
+                        </div>
+                        <Popover
+                            id={regionId}
+                            open={openRegion}
+                            anchorEl={anchorElRegions}
+                            onClose={handleRegionsClose}
+                            anchorOrigin={{
+                                vertical: 'bottom',
+                                horizontal: 'left',
                             }}
-                            style={{ backgroundColor: 'white' }}
-                        />
+                        >
+                            <List
+                                sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}
+                                component="nav"
+                                subheader={
+                                    <ListSubheader component="div" id="nested-list-subheader">
+                                        Select Region
+                                    </ListSubheader>
+                                }
+                            >
+                                <FormGroup>
+                                    <FormControlLabel
+                                        control={
+                                            <Checkbox
+                                                checked={selectedRegions.includes('Africa')}
+                                                onChange={handleRegionsChange}
+                                                name="Africa"
+                                            />
+                                        }
+                                        label="Africa"
+                                    />
+                                    <FormControlLabel
+                                        control={
+                                            <Checkbox
+                                                checked={selectedRegions.includes('Americas')}
+                                                onChange={handleRegionsChange}
+                                                name="Americas"
+                                            />
+                                        }
+                                        label="Americas"
+                                    />
+                                    <FormControlLabel
+                                        control={
+                                            <Checkbox
+                                                checked={selectedRegions.includes('Asia')}
+                                                onChange={handleRegionsChange}
+                                                name="Asia"
+                                            />
+                                        }
+                                        label="Asia"
+                                    />
+                                    <FormControlLabel
+                                        control={
+                                            <Checkbox
+                                                checked={selectedRegions.includes('Europe')}
+                                                onChange={handleRegionsChange}
+                                                name="Europe"
+                                            />
+                                        }
+                                        label="Europe"
+                                    />
+                                    <FormControlLabel
+                                        control={
+                                            <Checkbox
+                                                checked={selectedRegions.includes('Oceania')}
+                                                onChange={handleRegionsChange}
+                                                name="Oceania"
+                                            />
+                                        }
+                                        label="Oceania"
+                                    />
+                                </FormGroup>
+                            </List>
+                        </Popover>
+                        <Popover
+                            id={languagesId}
+                            open={openLanguages}
+                            anchorEl={anchorElLanguages}
+                            onClose={handleLanguagesClose}
+                            anchorOrigin={{
+                                vertical: 'bottom',
+                                horizontal: 'left',
+                            }}
+                        >
+                            <List
+                                sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}
+                                component="nav"
+                                subheader={
+                                    <ListSubheader component="div" id="nested-list-subheader">
+                                        Select Languages
+                                    </ListSubheader>
+                                }
+                            >
+                                <FormGroup>
+                                    <FormControlLabel
+                                        control={
+                                            <Checkbox
+                                                checked={selectedLanguages.includes('English')}
+                                                onChange={handleLanguagesChange}
+                                                name="English"
+                                            />
+                                        }
+                                        label="English"
+                                    />
+                                    <FormControlLabel
+                                        control={
+                                            <Checkbox
+                                                checked={selectedLanguages.includes('German')}
+                                                onChange={handleLanguagesChange}
+                                                name="German"
+                                            />
+                                        }
+                                        label="German"
+                                    />
+                                    <FormControlLabel
+                                        control={
+                                            <Checkbox
+                                                checked={selectedLanguages.includes('French')}
+                                                onChange={handleLanguagesChange}
+                                                name="French"
+                                            />
+                                        }
+                                        label="French"
+                                    />
+                                    <FormControlLabel
+                                        control={
+                                            <Checkbox
+                                                checked={selectedLanguages.includes('Dutch')}
+                                                onChange={handleLanguagesChange}
+                                                name="Dutch"
+                                            />
+                                        }
+                                        label="Dutch"
+                                    />
+                                    <FormControlLabel
+                                        control={
+                                            <Checkbox
+                                                checked={selectedLanguages.includes('Spanish')}
+                                                onChange={handleLanguagesChange}
+                                                name="Spanish"
+                                            />
+                                        }
+                                        label="Spanish"
+                                    />
+                                    <FormControlLabel
+                                        control={
+                                            <Checkbox
+                                                checked={selectedLanguages.includes('Arabic')}
+                                                onChange={handleLanguagesChange}
+                                                name="Arabic"
+                                            />
+                                        }
+                                        label="Arabic"
+                                    />
+                                    <FormControlLabel
+                                        control={
+                                            <Checkbox
+                                                checked={selectedLanguages.includes('Other')}
+                                                onChange={handleLanguagesChange}
+                                                name="Other"
+                                            />
+                                        }
+                                        label="Other"
+                                    />
+                                </FormGroup>
+
+                            </List>
+                        </Popover>
+
+                        {/* Center - Search bar */}
+                        <div className='flex justify-center flex-grow pl-'>
+                            <TextField
+                                variant="filled"
+                                id="search-bar"
+                                type="search"
+                                value={searchQuery}
+                                onChange={handleSearchChange}
+                                placeholder="Search"
+                                InputProps={{
+                                    startAdornment: (
+                                        <InputAdornment position="start">
+                                            <SearchIcon />
+                                        </InputAdornment>
+                                    ),
+                                }}
+                                style={{ width: '80%' }}  // Adjust width as needed to fit design
+                            />
+                        </div>
+
                         <FormControl variant="filled" style={{ backgroundColor: 'white', minWidth: 120 }}>
                             <InputLabel id="sort-label">Sort by</InputLabel>
                             <Select
