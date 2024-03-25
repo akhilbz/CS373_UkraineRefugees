@@ -444,7 +444,6 @@ export default function mediaModel() {
                         {/* Right side - Sort and Order section with page number above */}
                         <div className='flex'>
                             <div>
-                                <h2 className='font-light text-xl mb-2'>Page Number: {currentPage}</h2>
                                 <div className='flex justify-end gap-4'>
                                     <FormControl variant="filled" style={{ backgroundColor: 'white', minWidth: 120 }}>
                                         <InputLabel id="sort-label">Sort by</InputLabel>
@@ -478,6 +477,10 @@ export default function mediaModel() {
                                 </div>
                             </div>
                         </div>
+                    </div>
+                    <div className='flex justify-between w-full px-4'>
+                        <h2 className='font-light text-xl'>Total Countries: {newsMedia.length}</h2>
+                        <h2 className='font-light text-xl'>Page Number: {currentPage}</h2>
                     </div>
                 </header>
                 <Grid container spacing={4} className={`pt-28 pb-8 ${isSmallScreen ? 'px-4' : 'px-8'} flex justify-center w-full`}>
