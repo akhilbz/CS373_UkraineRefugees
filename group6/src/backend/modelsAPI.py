@@ -189,6 +189,13 @@ def get_db_asylum_countries():
             else:
                 asylum_data = AsylumCountryModel.query.order_by(
                     AsylumCountryModel.population.desc()).all()
+        elif sort_by == 'languages':
+            if order == 'asc':
+                asylum_data = AsylumCountryModel.query.order_by(
+                    AsylumCountryModel.languages.asc()).all()
+            else:
+                asylum_data = AsylumCountryModel.query.order_by(
+                    AsylumCountryModel.languages.desc()).all()
         else:
             asylum_data = AsylumCountryModel.query.all()
 
