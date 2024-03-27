@@ -461,7 +461,7 @@ export default function mediaModel() {
                         </div>
                     </div>
                     <div className='flex justify-between w-full px-4'>
-                        <h2 className='font-light text-xl'>Total Countries: {newsMedia.length}</h2>
+                        <h2 className='font-light text-xl'>Total News and Media: {newsMedia.length}</h2>
                         <h2 className='font-light text-xl'>Page Number: {currentPage}</h2>
                     </div>
                 </header>
