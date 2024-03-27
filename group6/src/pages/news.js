@@ -55,7 +55,9 @@ export default function mediaModel() {
                 const response = await axios.get('http://127.0.0.1:5000/api/news', {
                     params: {
                         sort_by: sortOption,
-                        order: orderBy
+                        order: orderBy,
+                        sources: selectedSources.join(','), 
+                        authors: selectedAuthors.join(',')
                     }
                 });
                 setNewsMedia(response.data);
@@ -67,7 +69,7 @@ export default function mediaModel() {
         };
 
         fetchNews();
-    }, [sortOption, orderBy]);
+    }, [sortOption, orderBy, selectedSources, selectedAuthors]);
     console.log(newsMedia)
     
     const indexOfLastNews = currentPage * newsPerPage;
@@ -236,16 +238,6 @@ export default function mediaModel() {
                                     <FormControlLabel
                                         control={
                                             <Checkbox
-                                                checked={selectedAuthors.includes('Not Available')}
-                                                onChange={handleAuthorChange}
-                                                name="Not Available"
-                                            />
-                                        }
-                                        label="Not Available"
-                                    />
-                                    <FormControlLabel
-                                        control={
-                                            <Checkbox
                                                 checked={selectedAuthors.includes('ZEIT ONLINE: News -')}
                                                 onChange={handleAuthorChange}
                                                 name="ZEIT ONLINE: News -"
@@ -325,16 +317,6 @@ export default function mediaModel() {
                                             />
                                         }
                                         label="STERN.de"
-                                    />
-                                    <FormControlLabel
-                                        control={
-                                            <Checkbox
-                                                checked={selectedSources.includes('Feedfeeder')}
-                                                onChange={handleSourceChange}
-                                                name="Feedfeeder"
-                                            />
-                                        }
-                                        label="Feedfeeder"
                                     />
                                     <FormControlLabel
                                         control={

@@ -66,46 +66,101 @@ def home():
 def get_db_news():
     try:
 
+        query = NewsModel.query
+        authors = request.args.get("authors", "")
+        news_query = NewsModel.query
+
+        print("LENGTH: ", len(authors))
+
+        if len(authors) > 0:
+            possible_author_filters = ["zerohedge.com", "newsweek.com",
+                                       "businessinsider.com", "ZEIT ONLINE: News -", "feedfeeder", "aol.com"]
+            authors_list = [author.strip() for author in authors.split(',')]
+            print("AUTHORS LIST: ", authors)
+
+            if "Others" in authors_list:
+                # Filter to include authors not in possible_author_filters
+                for author in authors_list:
+                    if author in possible_author_filters:
+                        possible_author_filters.remove(author)
+
+                # Remove "others" from list to avoid errors
+                authors_list.remove("Others")
+                # Add additional authors to authors_list if needed, then filter
+                news_query = news_query.filter(
+                    ~NewsModel.author.in_(possible_author_filters))
+
+                print("POST OTHER COUNT: ", news_query.count())
+            else:
+                # Standard filtering by authors in authors_list
+                news_query = news_query.filter(
+                    NewsModel.author.in_(authors_list))
+
+        sources = request.args.get("sources", "")
+
+        if len(sources) > 0:
+            possible_source_filters = ["taz.de", "STERN.de",
+                                       "Portfolio.hu", "Marketscreener.com", "Freerepublic.com",
+                                       "DW (English)", "Diepresse.com", "Die Zeit", "Biztoc.com", "Others"]
+            sources_list = [source.strip() for source in sources.split(',')]
+            print("SOURCE LIST: ", sources)
+
+            if "Others" in sources_list:
+
+                for source in sources_list:
+                    if source in possible_source_filters:
+                        possible_source_filters.remove(source)
+
+                # Remove "others" from list to avoid errors
+                sources_list.remove("Others")
+
+                news_query = news_query.filter(
+                    ~NewsModel.source_name.in_(possible_source_filters))
+
+            else:
+                news_query = news_query.filter(
+                    NewsModel.source_name.in_(sources_list))
+
         sort_by = request.args.get('sort_by', 'id')
         order = request.args.get('order', 'asc')
 
         if sort_by == 'author':
             if order == 'asc':
-                news_data = NewsModel.query.order_by(
+                news_data = news_query.order_by(
                     NewsModel.author.asc()).all()
             else:
-                news_data = NewsModel.query.order_by(
+                news_data = news_query.order_by(
                     NewsModel.author.desc()).all()
         elif sort_by == 'title':
             if order == 'asc':
-                news_data = NewsModel.query.order_by(
+                news_data = news_query.order_by(
                     NewsModel.title.asc()).all()
             else:
-                news_data = NewsModel.query.order_by(
+                news_data = news_query.order_by(
                     NewsModel.title.desc()).all()
         elif sort_by == 'date':
             if order == 'asc':
-                news_data = NewsModel.query.order_by(
+                news_data = news_query.order_by(
                     NewsModel.published_at.asc()).all()
             else:
-                news_data = NewsModel.query.order_by(
+                news_data = news_query.order_by(
                     NewsModel.published_at.desc()).all()
         elif sort_by == 'source':
             if order == 'asc':
-                news_data = NewsModel.query.order_by(
+                news_data = news_query.order_by(
                     NewsModel.source_name.asc()).all()
             else:
-                news_data = NewsModel.query.order_by(
+                news_data = news_query.order_by(
                     NewsModel.source_name.desc()).all()
         elif sort_by == 'story':
             if order == 'asc':
-                news_data = NewsModel.query.order_by(
+                news_data = news_query.order_by(
                     NewsModel.description.asc()).all()
             else:
-                news_data = NewsModel.query.order_by(
+                news_data = news_query.order_by(
                     NewsModel.description.desc()).all()
         else:
-            news_data = NewsModel.query.all()
+            news_data = news_query.all()
 
         # news_data = NewsModel.query.all()
 
