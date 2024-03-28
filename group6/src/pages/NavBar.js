@@ -13,7 +13,8 @@ const NavBar = () => {
     // Handle search submission
     const handleSearch = (e) => {
         e.preventDefault();
-        setSearchQuery(''); // Clear search input
+        router.push(`/search?term=${encodeURIComponent(searchQuery)}`);
+        setSearchQuery(''); // Clear search input after navigating
     };
 
     return (
