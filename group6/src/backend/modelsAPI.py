@@ -388,10 +388,31 @@ def get_db_support_groups_singular(id):
 @flaskApp.route('/api/all', methods=['GET'])
 def get_db_all(id):
     try:
-       support_groups_data = SupportGroupsModel.query.all()
-        support_groups_list = []
-        for item in support_groups_data:
-            support_group_dict = {
+        news_rows = NewsModel.query.all()
+        asylum_rows = AsylumCountryModel.query.all()
+        support_rows = SupportGroupsModel.query.all()
+
+        # Convert rows to dictionary format
+        news_data = [{
+                'id': item.id,
+                'author': item.author,
+                'title': item.title,
+                'description': item.description,
+                'publishedAt': item.published_at,
+                'name': item.source_name,
+                'content': item.content,
+                'urlToImage': item.image_url
+        } for item in news_rows]
+        asylum_data = [{
+                'id': item.id,
+                'name': item.name,
+                'capital': item.capital,
+                'region': item.region,
+                'population': item.population,
+                'languages': item.languages,
+                'flag': item.flag
+        } for item in asylum_rows]
+        support_data = [{
                 'id': item.id,
                 'name': item.name,
                 'location': item.location,
@@ -399,10 +420,9 @@ def get_db_all(id):
                 'rating': item.rating,
                 'website_url': item.website_url,
                 'picture_url': item.picture_url
-            }
-            support_groups_list.append(support_group_dict)
+        } for item in support_rows]
 
-        return jsonify(support_groups_list)
+        return jsonify({'news': news_data, 'asylum': asylum_data, 'support': support_data})
     except Exception as e:
         return jsonify({'error': str(e)}), 500
 
