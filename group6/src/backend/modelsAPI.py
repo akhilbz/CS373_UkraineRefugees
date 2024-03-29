@@ -384,6 +384,28 @@ def get_db_support_groups_singular(id):
     except Exception as e:
         return jsonify({'error': str(e)}), 500
 
+# Get all 3 tables
+@flaskApp.route('/api/all', methods=['GET'])
+def get_db_all(id):
+    try:
+       support_groups_data = SupportGroupsModel.query.all()
+        support_groups_list = []
+        for item in support_groups_data:
+            support_group_dict = {
+                'id': item.id,
+                'name': item.name,
+                'location': item.location,
+                'phn_no': item.phn_no,
+                'rating': item.rating,
+                'website_url': item.website_url,
+                'picture_url': item.picture_url
+            }
+            support_groups_list.append(support_group_dict)
+
+        return jsonify(support_groups_list)
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
 
 # Sample data
 temp = [
