@@ -222,6 +222,31 @@ def get_db_asylum_countries():
             country_query = country_query.filter(
                 AsylumCountryModel.region.in_(regions_list))
 
+        languages = request.args.get("languages", "")
+
+        if len(languages) > 0:
+            possible_languages_filters = ["Arabic", "English",
+                                          "Spanish", "French", "Dutch", "German",
+                                          "Other"]
+            languages_list = [language.strip()
+                              for language in languages.split(',')]
+
+            if "Other" in languages_list:
+
+                for language in languages_list:
+                    if language in possible_languages_filters:
+                        possible_languages_filters.remove(language)
+
+                # Remove "others" from list to avoid errors
+                languages_list.remove("Other")
+
+                country_query = country_query.filter(
+                    ~AsylumCountryModel.languages.in_(possible_languages_filters))
+
+            else:
+                country_query = country_query.filter(
+                    AsylumCountryModel.languages.in_(languages_list))
+
         sort_by = request.args.get('sort_by', 'id')
         order = request.args.get('order', 'asc')
 
