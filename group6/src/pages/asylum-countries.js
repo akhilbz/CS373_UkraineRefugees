@@ -71,7 +71,9 @@ export default function AsylumCountries() {
                 const response = await axios.get('http://127.0.0.1:5000/api/asylum-countries', {
                     params: {
                         sort_by: sortOption,
-                        order: orderBy
+                        order: orderBy,
+                        languages: selectedLanguages.join(','),
+                        regions: selectedRegions.join(',')
                     }
                 });
                 
@@ -85,7 +87,7 @@ export default function AsylumCountries() {
         };
 
         fetchAsylumCountries();
-    }, [sortOption, orderBy]);
+    }, [sortOption, orderBy,selectedLanguages,selectedRegions]);
 
     if (loading) {
         return <div>Loading...</div>;

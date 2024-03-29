@@ -212,47 +212,57 @@ def get_news_by_id(id):
 @flaskApp.route('/api/asylum-countries', methods=['GET'])
 def get_db_asylum_countries():
     try:
+
+        query = AsylumCountryModel.query
+        regions = request.args.get("regions", "")
+        country_query = AsylumCountryModel.query
+        regions_list = [region.strip() for region in regions.split(',')]
+
+        if len(regions) > 0:
+            country_query = country_query.filter(
+                AsylumCountryModel.region.in_(regions_list))
+
         sort_by = request.args.get('sort_by', 'id')
         order = request.args.get('order', 'asc')
 
         if sort_by == 'name':
             if order == 'asc':
-                asylum_data = AsylumCountryModel.query.order_by(
+                asylum_data = country_query.order_by(
                     AsylumCountryModel.name.asc()).all()
             else:
-                asylum_data = AsylumCountryModel.query.order_by(
+                asylum_data = country_query.order_by(
                     AsylumCountryModel.name.desc()).all()
         elif sort_by == 'capital':
             if order == 'asc':
-                asylum_data = AsylumCountryModel.query.order_by(
+                asylum_data = country_query.order_by(
                     AsylumCountryModel.capital.asc()).all()
             else:
-                asylum_data = AsylumCountryModel.query.order_by(
+                asylum_data = country_query.order_by(
                     AsylumCountryModel.capital.desc()).all()
 
         elif sort_by == 'region':
             if order == 'asc':
-                asylum_data = AsylumCountryModel.query.order_by(
+                asylum_data = country_query.order_by(
                     AsylumCountryModel.region.asc()).all()
             else:
-                asylum_data = AsylumCountryModel.query.order_by(
+                asylum_data = country_query.order_by(
                     AsylumCountryModel.region.desc()).all()
         elif sort_by == 'population':
             if order == 'asc':
-                asylum_data = AsylumCountryModel.query.order_by(
+                asylum_data = country_query.order_by(
                     AsylumCountryModel.population.asc()).all()
             else:
-                asylum_data = AsylumCountryModel.query.order_by(
+                asylum_data = country_query.order_by(
                     AsylumCountryModel.population.desc()).all()
         elif sort_by == 'languages':
             if order == 'asc':
-                asylum_data = AsylumCountryModel.query.order_by(
+                asylum_data = country_query.order_by(
                     AsylumCountryModel.languages.asc()).all()
             else:
-                asylum_data = AsylumCountryModel.query.order_by(
+                asylum_data = country_query.order_by(
                     AsylumCountryModel.languages.desc()).all()
         else:
-            asylum_data = AsylumCountryModel.query.all()
+            asylum_data = country_query.all()
 
         # asylum_data = AsylumCountryModel.query.all()
 
@@ -385,6 +395,8 @@ def get_db_support_groups_singular(id):
         return jsonify({'error': str(e)}), 500
 
 # Get all 3 tables
+
+
 @flaskApp.route('/api/all', methods=['GET'])
 def get_db_all(id):
     try:
@@ -394,32 +406,32 @@ def get_db_all(id):
 
         # Convert rows to dictionary format
         news_data = [{
-                'id': item.id,
-                'author': item.author,
-                'title': item.title,
-                'description': item.description,
-                'publishedAt': item.published_at,
-                'name': item.source_name,
-                'content': item.content,
-                'urlToImage': item.image_url
+            'id': item.id,
+            'author': item.author,
+            'title': item.title,
+            'description': item.description,
+            'publishedAt': item.published_at,
+            'name': item.source_name,
+            'content': item.content,
+            'urlToImage': item.image_url
         } for item in news_rows]
         asylum_data = [{
-                'id': item.id,
-                'name': item.name,
-                'capital': item.capital,
-                'region': item.region,
-                'population': item.population,
-                'languages': item.languages,
-                'flag': item.flag
+            'id': item.id,
+            'name': item.name,
+            'capital': item.capital,
+            'region': item.region,
+            'population': item.population,
+            'languages': item.languages,
+            'flag': item.flag
         } for item in asylum_rows]
         support_data = [{
-                'id': item.id,
-                'name': item.name,
-                'location': item.location,
-                'phn_no': item.phn_no,
-                'rating': item.rating,
-                'website_url': item.website_url,
-                'picture_url': item.picture_url
+            'id': item.id,
+            'name': item.name,
+            'location': item.location,
+            'phn_no': item.phn_no,
+            'rating': item.rating,
+            'website_url': item.website_url,
+            'picture_url': item.picture_url
         } for item in support_rows]
 
         return jsonify({'news': news_data, 'asylum': asylum_data, 'support': support_data})
