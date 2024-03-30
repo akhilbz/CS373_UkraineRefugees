@@ -335,48 +335,73 @@ def get_db_country_singular(id):
 @flaskApp.route('/api/support-groups', methods=['GET'])
 def get_db_support_groups():
     try:
+
+        query = SupportGroupsModel.query
+        locations = request.args.get("location", "")
+        support_query = SupportGroupsModel.query
+        locations_list = [location.strip()
+                          for location in locations.split(',')]
+
+        if len(locations) > 0:
+            possible_locations_filters = ["Alexandria , VA", "Cincinnati , OH",
+                                          "FairFax , VA", "Minneapolis, MN", "New York , NY", "Santa Barbara , CA", "Washington , DC",
+                                          "Others"]
+
+            if "Others" in locations_list:
+
+                for location in locations_list:
+                    if location in possible_locations_filters:
+                        possible_locations_filters.remove(location)
+
+                locations_list.remove("Others")
+
+                support_query = support_query.filter(
+                    ~SupportGroupsModel.location.in_(possible_locations_filters))
+
+            else:
+                support_query = support_query.filter(
+                    SupportGroupsModel.location.in_(locations_list))
+
         sort_by = request.args.get('sort_by', 'id')
         order = request.args.get('order', 'asc')
 
         if sort_by == 'name':
             if order == 'asc':
-                support_groups_data = SupportGroupsModel.query.order_by(
+                support_groups_data = support_query.order_by(
                     SupportGroupsModel.name.asc()).all()
             else:
-                support_groups_data = SupportGroupsModel.query.order_by(
+                support_groups_data = support_query.order_by(
                     SupportGroupsModel.name.desc()).all()
         elif sort_by == 'location':
             if order == 'asc':
-                support_groups_data = SupportGroupsModel.query.order_by(
+                support_groups_data = support_query.order_by(
                     SupportGroupsModel.location.asc()).all()
             else:
-                support_groups_data = SupportGroupsModel.query.order_by(
+                support_groups_data = support_query.order_by(
                     SupportGroupsModel.location.desc()).all()
         elif sort_by == 'rating':
             if order == 'asc':
-                support_groups_data = SupportGroupsModel.query.order_by(
+                support_groups_data = support_query.order_by(
                     SupportGroupsModel.rating.asc()).all()
             else:
-                support_groups_data = SupportGroupsModel.query.order_by(
+                support_groups_data = support_query.order_by(
                     SupportGroupsModel.rating.desc()).all()
         elif sort_by == 'phn_no':
             if order == 'asc':
-                support_groups_data = SupportGroupsModel.query.order_by(
+                support_groups_data = support_query.order_by(
                     SupportGroupsModel.phn_no.asc()).all()
             else:
-                support_groups_data = SupportGroupsModel.query.order_by(
+                support_groups_data = support_query.order_by(
                     SupportGroupsModel.phn_no.desc()).all()
         elif sort_by == 'website':
             if order == 'asc':
-                support_groups_data = SupportGroupsModel.query.order_by(
+                support_groups_data = support_query.order_by(
                     SupportGroupsModel.website_url.asc()).all()
             else:
-                support_groups_data = SupportGroupsModel.query.order_by(
+                support_groups_data = support_query.order_by(
                     SupportGroupsModel.website_url.desc()).all()
         else:
-            support_groups_data = SupportGroupsModel.query.all()
-
-       # support_groups_data = SupportGroupsModel.query.all()
+            support_groups_data = support_query.all()
 
         support_groups_list = []
         for item in support_groups_data:

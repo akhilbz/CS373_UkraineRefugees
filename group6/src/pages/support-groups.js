@@ -69,7 +69,9 @@ export default function SupportGroups() {
                 const response = await axios.get('http://127.0.0.1:5000/api/support-groups', {
                     params: {
                         sort_by: sortOption,
-                        order: orderBy
+                        order: orderBy,
+                        location: selectedLocation.join(','),
+                        ratings: selectedRating.join(',')
                     }
                 });
                 setSupportGroups(response.data);
@@ -81,7 +83,7 @@ export default function SupportGroups() {
         };
 
         fetchSupportGroups();
-    }, [sortOption, orderBy]); // Include sortOption in the dependency array if sorting logic is to be applied here
+    }, [sortOption, orderBy, selectedLocation,selectedRating ]); // Include sortOption in the dependency array if sorting logic is to be applied here
 
     if (loading) {
         return <div>Loading...</div>;
@@ -263,7 +265,7 @@ export default function SupportGroups() {
                                                 name="Alexandria , VA"
                                             />
                                         }
-                                        label="Alexandria, VA"
+                                        label="Alexandria , VA"
                                     />
                                     <FormControlLabel
                                         control={
@@ -273,17 +275,17 @@ export default function SupportGroups() {
                                                 name="Cincinnati , OH"
                                             />
                                         }
-                                        label="Cincinnati, OH"
+                                        label="Cincinnati , OH"
                                     />
                                     <FormControlLabel
                                         control={
                                             <Checkbox
-                                                checked={selectedLocation.includes('FairFax, VA')}
+                                                checked={selectedLocation.includes('FairFax , VA')}
                                                 onChange={handleLocationChange}
-                                                name="FairFax, VA"
+                                                name="FairFax , VA"
                                             />
                                         }
-                                        label="Fairfax, VA"
+                                        label="Fairfax , VA"
                                     />
                                     <FormControlLabel
                                         control={
@@ -303,7 +305,7 @@ export default function SupportGroups() {
                                                 name="New York , NY"
                                             />
                                         }
-                                        label="New York, NY"
+                                        label="New York , NY"
                                     />
                                     <FormControlLabel
                                         control={
@@ -313,7 +315,7 @@ export default function SupportGroups() {
                                                 name="Santa Barbara , CA"
                                             />
                                         }
-                                        label="Santa Barbara, CA"
+                                        label="Santa Barbara , CA"
                                     />
                                     <FormControlLabel
                                         control={
@@ -323,7 +325,7 @@ export default function SupportGroups() {
                                                 name="Washington , DC"
                                             />
                                         }
-                                        label="Washington, DC"
+                                        label="Washington , DC"
                                     />
                                     <FormControlLabel
                                         control={
