@@ -407,7 +407,7 @@ export default function AsylumCountries() {
                     <Grid container spacing={isSmallScreen ? 2 : 4} className='flex justify-center'>
                         {currentCountries.map((country, index) => (
                             <Grid item xs={12} sm={6} md={4} lg={3} key={index}>
-                                <Card className={`rounded-2xl min-h-[400px] ${isSmallScreen ? 'w-full max-w-[90%]' : 'w-full max-w-[400px]'} mx-auto`}>
+                                <Card className={` min-h-[400px]  ${isSmallScreen ? 'w-full max-w-[90%]' : 'w-full max-w-[400px]'} rounded-2xl mx-auto`}>
                                     <AsylumCountriesCard country_data={country} />
                                 </Card>
                             </Grid>
