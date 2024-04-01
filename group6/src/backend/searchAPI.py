@@ -1,3 +1,4 @@
+import json
 from flask import Flask, jsonify, request
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import func
@@ -50,16 +51,25 @@ class SupportGroupsModel(db.Model):
     website_url = db.Column(db.Text, nullable=False)
     picture_url = db.Column(db.Text, nullable=False)
 
-@flaskApp.route('/api/search/<int:id>', methods=['GET'])
+@flaskApp.route('/api/search/<query>', methods=['GET'])
 def get_search_results(query):
     try:
         search_words = query.split()
+        # return search_words
         results = {}
         for word in search_words:
             word_results = perform_search(word)
             # TODO Check for duplicates 
             results['news'] = word_results
         return jsonify(results)
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+    
+@flaskApp.route('/api/test', methods=['GET'])
+def get_search_results_test():
+    try:
+        temp = {'hello': 'hello2'}
+        return jsonify(temp)
     except Exception as e:
         return jsonify({'error': str(e)}), 500
 
@@ -79,3 +89,6 @@ def perform_search(word):
         }
         found_results.append(temp_dict)
     return found_results
+
+if __name__ == '__main__':  
+   flaskApp.run(debug=True)
