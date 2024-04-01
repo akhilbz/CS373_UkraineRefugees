@@ -341,7 +341,7 @@ export default function SupportGroups() {
                             </List>
                         </Popover>
 
-                        {/* Center - Search bar */}
+                        {/* Center - Search bar
                         <div className='flex justify-center flex-grow pl-'>
                             <TextField
                                 variant="filled"
@@ -358,6 +358,28 @@ export default function SupportGroups() {
                                     ),
                                 }}
                                 style={{ width: '80%' }}  // Adjust width as needed to fit design
+                            />
+                        </div> */}
+                        {/* Center - Search bar */}
+                        <div className='flex justify-center rounded mx-5' style={{ width: '65%',  borderRadius: '8px'}}>
+                            <TextField
+                                variant="outlined"
+                                id="search-bar"
+                                type="search"
+                                value={searchQuery}
+                                onChange={handleSearchChange}
+                                placeholder="Search"
+                                InputProps={{
+                                    startAdornment: (
+                                        <InputAdornment position="end" >
+                                            <SearchIcon />
+                                        </InputAdornment>
+                                    ),
+                                    
+                                }}
+                                style={{ width: '95%', borderRadius: '10px', backgroundColor: 'white'
+                                 }}  // Adjust width as needed to fit design
+                                
                             />
                         </div>
 
