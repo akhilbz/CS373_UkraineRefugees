@@ -1,5 +1,6 @@
 from flask import Flask, jsonify, request
-from flask_sqlalchemy import SQLAlchemy, create_engine, func
+from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy import func
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.orm import DeclarativeBase
 from flask_cors import CORS
