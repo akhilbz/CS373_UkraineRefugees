@@ -347,7 +347,7 @@ def get_db_support_groups():
 
         if len(locations) > 0:
             possible_locations_filters = ["Alexandria , VA", "Cincinnati , OH",
-                                          "FairFax, VA", "Minneapolis, MN", "New York , NY", "Santa Barbara , CA", "Washington , DC",
+                                          "FairFax, VA", "Minneapolis, MN", "New York , NY", "New York, , NY", "Santa Barbara , CA", "Washington , DC", "Minneapolis , MN",
                                           "Others"]
 
             if "Others" in locations_list:

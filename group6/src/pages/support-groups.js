@@ -290,9 +290,9 @@ export default function SupportGroups() {
                                     <FormControlLabel
                                         control={
                                             <Checkbox
-                                                checked={selectedLocation.includes('Minneapolis, MN')}
+                                                checked={selectedLocation.includes('Minneapolis, MN') || selectedLocation.includes('Minneapolis, MN; Minneapolis , MN')}
                                                 onChange={handleLocationChange}
-                                                name="Minneapolis, MN"
+                                                name="Minneapolis, MN; Minneapolis , MN"
                                             />
                                         }
                                         label="Minneapolis, MN"
@@ -300,9 +300,9 @@ export default function SupportGroups() {
                                     <FormControlLabel
                                         control={
                                             <Checkbox
-                                                checked={selectedLocation.includes('New York , NY')}
+                                                checked={selectedLocation.includes('New York , NY') || selectedLocation.includes('New York , NY; New York, , NY')}
                                                 onChange={handleLocationChange}
-                                                name="New York , NY"
+                                                name="New York , NY; New York, , NY"
                                             />
                                         }
                                         label="New York , NY"
