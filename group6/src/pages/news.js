@@ -63,12 +63,32 @@ export default function mediaModel() {
                 setNewsMedia(response.data);
                 setLoading(false);
             } catch (error) {
-                console.error('Error fetching asylum countries data:', error);
+                console.error('Error fetching news data:', error);
                 setLoading(false);
             }
         };
 
+        // const searchNews = async () => {
+        //     try {
+        //         setLoading(true);
+        //         const response = await axios.get(`http://127.0.0.1:5000/api/search/${}`, {
+        //             params: {
+        //                 sort_by: sortOption,
+        //                 order: orderBy,
+        //                 sources: selectedSources.join(','), 
+        //                 authors: selectedAuthors.join(',')
+        //             }
+        //         });
+        //         setNewsMedia(response.data);
+        //         setLoading(false);
+        //     } catch (error) {
+        //         console.error('Error search news data:', error);
+        //         setLoading(false);
+        //     }
+        // };
+
         fetchNews();
+        searchNews();
     }, [sortOption, orderBy, selectedSources, selectedAuthors]);
     console.log(newsMedia)
     

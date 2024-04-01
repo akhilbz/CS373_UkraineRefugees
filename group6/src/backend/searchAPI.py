@@ -50,6 +50,10 @@ class SupportGroupsModel(db.Model):
     mission_stmt = db.Column(db.Text, nullable=False)
     website_url = db.Column(db.Text, nullable=False)
     picture_url = db.Column(db.Text, nullable=False)
+    
+@flaskApp.route("/")
+def home():
+    return "Welcome to Ukraine Crisis API v2"
 
 @flaskApp.route('/api/search/<query>', methods=['GET'])
 def get_search_results(query):
@@ -58,7 +62,7 @@ def get_search_results(query):
         # return search_words
         results = {}
         for word in search_words:
-            word_results = perform_search(word)
+            word_results = perform_news_search(word)
             # TODO Check for duplicates 
             results['news'] = word_results
         return jsonify(results)
@@ -73,9 +77,13 @@ def get_search_results_test():
     except Exception as e:
         return jsonify({'error': str(e)}), 500
 
-def perform_search(word):
+def perform_news_search(word):
     word_lower = word.lower()
-    results = NewsModel.query.filter(or_(func.lower(NewsModel.title).like(f"%{word_lower}%"), func.lower(NewsModel.content).like(f"%{word_lower}%"))).all()
+    results = NewsModel.query.filter(or_(func.lower(NewsModel.title).like(f"%{word_lower}%"), 
+                                         func.lower(NewsModel.content).like(f"%{word_lower}%"),
+                                         func.lower(NewsModel.author).like(f"%{word_lower}%"),
+                                         func.lower(NewsModel.description).like(f"%{word_lower}%"),
+                                         func.lower(NewsModel.source_name).like(f"%{word_lower}%"))).all()
     found_results = []
     for news_item in results:
         temp_dict = {
@@ -92,4 +100,4 @@ def perform_search(word):
     return found_results
 
 if __name__ == '__main__':  
-   flaskApp.run(debug=True)
+   flaskApp.run(port=5000, debug=True)

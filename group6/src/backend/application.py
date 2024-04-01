@@ -60,7 +60,6 @@ def countries():
 
 def populate_countries():
     countries_data = getCountries()  
-
     for country_info in countries_data:
         country = AsylumCountryModel(
             name=country_info["name"],
