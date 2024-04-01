@@ -1,5 +1,6 @@
 from flask import Flask, jsonify, request
-from flask_sqlalchemy import SQLAlchemy
+from flask_sqlalchemy import SQLAlchemy, create_engine, func
+from sqlalchemy.orm import sessionmaker
 from sqlalchemy.orm import DeclarativeBase
 from flask_cors import CORS
 
@@ -48,9 +49,32 @@ class SupportGroupsModel(db.Model):
     website_url = db.Column(db.Text, nullable=False)
     picture_url = db.Column(db.Text, nullable=False)
 
-@flaskApp.route('/api/news/<int:id>', methods=['GET'])
-def get_news_by_id(id):
+@flaskApp.route('/api/search/<int:id>', methods=['GET'])
+def get_search_results(query):
     try:
-        pass
+        search_words = query.split()
+        results = {}
+        for word in search_words:
+            word_results = perform_search(word)
+            # TODO Check for duplicates 
+            results['news'] = word_results
+        return jsonify(results)
     except Exception as e:
         return jsonify({'error': str(e)}), 500
+
+def perform_search(word):
+    results = NewsModel.query.filter(func.match(NewsModel.title, NewsModel.content).against(word)).all()
+    found_results = []
+    for news_item in results:
+        temp_dict = {
+            'id': news_item.id,
+            'author': news_item.author,
+            'title': news_item.title,
+            'description': news_item.description,
+            'publishedAt': news_item.published_at,
+            'name': news_item.source_name,
+            'content': news_item.content,
+            'urlToImage': news_item.image_url
+        }
+        found_results.append(temp_dict)
+    return found_results
