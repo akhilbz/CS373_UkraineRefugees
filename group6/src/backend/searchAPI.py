@@ -1,7 +1,7 @@
 import json
 from flask import Flask, jsonify, request
 from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy import func
+from sqlalchemy import func, or_
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.orm import DeclarativeBase
 from flask_cors import CORS
@@ -74,7 +74,8 @@ def get_search_results_test():
         return jsonify({'error': str(e)}), 500
 
 def perform_search(word):
-    results = NewsModel.query.filter(func.match(NewsModel.title, NewsModel.content).against(word)).all()
+    word_lower = word.lower()
+    results = NewsModel.query.filter(or_(func.lower(NewsModel.title).like(f"%{word_lower}%"), func.lower(NewsModel.content).like(f"%{word_lower}%"))).all()
     found_results = []
     for news_item in results:
         temp_dict = {
