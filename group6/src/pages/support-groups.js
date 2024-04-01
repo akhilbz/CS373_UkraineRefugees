@@ -70,7 +70,7 @@ export default function SupportGroups() {
                     params: {
                         sort_by: sortOption,
                         order: orderBy,
-                        location: selectedLocation.join(','),
+                        location: selectedLocation.join(';'),
                         ratings: selectedRating.join(',')
                     }
                 });
@@ -280,9 +280,9 @@ export default function SupportGroups() {
                                     <FormControlLabel
                                         control={
                                             <Checkbox
-                                                checked={selectedLocation.includes('FairFax , VA')}
+                                                checked={selectedLocation.includes('FairFax, VA')}
                                                 onChange={handleLocationChange}
-                                                name="FairFax , VA"
+                                                name="FairFax, VA"
                                             />
                                         }
                                         label="Fairfax , VA"

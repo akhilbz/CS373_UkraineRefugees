@@ -3,6 +3,7 @@ from flask import Flask, jsonify, request
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.orm import DeclarativeBase
 from flask_cors import CORS
+from sqlalchemy import or_
 
 
 class Base(DeclarativeBase):
@@ -340,11 +341,13 @@ def get_db_support_groups():
         locations = request.args.get("location", "")
         support_query = SupportGroupsModel.query
         locations_list = [location.strip()
-                          for location in locations.split(',')]
+                          for location in locations.split(';')]
+
+        print("LOCATION LIST: ", locations_list)
 
         if len(locations) > 0:
             possible_locations_filters = ["Alexandria , VA", "Cincinnati , OH",
-                                          "FairFax , VA", "Minneapolis, MN", "New York , NY", "Santa Barbara , CA", "Washington , DC",
+                                          "FairFax, VA", "Minneapolis, MN", "New York , NY", "Santa Barbara , CA", "Washington , DC",
                                           "Others"]
 
             if "Others" in locations_list:
@@ -361,6 +364,32 @@ def get_db_support_groups():
             else:
                 support_query = support_query.filter(
                     SupportGroupsModel.location.in_(locations_list))
+
+        ratings = request.args.get("ratings", "")
+        ratings_list = [rating.strip()
+                        for rating in ratings.split(',')]
+        print("RATINGS LIST: ", ratings_list)
+
+        # Step 2: Generate filter conditions for each rating/range
+        if (len(ratings) > 0):
+            rating_conditions = []
+            for rating in ratings_list:
+                if '-' in rating:  # Handle range, e.g., '95-99'
+                    low, high = map(float, rating.split('-'))
+                    rating_conditions.append(
+                        SupportGroupsModel.rating.between(low, high))
+                elif rating.endswith('<'):  # Handle special case, e.g., '90<'
+                    threshold = float(rating[:-1])
+                    rating_conditions.append(
+                        SupportGroupsModel.rating < threshold)
+                else:  # Handle individual rating
+                    rating_conditions.append(
+                        SupportGroupsModel.rating == float(rating))
+
+            # Apply the filter conditions if any exist
+            if rating_conditions:
+                print("GETTING HERE")
+                support_query = support_query.filter(or_(*rating_conditions))
 
         sort_by = request.args.get('sort_by', 'id')
         order = request.args.get('order', 'asc')
