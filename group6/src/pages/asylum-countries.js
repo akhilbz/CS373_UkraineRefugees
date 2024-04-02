@@ -86,12 +86,41 @@ export default function AsylumCountries() {
             }
         };
 
-        fetchAsylumCountries();
-    }, [sortOption, orderBy,selectedLanguages,selectedRegions]);
+        const searchAsylumCountries = async () => {
+            try {
+                
+                setLoading(true);
+                const response = await axios.get(`http://127.0.0.1:5000/api/search/countries/${searchQuery}`, {
+                    params: {
+                        sort_by: sortOption,
+                        order: orderBy,
+                        languages: selectedLanguages.join(','),
+                        regions: selectedRegions.join(',')
+                    }
+                });
+                console.log(response);
+                console.log("Here")
+                setAsylumCountries(response.data.countries);
+                setLoading(false);
+            } catch (error) {
+                console.error('Error search countries data:', error);
+                // console.log("error");
+                setAsylumCountries([]);
+            }
+        };
 
-    if (loading) {
-        return <div>Loading...</div>;
-    }
+        if (searchQuery === '') {
+            fetchAsylumCountries();
+        } else {
+            searchAsylumCountries();
+        }
+        console.log(searchQuery);
+
+    }, [searchQuery, sortOption, orderBy, selectedLanguages, selectedRegions]);
+
+    // if (loading) {
+    //     return <div>Loading...</div>;
+    // }
     
     const handleSortChange = (event) => {
         setSortOption(event.target.value);

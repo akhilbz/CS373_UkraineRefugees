@@ -3,7 +3,7 @@ from flask import Flask, jsonify, request
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.orm import DeclarativeBase
 from flask_cors import CORS
-from searchAPI import search_api
+from searchAPI import search_news_api, search_asylum_countries_api
 from modelsDB import db, NewsModel, AsylumCountryModel, SupportGroupsModel
 from sqlalchemy import or_
 
@@ -207,7 +207,8 @@ def get_news_by_id(id):
 
 # Route to fetch country data from the database
 
-flaskApp.register_blueprint(search_api, url_prefix='/api/search')
+flaskApp.register_blueprint(search_news_api, url_prefix='/api/search/news')
+flaskApp.register_blueprint(search_asylum_countries_api, url_prefix='/api/search/countries')
 
 @flaskApp.route('/api/asylum-countries', methods=['GET'])
 def get_db_asylum_countries():
