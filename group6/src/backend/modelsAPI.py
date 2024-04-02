@@ -3,14 +3,15 @@ from flask import Flask, jsonify, request
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.orm import DeclarativeBase
 from flask_cors import CORS
+from searchAPI import search_api
+from modelsDB import db
 from sqlalchemy import or_
-
 
 class Base(DeclarativeBase):
     pass
 
 
-db = SQLAlchemy(model_class=Base)
+# db = SQLAlchemy(model_class=Base)
 
 flaskApp = Flask(__name__)
 CORS(flaskApp)
@@ -19,41 +20,38 @@ flaskApp.config["SQLALCHEMY_DATABASE_URI"] = "mysql+pymysql://ukraine_team_6:tea
 # initialize the app with the extension
 db.init_app(flaskApp)
 
-# News Model
+# class NewsModel(db.Model):
+#     # main key to the news intance
+#     id = db.Column(db.Integer, primary_key=True)
+#     author = db.Column(db.String(255), nullable=False)
+#     title = db.Column(db.String(255), nullable=False)
+#     description = db.Column(db.Text, nullable=False)
+#     published_at = db.Column(db.DateTime, nullable=False)
+#     source_name = db.Column(db.String(255), nullable=False)
+#     content = db.Column(db.Text, nullable=False)
+#     image_url = db.Column(db.String(255), nullable=True)
+#     # date_added = db.Column(db.DateTime, nullable=False)
 
 
-class NewsModel(db.Model):
-    # main key to the news intance
-    id = db.Column(db.Integer, primary_key=True)
-    author = db.Column(db.String(255), nullable=False)
-    title = db.Column(db.String(255), nullable=False)
-    description = db.Column(db.Text, nullable=False)
-    published_at = db.Column(db.DateTime, nullable=False)
-    source_name = db.Column(db.String(255), nullable=False)
-    content = db.Column(db.Text, nullable=False)
-    image_url = db.Column(db.String(255), nullable=True)
-    # date_added = db.Column(db.DateTime, nullable=False)
+# class AsylumCountryModel(db.Model):
+#     id = db.Column(db.Integer, primary_key=True)
+#     name = db.Column(db.String(255), nullable=False)
+#     capital = db.Column(db.String(255), nullable=False)
+#     region = db.Column(db.String(255), nullable=False)
+#     population = db.Column(db.Integer, nullable=False)
+#     languages = db.Column(db.String(255), nullable=False)
+#     flag = db.Column(db.Text, nullable=True)
 
 
-class AsylumCountryModel(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(255), nullable=False)
-    capital = db.Column(db.String(255), nullable=False)
-    region = db.Column(db.String(255), nullable=False)
-    population = db.Column(db.Integer, nullable=False)
-    languages = db.Column(db.String(255), nullable=False)
-    flag = db.Column(db.Text, nullable=True)
-
-
-class SupportGroupsModel(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(255), nullable=False)
-    location = db.Column(db.String(255), nullable=False)
-    phn_no = db.Column(db.String(16), nullable=False)
-    rating = db.Column(db.Double, nullable=False)
-    mission_stmt = db.Column(db.Text, nullable=False)
-    website_url = db.Column(db.Text, nullable=False)
-    picture_url = db.Column(db.Text, nullable=False)
+# class SupportGroupsModel(db.Model):
+#     id = db.Column(db.Integer, primary_key=True)
+#     name = db.Column(db.String(255), nullable=False)
+#     location = db.Column(db.String(255), nullable=False)
+#     phn_no = db.Column(db.String(16), nullable=False)
+#     rating = db.Column(db.Double, nullable=False)
+#     mission_stmt = db.Column(db.Text, nullable=False)
+#     website_url = db.Column(db.Text, nullable=False)
+#     picture_url = db.Column(db.Text, nullable=False)
 
 
 @flaskApp.route("/")
@@ -209,6 +207,7 @@ def get_news_by_id(id):
 
 # Route to fetch country data from the database
 
+flaskApp.register_blueprint(search_api, url_prefix='/api/search')
 
 @flaskApp.route('/api/asylum-countries', methods=['GET'])
 def get_db_asylum_countries():
@@ -342,7 +341,7 @@ def get_db_support_groups():
         support_query = SupportGroupsModel.query
         locations_list = [location.strip()
                           for location in locations.split(';')]
-
+        
         print("LOCATION LIST: ", locations_list)
 
         if len(locations) > 0:
@@ -364,9 +363,9 @@ def get_db_support_groups():
             else:
                 support_query = support_query.filter(
                     SupportGroupsModel.location.in_(locations_list))
-
-        ratings = request.args.get("ratings", "")
-        ratings_list = [rating.strip()
+                    
+            ratings = request.args.get("ratings", "")
+            ratings_list = [rating.strip()
                         for rating in ratings.split(',')]
         print("RATINGS LIST: ", ratings_list)
 
