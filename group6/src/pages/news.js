@@ -67,31 +67,41 @@ export default function mediaModel() {
                 setLoading(false);
             }
         };
+        
+        const searchNews = async () => {
+            try {
+                setLoading(true);
+                const response = await axios.get(`http://127.0.0.1:5000/api/search/news/${searchQuery}`, {
+                    params: {
+                        sort_by: sortOption,
+                        order: orderBy,
+                        sources: selectedSources.join(','), 
+                        authors: selectedAuthors.join(',')
+                    }
+                });
+                console.log(response.data);
+                console.log("Here")
+                setNewsMedia(response.data);
+                setLoading(false);
+            } catch (error) {
+                console.error('Error search news data:', error);
+                setLoading(false);
+            }
+        };
 
-        // const searchNews = async () => {
-        //     try {
-        //         setLoading(true);
-        //         const response = await axios.get(`http://127.0.0.1:5000/api/search/${}`, {
-        //             params: {
-        //                 sort_by: sortOption,
-        //                 order: orderBy,
-        //                 sources: selectedSources.join(','), 
-        //                 authors: selectedAuthors.join(',')
-        //             }
-        //         });
-        //         setNewsMedia(response.data);
-        //         setLoading(false);
-        //     } catch (error) {
-        //         console.error('Error search news data:', error);
-        //         setLoading(false);
-        //     }
-        // };
-
-        fetchNews();
-        searchNews();
-    }, [sortOption, orderBy, selectedSources, selectedAuthors]);
+        if (searchQuery === '') {
+            fetchNews();
+        } else {
+            searchNews();
+        }
+        console.log(searchQuery);
+        // fetchNews();
+        // searchNews();
+    }, [searchQuery, sortOption, orderBy, selectedSources, selectedAuthors]);
     console.log(newsMedia)
+    console.log("newsMedia")
     
+
     const indexOfLastNews = currentPage * newsPerPage;
     const indexOfFirstNews = indexOfLastNews - newsPerPage;
     const currentNews = newsMedia.slice(indexOfFirstNews, indexOfLastNews);

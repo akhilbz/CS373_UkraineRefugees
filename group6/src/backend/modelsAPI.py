@@ -4,7 +4,7 @@ from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.orm import DeclarativeBase
 from flask_cors import CORS
 from searchAPI import search_api
-from modelsDB import db
+from modelsDB import db, NewsModel, AsylumCountryModel, SupportGroupsModel
 from sqlalchemy import or_
 
 class Base(DeclarativeBase):
