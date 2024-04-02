@@ -70,6 +70,7 @@ export default function mediaModel() {
         
         const searchNews = async () => {
             try {
+                
                 setLoading(true);
                 const response = await axios.get(`http://127.0.0.1:5000/api/search/news/${searchQuery}`, {
                     params: {
@@ -79,13 +80,13 @@ export default function mediaModel() {
                         authors: selectedAuthors.join(',')
                     }
                 });
-                console.log(response.data);
+                console.log(response.data.news);
                 console.log("Here")
-                setNewsMedia(response.data);
+                setNewsMedia(response.data.news);
                 setLoading(false);
             } catch (error) {
-                console.error('Error search news data:', error);
-                setLoading(false);
+                // console.error('Error search news data:', error);
+                setNewsMedia([]);
             }
         };
 
@@ -104,7 +105,8 @@ export default function mediaModel() {
 
     const indexOfLastNews = currentPage * newsPerPage;
     const indexOfFirstNews = indexOfLastNews - newsPerPage;
-    const currentNews = newsMedia.slice(indexOfFirstNews, indexOfLastNews);
+    console.log(typeof newsMedia, Array.isArray(newsMedia), newsMedia);
+    var currentNews = newsMedia ? newsMedia.slice(indexOfFirstNews, indexOfLastNews) : [];
 
     const theme = useTheme();
     const isSmallScreen = useMediaQuery(theme.breakpoints.down('md'));
