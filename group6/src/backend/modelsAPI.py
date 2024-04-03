@@ -305,7 +305,7 @@ def get_db_support_groups():
         support_query = SupportGroupsModel.query
         locations_list = [location.strip()
                           for location in locations.split(';')]
-        
+
         print("LOCATION LIST: ", locations_list)
 
         if len(locations) > 0:
@@ -327,9 +327,9 @@ def get_db_support_groups():
             else:
                 support_query = support_query.filter(
                     SupportGroupsModel.location.in_(locations_list))
-                    
-            ratings = request.args.get("ratings", "")
-            ratings_list = [rating.strip()
+
+        ratings = request.args.get("ratings", "")
+        ratings_list = [rating.strip()
                         for rating in ratings.split(',')]
         print("RATINGS LIST: ", ratings_list)
 
@@ -411,6 +411,7 @@ def get_db_support_groups():
         return jsonify(support_groups_list)
     except Exception as e:
         return jsonify({'error': str(e)}), 500
+
 
 # Route to fetch support group data from the database
 
