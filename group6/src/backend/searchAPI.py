@@ -11,6 +11,7 @@ class Base(DeclarativeBase):
 
 search_news_api = Blueprint('search_news_api', __name__)
 search_asylum_countries_api = Blueprint('search_asylum_countries_api', __name__)
+search_support_groups_api = Blueprint('search_support_groups_api', __name__)
 
 @search_news_api.route('/<query>', methods=['GET'])
 def get_search_results(query):
@@ -266,6 +267,83 @@ def perform_countries_search(word):
     return found_results
 
 ################################################################
+
+@search_support_groups_api.route('/<query>', methods=['GET'])
+def get_search_results(query):
+    try:
+        search_words = query.split()
+        # return search_words
+        results = {}
+        for word in search_words:
+            word_results = perform_support_groups_search(word)
+            # TODO Check for duplicates 
+            results['support_groups'] = word_results
+        return jsonify(results)
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+    
+def perform_support_groups_search(word):
+    word_lower = word.lower()
+    support_group_query = SupportGroupsModel.query.filter(or_(func.lower(SupportGroupsModel.name).like(f"%{word_lower}%"), 
+                                         func.lower(SupportGroupsModel.location).like(f"%{word_lower}%"),
+                                         func.lower(SupportGroupsModel.mission_stmt).like(f"%{word_lower}%")))
+    
+    # regions = request.args.get("regions", "")
+    # regions_list = [region.strip() for region in regions.split(',')]
+
+
+    sort_by = request.args.get('sort_by', 'id')
+    order = request.args.get('order', 'asc')
+
+    if sort_by == 'name':
+        if order == 'asc':
+            support_group_data = support_group_query.order_by(
+                SupportGroupsModel.name.asc()).all()
+        else:
+            support_group_data = support_group_query.order_by(
+                SupportGroupsModel.name.desc()).all()
+    elif sort_by == 'location':
+        if order == 'asc':
+            support_group_data = support_group_query.order_by(
+                SupportGroupsModel.location.asc()).all()
+        else:
+            support_group_data = support_group_query.order_by(
+                SupportGroupsModel.location.desc()).all()
+
+    elif sort_by == 'region':
+        if order == 'asc':
+            support_group_data = support_group_query.order_by(
+                SupportGroupsModel.mission_stmt.asc()).all()
+        else:
+            support_group_data = support_group_query.order_by(
+                SupportGroupsModel.mission_stmt.desc()).all()
+    else:
+        support_group_data = support_group_query.all()
+
+
+    # id = db.Column(db.Integer, primary_key=True)
+    # name = db.Column(db.String(255), nullable=False)
+    # location = db.Column(db.String(255), nullable=False)
+    # phn_no = db.Column(db.String(16), nullable=False)
+    # rating = db.Column(db.Double, nullable=False)
+    # mission_stmt = db.Column(db.Text, nullable=False)
+    # website_url = db.Column(db.Text, nullable=False)
+    # picture_url = db.Column(db.Text, nullable=False)
+    
+    found_results = []
+    for support_groups_item in support_group_data:
+        temp_dict = {
+            'id': support_groups_item.id,
+            'name': support_groups_item.name,
+            'location': support_groups_item.location,
+            'phn_no': support_groups_item.phn_no,
+            'rating': support_groups_item.rating,
+            'mission_stmt': support_groups_item.mission_stmt,
+            'website_url': support_groups_item.website_url,
+            'picture_url': support_groups_item.picture_url,
+        }
+        found_results.append(temp_dict)
+    return found_results
 
 
 if __name__ == '__main__':  

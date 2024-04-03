@@ -82,12 +82,42 @@ export default function SupportGroups() {
             }
         };
 
-        fetchSupportGroups();
-    }, [sortOption, orderBy, selectedLocation,selectedRating ]); // Include sortOption in the dependency array if sorting logic is to be applied here
+        const searchSupportGroups = async () => {
+            try {
+                
+                setLoading(true);
+                const response = await axios.get(`http://127.0.0.1:5000/api/search/support-groups/${searchQuery}`, {
+                    params: {
+                        sort_by: sortOption,
+                        order: orderBy,
+                        location: selectedLocation.join(';'),
+                        ratings: selectedRating.join(',')
+                    }
+                });
+                console.log(response);
+                console.log("Here")
+                setSupportGroups(response.data.support_groups);
+                setLoading(false);
+            } catch (error) {
+                console.error('Error search countries data:', error);
+                // console.log("error");
+                setSupportGroups([]);
+            }
+        };
 
-    if (loading) {
-        return <div>Loading...</div>;
-    }
+        if (searchQuery === '') {
+            fetchSupportGroups();
+        } else {
+            searchSupportGroups();
+        }
+        console.log(searchQuery);
+
+        // fetchSupportGroups();
+    }, [searchQuery, sortOption, orderBy, selectedLocation,selectedRating ]); // Include sortOption in the dependency array if sorting logic is to be applied here
+
+    // if (loading) {
+    //     return <div>Loading...</div>;
+    // }
 
     const handleSortChange = (event) => {
         setSortOption(event.target.value);
