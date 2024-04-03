@@ -284,12 +284,61 @@ def get_search_results(query):
     
 def perform_support_groups_search(word):
     word_lower = word.lower()
-    support_group_query = SupportGroupsModel.query.filter(or_(func.lower(SupportGroupsModel.name).like(f"%{word_lower}%"), 
+    support_query = SupportGroupsModel.query.filter(or_(func.lower(SupportGroupsModel.name).like(f"%{word_lower}%"), 
                                          func.lower(SupportGroupsModel.location).like(f"%{word_lower}%"),
                                          func.lower(SupportGroupsModel.mission_stmt).like(f"%{word_lower}%")))
     
-    # regions = request.args.get("regions", "")
-    # regions_list = [region.strip() for region in regions.split(',')]
+    locations = request.args.get("location", "")
+    locations_list = [location.strip()
+                        for location in locations.split(';')]
+
+    print("LOCATION LIST: ", locations_list)
+
+    if len(locations) > 0:
+        possible_locations_filters = ["Alexandria , VA", "Cincinnati , OH",
+                                        "FairFax, VA", "Minneapolis, MN", "New York , NY", "New York, , NY", "Santa Barbara , CA", "Washington , DC", "Minneapolis , MN",
+                                        "Others"]
+
+        if "Others" in locations_list:
+
+            for location in locations_list:
+                if location in possible_locations_filters:
+                    possible_locations_filters.remove(location)
+
+            locations_list.remove("Others")
+
+            support_query = support_query.filter(
+                ~SupportGroupsModel.location.in_(possible_locations_filters))
+
+        else:
+            support_query = support_query.filter(
+                SupportGroupsModel.location.in_(locations_list))
+
+    ratings = request.args.get("ratings", "")
+    ratings_list = [rating.strip()
+                    for rating in ratings.split(',')]
+    print("RATINGS LIST: ", ratings_list)
+
+    # Step 2: Generate filter conditions for each rating/range
+    if (len(ratings) > 0):
+        rating_conditions = []
+        for rating in ratings_list:
+            if '-' in rating:  # Handle range, e.g., '95-99'
+                low, high = map(float, rating.split('-'))
+                rating_conditions.append(
+                    SupportGroupsModel.rating.between(low, high))
+            elif rating.endswith('<'):  # Handle special case, e.g., '90<'
+                threshold = float(rating[:-1])
+                rating_conditions.append(
+                    SupportGroupsModel.rating < threshold)
+            else:  # Handle individual rating
+                rating_conditions.append(
+                    SupportGroupsModel.rating == float(rating))
+
+        # Apply the filter conditions if any exist
+        if rating_conditions:
+            print("GETTING HERE")
+            support_query = support_query.filter(or_(*rating_conditions))
 
 
     sort_by = request.args.get('sort_by', 'id')
@@ -297,28 +346,41 @@ def perform_support_groups_search(word):
 
     if sort_by == 'name':
         if order == 'asc':
-            support_group_data = support_group_query.order_by(
+            support_groups_data = support_query.order_by(
                 SupportGroupsModel.name.asc()).all()
         else:
-            support_group_data = support_group_query.order_by(
+            support_groups_data = support_query.order_by(
                 SupportGroupsModel.name.desc()).all()
     elif sort_by == 'location':
         if order == 'asc':
-            support_group_data = support_group_query.order_by(
+            support_groups_data = support_query.order_by(
                 SupportGroupsModel.location.asc()).all()
         else:
-            support_group_data = support_group_query.order_by(
+            support_groups_data = support_query.order_by(
                 SupportGroupsModel.location.desc()).all()
-
-    elif sort_by == 'region':
+    elif sort_by == 'rating':
         if order == 'asc':
-            support_group_data = support_group_query.order_by(
-                SupportGroupsModel.mission_stmt.asc()).all()
+            support_groups_data = support_query.order_by(
+                SupportGroupsModel.rating.asc()).all()
         else:
-            support_group_data = support_group_query.order_by(
-                SupportGroupsModel.mission_stmt.desc()).all()
+            support_groups_data = support_query.order_by(
+                SupportGroupsModel.rating.desc()).all()
+    elif sort_by == 'phn_no':
+        if order == 'asc':
+            support_groups_data = support_query.order_by(
+                SupportGroupsModel.phn_no.asc()).all()
+        else:
+            support_groups_data = support_query.order_by(
+                SupportGroupsModel.phn_no.desc()).all()
+    elif sort_by == 'website':
+        if order == 'asc':
+            support_groups_data = support_query.order_by(
+                SupportGroupsModel.website_url.asc()).all()
+        else:
+            support_groups_data = support_query.order_by(
+                SupportGroupsModel.website_url.desc()).all()
     else:
-        support_group_data = support_group_query.all()
+        support_groups_data = support_query.all()
 
 
     # id = db.Column(db.Integer, primary_key=True)
@@ -331,7 +393,7 @@ def perform_support_groups_search(word):
     # picture_url = db.Column(db.Text, nullable=False)
     
     found_results = []
-    for support_groups_item in support_group_data:
+    for support_groups_item in support_groups_data:
         temp_dict = {
             'id': support_groups_item.id,
             'name': support_groups_item.name,
