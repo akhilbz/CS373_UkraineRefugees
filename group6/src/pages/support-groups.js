@@ -172,7 +172,7 @@ export default function SupportGroups() {
             <NavBar />
             <main>
                 <header className='flex flex-col items-center justify-between pt-7 w-full'>
-                    <h1 className='text-3xl font-medium mb-4'>Asylum Countries</h1>
+                    <h1 className='text-3xl font-medium mb-4'>Support Groups</h1>
                     <div className='flex items-center w-full px-4'>
                         {/* Filters section For Authors */}
                         <div className='flex justify-left  px-1 mb-1'>
