@@ -154,6 +154,72 @@ class Test(unittest.TestCase):
             self.assertEqual(self.driver.current_url,
                              "https://documenter.getpostman.com/view/32956503/2sA2r53kYq")
 
+    def test9(self):
+        self.driver.get("http://www.ukrainecrisis.me/asylum-countries")
+        regions_button = WebDriverWait(self.driver, 30).until(
+            EC.element_to_be_clickable(
+                (By.XPATH, "//button[contains(text(),'Regions')]"))
+        )
+        regions_button.click()
+
+        # africa_checkbox = WebDriverWait(self.driver, 30).until(
+        #     EC.element_to_be_clickable(
+        #         (By.XPATH, "//checkbox[contains(text(),'Africa')]"))
+        # )
+        # africa_checkbox.click()
+
+        total_countries_text_element = WebDriverWait(self.driver, 10).until(
+            EC.visibility_of_element_located(
+                (By.CLASS_NAME, "font-light.text-xl"))
+        )
+        total_countries_text = "Total Countries: 0"
+        total_countries_text2 = total_countries_text_element.text
+        self.assertIn(total_countries_text, total_countries_text2)
+
+    def test10(self):
+        self.driver.get("https://www.ukrainecrisis.me/news")
+        regions_button = WebDriverWait(self.driver, 30).until(
+            EC.element_to_be_clickable(
+                (By.XPATH, "//button[contains(text(),'Authors')]"))
+        )
+        regions_button.click()
+
+        # africa_checkbox = WebDriverWait(self.driver, 30).until(
+        #     EC.element_to_be_clickable(
+        #         (By.XPATH, "//checkbox[contains(text(),'Africa')]"))
+        # )
+        # africa_checkbox.click()
+
+        total_countries_text_element = WebDriverWait(self.driver, 10).until(
+            EC.visibility_of_element_located(
+                (By.CLASS_NAME, "font-light.text-xl"))
+        )
+        total_countries_text = "Total News and Media: 0"
+        total_countries_text2 = total_countries_text_element.text
+        self.assertIn(total_countries_text, total_countries_text2)
+
+    def test11(self):
+        self.driver.get("https://www.ukrainecrisis.me/support-groups")
+        regions_button = WebDriverWait(self.driver, 30).until(
+            EC.element_to_be_clickable(
+                (By.XPATH, "//button[contains(text(),'Rating')]"))
+        )
+        regions_button.click()
+
+        # africa_checkbox = WebDriverWait(self.driver, 30).until(
+        #     EC.element_to_be_clickable(
+        #         (By.XPATH, "//checkbox[contains(text(),'Africa')]"))
+        # )
+        # africa_checkbox.click()
+
+        total_countries_text_element = WebDriverWait(self.driver, 10).until(
+            EC.visibility_of_element_located(
+                (By.CLASS_NAME, "font-light.text-xl"))
+        )
+        total_countries_text = "Total Groups: 0"
+        total_countries_text2 = total_countries_text_element.text
+        self.assertIn(total_countries_text, total_countries_text2)
+
 
 if __name__ == "__main__":
     unittest.main()
