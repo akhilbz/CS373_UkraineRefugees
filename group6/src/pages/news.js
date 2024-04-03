@@ -245,7 +245,7 @@ export default function mediaModel() {
                                                 name="zerohedge.com"
                                             />
                                         }
-                                        label="zerohedge.com"
+                                        label={<b>zerohedge.com</b>}
                                     />
                                     <FormControlLabel
                                         control={
@@ -255,7 +255,7 @@ export default function mediaModel() {
                                                 name="newsweek.com"
                                             />
                                         }
-                                        label="newsweek.com"
+                                        label={<b>newsweek.com</b>}
                                     />
                                     <FormControlLabel
                                         control={
@@ -265,7 +265,7 @@ export default function mediaModel() {
                                                 name="businessinsider.com"
                                             />
                                         }
-                                        label="businessinsider.com"
+                                        label={<b>businessinsider.com</b>}
                                     />
                                     <FormControlLabel
                                         control={
@@ -275,7 +275,7 @@ export default function mediaModel() {
                                                 name="ZEIT ONLINE: News -"
                                             />
                                         }
-                                        label="ZEIT ONLINE: News -"
+                                        label={<b>ZEIT ONLINE: News -</b>}
                                     />
                                     <FormControlLabel
                                         control={
@@ -285,7 +285,7 @@ export default function mediaModel() {
                                                 name="feedfeeder"
                                             />
                                         }
-                                        label="feedfeeder"
+                                        label={<b>feedfeeder</b>}
                                     />
                                     <FormControlLabel
                                         control={
@@ -295,7 +295,7 @@ export default function mediaModel() {
                                                 name="aol.com"
                                             />
                                         }
-                                        label="aol.com"
+                                        label={<b>aol.com</b>}
                                     />
                                     <FormControlLabel
                                         control={
@@ -305,9 +305,10 @@ export default function mediaModel() {
                                                 name="Others"
                                             />
                                         }
-                                        label="Others"
+                                        label={<b>Others</b>}
                                     />
                                 </FormGroup>
+
                             </List>
                         </Popover>
                         <Popover
@@ -338,7 +339,7 @@ export default function mediaModel() {
                                                 name="taz.de"
                                             />
                                         }
-                                        label="taz.de"
+                                        label={<b>taz.de</b>}
                                     />
                                     <FormControlLabel
                                         control={
@@ -348,7 +349,7 @@ export default function mediaModel() {
                                                 name="STERN.de"
                                             />
                                         }
-                                        label="STERN.de"
+                                        label={<b>STERN.de</b>}
                                     />
                                     <FormControlLabel
                                         control={
@@ -358,7 +359,7 @@ export default function mediaModel() {
                                                 name="Portfolio.hu"
                                             />
                                         }
-                                        label="Portfolio.hu"
+                                        label={<b>Portfolio.hu</b>}
                                     />
                                     <FormControlLabel
                                         control={
@@ -368,7 +369,7 @@ export default function mediaModel() {
                                                 name="Marketscreener.com"
                                             />
                                         }
-                                        label="Marketscreener.com"
+                                        label={<b>Marketscreener.com</b>}
                                     />
                                     <FormControlLabel
                                         control={
@@ -378,7 +379,7 @@ export default function mediaModel() {
                                                 name="Freerepublic.com"
                                             />
                                         }
-                                        label="Freerepublic.com"
+                                        label={<b>Freerepublic.com</b>}
                                     />
                                     <FormControlLabel
                                         control={
@@ -388,7 +389,7 @@ export default function mediaModel() {
                                                 name="DW (English)"
                                             />
                                         }
-                                        label="DW (English)"
+                                        label={<b>DW (English)</b>}
                                     />
                                     <FormControlLabel
                                         control={
@@ -398,7 +399,7 @@ export default function mediaModel() {
                                                 name="Diepresse.com"
                                             />
                                         }
-                                        label="Diepresse.com"
+                                        label={<b>Diepresse.com</b>}
                                     />
                                     <FormControlLabel
                                         control={
@@ -408,7 +409,7 @@ export default function mediaModel() {
                                                 name="Die Zeit"
                                             />
                                         }
-                                        label="Die Zeit"
+                                        label={<b>Die Zeit</b>}
                                     />
                                     <FormControlLabel
                                         control={
@@ -418,7 +419,7 @@ export default function mediaModel() {
                                                 name="Biztoc.com"
                                             />
                                         }
-                                        label="Biztoc.com"
+                                        label={<b>Biztoc.com</b>}
                                     />
                                     <FormControlLabel
                                         control={
@@ -428,9 +429,10 @@ export default function mediaModel() {
                                                 name="Others"
                                             />
                                         }
-                                        label="Others"
+                                        label={<b>Others</b>}
                                     />
                                 </FormGroup>
+
 
                             </List>
                         </Popover>
@@ -490,12 +492,12 @@ export default function mediaModel() {
                                             value={sortOption}
                                             onChange={handleSortChange}
                                         >
-                                            <MenuItem value="default">Default</MenuItem>
-                                            <MenuItem value="title">Title</MenuItem>
-                                            <MenuItem value="date">Date</MenuItem>
-                                            <MenuItem value="source">Source</MenuItem>
-                                            <MenuItem value="author">Author</MenuItem>
-                                            <MenuItem value="story">Story</MenuItem>
+                                            <MenuItem value="default"><b>Default</b></MenuItem>
+                                            <MenuItem value="title"><b>Title</b></MenuItem>
+                                            <MenuItem value="date"><b>Date</b></MenuItem>
+                                            <MenuItem value="source"><b>Source</b></MenuItem>
+                                            <MenuItem value="author"><b>Author</b></MenuItem>
+                                            <MenuItem value="story"><b>Story</b></MenuItem>
                                         </Select>
                                     </FormControl>
                                     <FormControl variant="filled" style={{ backgroundColor: 'white', minWidth: 120 }}>
@@ -506,9 +508,9 @@ export default function mediaModel() {
                                             value={orderBy}
                                             onChange={handleOrderChange}
                                         >
-                                            <MenuItem value="default">Default</MenuItem>
-                                            <MenuItem value="asc">Ascending</MenuItem>
-                                            <MenuItem value="desc">Descending</MenuItem>
+                                            <MenuItem value="default"><b>Default</b></MenuItem>
+                                            <MenuItem value="asc"><b>Ascending</b></MenuItem>
+                                            <MenuItem value="desc"><b>Descending</b></MenuItem>
                                         </Select>
                                     </FormControl>
                                 </div>

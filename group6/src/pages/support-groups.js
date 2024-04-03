@@ -232,7 +232,7 @@ export default function SupportGroups() {
                                                 name="100"
                                             />
                                         }
-                                        label="100"
+                                        label={<b>100</b>}
                                     />
                                     <FormControlLabel
                                         control={
@@ -242,7 +242,7 @@ export default function SupportGroups() {
                                                 name="95-99"
                                             />
                                         }
-                                        label="95-99"
+                                        label={<b>95-99</b>}
                                     />
                                     <FormControlLabel
                                         control={
@@ -252,7 +252,7 @@ export default function SupportGroups() {
                                                 name="90-94"
                                             />
                                         }
-                                        label="90-94"
+                                        label={<b>90-94</b>}
                                     />
                                     <FormControlLabel
                                         control={
@@ -262,7 +262,7 @@ export default function SupportGroups() {
                                                 name="90<"
                                             />
                                         }
-                                        label="Below 90"
+                                        label={<b>Below 90</b>}
                                     />
                                 </FormGroup>
                             </List>
@@ -295,7 +295,7 @@ export default function SupportGroups() {
                                                 name="Alexandria , VA"
                                             />
                                         }
-                                        label="Alexandria , VA"
+                                        label={<b>Alexandria, VA</b>}
                                     />
                                     <FormControlLabel
                                         control={
@@ -305,7 +305,7 @@ export default function SupportGroups() {
                                                 name="Cincinnati , OH"
                                             />
                                         }
-                                        label="Cincinnati , OH"
+                                        label={<b>Cincinnati, OH</b>}
                                     />
                                     <FormControlLabel
                                         control={
@@ -315,7 +315,7 @@ export default function SupportGroups() {
                                                 name="FairFax, VA"
                                             />
                                         }
-                                        label="Fairfax , VA"
+                                        label={<b>Fairfax, VA</b>}
                                     />
                                     <FormControlLabel
                                         control={
@@ -325,7 +325,7 @@ export default function SupportGroups() {
                                                 name="Minneapolis, MN; Minneapolis , MN"
                                             />
                                         }
-                                        label="Minneapolis, MN"
+                                        label={<b>Minneapolis, MN</b>}
                                     />
                                     <FormControlLabel
                                         control={
@@ -335,7 +335,7 @@ export default function SupportGroups() {
                                                 name="New York , NY; New York, , NY"
                                             />
                                         }
-                                        label="New York , NY"
+                                        label={<b>New York, NY</b>}
                                     />
                                     <FormControlLabel
                                         control={
@@ -345,7 +345,7 @@ export default function SupportGroups() {
                                                 name="Santa Barbara , CA"
                                             />
                                         }
-                                        label="Santa Barbara , CA"
+                                        label={<b>Santa Barbara, CA</b>}
                                     />
                                     <FormControlLabel
                                         control={
@@ -355,7 +355,7 @@ export default function SupportGroups() {
                                                 name="Washington , DC"
                                             />
                                         }
-                                        label="Washington , DC"
+                                        label={<b>Washington, DC</b>}
                                     />
                                     <FormControlLabel
                                         control={
@@ -365,7 +365,7 @@ export default function SupportGroups() {
                                                 name="Others"
                                             />
                                         }
-                                        label="Others"
+                                        label={<b>Others</b>}
                                     />
                                 </FormGroup>
                             </List>
@@ -421,13 +421,12 @@ export default function SupportGroups() {
                                 value={sortOption}
                                 onChange={handleSortChange}
                             >
-                                <MenuItem value="default">Default</MenuItem>
-                                <MenuItem value="name">Name</MenuItem>
-                                <MenuItem value="location">Location</MenuItem>
-                                <MenuItem value="rating">Rating</MenuItem>
-                                <MenuItem value="phn_no">Phone Number</MenuItem>
-                                <MenuItem value="website">Website</MenuItem>
-                                {/* Add other sorting options here */}
+                                <MenuItem value="default"><b>Default</b></MenuItem>
+                                <MenuItem value="name"><b>Name</b></MenuItem>
+                                <MenuItem value="location"><b>Location</b></MenuItem>
+                                <MenuItem value="rating"><b>Rating</b></MenuItem>
+                                <MenuItem value="phn_no"><b>Phone Number</b></MenuItem>
+                                <MenuItem value="website"><b>Website</b></MenuItem>
                             </Select>
                         </FormControl>
                         <FormControl variant="filled" style={{ backgroundColor: 'white', minWidth: 120 }}>
@@ -438,10 +437,9 @@ export default function SupportGroups() {
                                 value={orderBy}
                                 onChange={handleOrderChange}
                             >
-                                <MenuItem value="default">Default</MenuItem>
-                                <MenuItem value="asc">Ascending</MenuItem>
-                                <MenuItem value="desc">Descending</MenuItem>
-                                {/* Add other ordering options here */}
+                                <MenuItem value="default"><b>Default</b></MenuItem>
+                                <MenuItem value="asc"><b>Ascending</b></MenuItem>
+                                <MenuItem value="desc"><b>Descending</b></MenuItem>
                             </Select>
                         </FormControl>
                     </div>

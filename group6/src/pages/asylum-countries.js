@@ -235,7 +235,7 @@ export default function AsylumCountries() {
                                                 name="Africa"
                                             />
                                         }
-                                        label="Africa"
+                                        label={<b>Africa</b>}
                                     />
                                     <FormControlLabel
                                         control={
@@ -245,7 +245,7 @@ export default function AsylumCountries() {
                                                 name="Americas"
                                             />
                                         }
-                                        label="Americas"
+                                        label={<b>Americas</b>}
                                     />
                                     <FormControlLabel
                                         control={
@@ -255,7 +255,7 @@ export default function AsylumCountries() {
                                                 name="Asia"
                                             />
                                         }
-                                        label="Asia"
+                                        label={<b>Asia</b>}
                                     />
                                     <FormControlLabel
                                         control={
@@ -265,7 +265,7 @@ export default function AsylumCountries() {
                                                 name="Europe"
                                             />
                                         }
-                                        label="Europe"
+                                        label={<b>Europe</b>}
                                     />
                                     <FormControlLabel
                                         control={
@@ -275,7 +275,7 @@ export default function AsylumCountries() {
                                                 name="Oceania"
                                             />
                                         }
-                                        label="Oceania"
+                                        label={<b>Oceania</b>}
                                     />
                                 </FormGroup>
                             </List>
@@ -308,7 +308,7 @@ export default function AsylumCountries() {
                                                 name="English"
                                             />
                                         }
-                                        label="English"
+                                        label={<b>English</b>}
                                     />
                                     <FormControlLabel
                                         control={
@@ -318,7 +318,7 @@ export default function AsylumCountries() {
                                                 name="German"
                                             />
                                         }
-                                        label="German"
+                                        label={<b>German</b>}
                                     />
                                     <FormControlLabel
                                         control={
@@ -328,7 +328,7 @@ export default function AsylumCountries() {
                                                 name="French"
                                             />
                                         }
-                                        label="French"
+                                        label={<b>French</b>}
                                     />
                                     <FormControlLabel
                                         control={
@@ -338,7 +338,7 @@ export default function AsylumCountries() {
                                                 name="Dutch"
                                             />
                                         }
-                                        label="Dutch"
+                                        label={<b>Dutch</b>}
                                     />
                                     <FormControlLabel
                                         control={
@@ -348,7 +348,7 @@ export default function AsylumCountries() {
                                                 name="Spanish"
                                             />
                                         }
-                                        label="Spanish"
+                                        label={<b>Spanish</b>}
                                     />
                                     <FormControlLabel
                                         control={
@@ -358,7 +358,7 @@ export default function AsylumCountries() {
                                                 name="Arabic"
                                             />
                                         }
-                                        label="Arabic"
+                                        label={<b>Arabic</b>}
                                     />
                                     <FormControlLabel
                                         control={
@@ -368,10 +368,9 @@ export default function AsylumCountries() {
                                                 name="Other"
                                             />
                                         }
-                                        label="Other"
+                                        label={<b>Other</b>}
                                     />
                                 </FormGroup>
-
                             </List>
                         </Popover>
 
@@ -406,12 +405,12 @@ export default function AsylumCountries() {
                                 value={sortOption}
                                 onChange={handleSortChange}
                             >
-                                <MenuItem value="default">Default</MenuItem>
-                                <MenuItem value="name">Name</MenuItem>
-                                <MenuItem value="capital">Capital</MenuItem>
-                                <MenuItem value="region">Region</MenuItem>
-                                <MenuItem value="population">Population</MenuItem>
-                                <MenuItem value="languages">Languages</MenuItem>
+                                <MenuItem value="default"><b>Default</b></MenuItem>
+                                <MenuItem value="name"><b>Name</b></MenuItem>
+                                <MenuItem value="capital"><b>Capital</b></MenuItem>
+                                <MenuItem value="region"><b>Region</b></MenuItem>
+                                <MenuItem value="population"><b>Population</b></MenuItem>
+                                <MenuItem value="languages"><b>Languages</b></MenuItem>
                                 {/* Add other sorting options here */}
                             </Select>
                         </FormControl>
@@ -423,9 +422,9 @@ export default function AsylumCountries() {
                                 value={orderBy}
                                 onChange={handleOrderChange}
                             >
-                                <MenuItem value="default">Default</MenuItem>
-                                <MenuItem value="asc">Ascending</MenuItem>
-                                <MenuItem value="desc">Descending</MenuItem>
+                                <MenuItem value="default"><b>Default</b></MenuItem>
+                                <MenuItem value="asc"><b>Ascending</b></MenuItem>
+                                <MenuItem value="desc"><b>Descending</b></MenuItem>
                                 {/* Add other ordering options here */}
                             </Select>
                         </FormControl>
