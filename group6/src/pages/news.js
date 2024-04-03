@@ -240,22 +240,12 @@ export default function mediaModel() {
                                     <FormControlLabel
                                         control={
                                             <Checkbox
-                                                checked={selectedAuthors.includes('zerohedge.com')}
+                                                checked={selectedAuthors.includes('aol.com')}
                                                 onChange={handleAuthorChange}
-                                                name="zerohedge.com"
+                                                name="aol.com"
                                             />
                                         }
-                                        label={<b>zerohedge.com</b>}
-                                    />
-                                    <FormControlLabel
-                                        control={
-                                            <Checkbox
-                                                checked={selectedAuthors.includes('newsweek.com')}
-                                                onChange={handleAuthorChange}
-                                                name="newsweek.com"
-                                            />
-                                        }
-                                        label={<b>newsweek.com</b>}
+                                        label={<b>aol.com</b>}
                                     />
                                     <FormControlLabel
                                         control={
@@ -270,6 +260,27 @@ export default function mediaModel() {
                                     <FormControlLabel
                                         control={
                                             <Checkbox
+                                                checked={selectedAuthors.includes('feedfeeder')}
+                                                onChange={handleAuthorChange}
+                                                name="feedfeeder"
+                                            />
+                                        }
+                                        label={<b>feedfeeder</b>}
+                                    />
+                                    
+                                    <FormControlLabel
+                                        control={
+                                            <Checkbox
+                                                checked={selectedAuthors.includes('newsweek.com')}
+                                                onChange={handleAuthorChange}
+                                                name="newsweek.com"
+                                            />
+                                        }
+                                        label={<b>newsweek.com</b>}
+                                    />
+                                    <FormControlLabel
+                                        control={
+                                            <Checkbox
                                                 checked={selectedAuthors.includes('ZEIT ONLINE: News -')}
                                                 onChange={handleAuthorChange}
                                                 name="ZEIT ONLINE: News -"
@@ -280,22 +291,12 @@ export default function mediaModel() {
                                     <FormControlLabel
                                         control={
                                             <Checkbox
-                                                checked={selectedAuthors.includes('feedfeeder')}
+                                                checked={selectedAuthors.includes('zerohedge.com')}
                                                 onChange={handleAuthorChange}
-                                                name="feedfeeder"
+                                                name="zerohedge.com"
                                             />
                                         }
-                                        label={<b>feedfeeder</b>}
-                                    />
-                                    <FormControlLabel
-                                        control={
-                                            <Checkbox
-                                                checked={selectedAuthors.includes('aol.com')}
-                                                onChange={handleAuthorChange}
-                                                name="aol.com"
-                                            />
-                                        }
-                                        label={<b>aol.com</b>}
+                                        label={<b>zerohedge.com</b>}
                                     />
                                     <FormControlLabel
                                         control={
@@ -334,72 +335,12 @@ export default function mediaModel() {
                                     <FormControlLabel
                                         control={
                                             <Checkbox
-                                                checked={selectedSources.includes('taz.de')}
+                                                checked={selectedSources.includes('Biztoc.com')}
                                                 onChange={handleSourceChange}
-                                                name="taz.de"
+                                                name="Biztoc.com"
                                             />
                                         }
-                                        label={<b>taz.de</b>}
-                                    />
-                                    <FormControlLabel
-                                        control={
-                                            <Checkbox
-                                                checked={selectedSources.includes('STERN.de')}
-                                                onChange={handleSourceChange}
-                                                name="STERN.de"
-                                            />
-                                        }
-                                        label={<b>STERN.de</b>}
-                                    />
-                                    <FormControlLabel
-                                        control={
-                                            <Checkbox
-                                                checked={selectedSources.includes('Portfolio.hu')}
-                                                onChange={handleSourceChange}
-                                                name="Portfolio.hu"
-                                            />
-                                        }
-                                        label={<b>Portfolio.hu</b>}
-                                    />
-                                    <FormControlLabel
-                                        control={
-                                            <Checkbox
-                                                checked={selectedSources.includes('Marketscreener.com')}
-                                                onChange={handleSourceChange}
-                                                name="Marketscreener.com"
-                                            />
-                                        }
-                                        label={<b>Marketscreener.com</b>}
-                                    />
-                                    <FormControlLabel
-                                        control={
-                                            <Checkbox
-                                                checked={selectedSources.includes('Freerepublic.com')}
-                                                onChange={handleSourceChange}
-                                                name="Freerepublic.com"
-                                            />
-                                        }
-                                        label={<b>Freerepublic.com</b>}
-                                    />
-                                    <FormControlLabel
-                                        control={
-                                            <Checkbox
-                                                checked={selectedSources.includes('DW (English)')}
-                                                onChange={handleSourceChange}
-                                                name="DW (English)"
-                                            />
-                                        }
-                                        label={<b>DW (English)</b>}
-                                    />
-                                    <FormControlLabel
-                                        control={
-                                            <Checkbox
-                                                checked={selectedSources.includes('Diepresse.com')}
-                                                onChange={handleSourceChange}
-                                                name="Diepresse.com"
-                                            />
-                                        }
-                                        label={<b>Diepresse.com</b>}
+                                        label={<b>Biztoc.com</b>}
                                     />
                                     <FormControlLabel
                                         control={
@@ -414,12 +355,72 @@ export default function mediaModel() {
                                     <FormControlLabel
                                         control={
                                             <Checkbox
-                                                checked={selectedSources.includes('Biztoc.com')}
+                                                checked={selectedSources.includes('Diepresse.com')}
                                                 onChange={handleSourceChange}
-                                                name="Biztoc.com"
+                                                name="Diepresse.com"
                                             />
                                         }
-                                        label={<b>Biztoc.com</b>}
+                                        label={<b>Diepresse.com</b>}
+                                    />
+                                    <FormControlLabel
+                                        control={
+                                            <Checkbox
+                                                checked={selectedSources.includes('DW (English)')}
+                                                onChange={handleSourceChange}
+                                                name="DW (English)"
+                                            />
+                                        }
+                                        label={<b>DW (English)</b>}
+                                    />
+                                    <FormControlLabel
+                                        control={
+                                            <Checkbox
+                                                checked={selectedSources.includes('Freerepublic.com')}
+                                                onChange={handleSourceChange}
+                                                name="Freerepublic.com"
+                                            />
+                                        }
+                                        label={<b>Freerepublic.com</b>}
+                                    />
+                                    <FormControlLabel
+                                        control={
+                                            <Checkbox
+                                                checked={selectedSources.includes('Marketscreener.com')}
+                                                onChange={handleSourceChange}
+                                                name="Marketscreener.com"
+                                            />
+                                        }
+                                        label={<b>Marketscreener.com</b>}
+                                    />
+                                    <FormControlLabel
+                                        control={
+                                            <Checkbox
+                                                checked={selectedSources.includes('Portfolio.hu')}
+                                                onChange={handleSourceChange}
+                                                name="Portfolio.hu"
+                                            />
+                                        }
+                                        label={<b>Portfolio.hu</b>}
+                                    />
+                                    <FormControlLabel
+                                        control={
+                                            <Checkbox
+                                                checked={selectedSources.includes('STERN.de')}
+                                                onChange={handleSourceChange}
+                                                name="STERN.de"
+                                            />
+                                        }
+                                        label={<b>STERN.de</b>}
+                                    />
+                                    <FormControlLabel
+                                        control={
+                                            <Checkbox
+                                                checked={selectedSources.includes('taz.de')}
+                                                onChange={handleSourceChange}
+                                                name="taz.de"
+                                            />
+                                        }
+                                        label={<b>taz.de</b>}
                                     />
                                     <FormControlLabel
                                         control={
@@ -493,11 +494,12 @@ export default function mediaModel() {
                                             onChange={handleSortChange}
                                         >
                                             <MenuItem value="default"><b>Default</b></MenuItem>
-                                            <MenuItem value="title"><b>Title</b></MenuItem>
+                                            <MenuItem value="author"><b>Author</b></MenuItem>
                                             <MenuItem value="date"><b>Date</b></MenuItem>
                                             <MenuItem value="source"><b>Source</b></MenuItem>
-                                            <MenuItem value="author"><b>Author</b></MenuItem>
                                             <MenuItem value="story"><b>Story</b></MenuItem>
+                                            <MenuItem value="title"><b>Title</b></MenuItem>
+                                            
                                         </Select>
                                     </FormControl>
                                     <FormControl variant="filled" style={{ backgroundColor: 'white', minWidth: 120 }}>

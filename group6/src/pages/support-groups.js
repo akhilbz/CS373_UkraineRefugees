@@ -422,10 +422,10 @@ export default function SupportGroups() {
                                 onChange={handleSortChange}
                             >
                                 <MenuItem value="default"><b>Default</b></MenuItem>
-                                <MenuItem value="name"><b>Name</b></MenuItem>
                                 <MenuItem value="location"><b>Location</b></MenuItem>
-                                <MenuItem value="rating"><b>Rating</b></MenuItem>
+                                <MenuItem value="name"><b>Name</b></MenuItem>
                                 <MenuItem value="phn_no"><b>Phone Number</b></MenuItem>
+                                <MenuItem value="rating"><b>Rating</b></MenuItem>
                                 <MenuItem value="website"><b>Website</b></MenuItem>
                             </Select>
                         </FormControl>

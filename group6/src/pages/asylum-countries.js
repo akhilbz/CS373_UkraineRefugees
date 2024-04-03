@@ -303,32 +303,12 @@ export default function AsylumCountries() {
                                     <FormControlLabel
                                         control={
                                             <Checkbox
-                                                checked={selectedLanguages.includes('English')}
+                                                checked={selectedLanguages.includes('Arabic')}
                                                 onChange={handleLanguagesChange}
-                                                name="English"
+                                                name="Arabic"
                                             />
                                         }
-                                        label={<b>English</b>}
-                                    />
-                                    <FormControlLabel
-                                        control={
-                                            <Checkbox
-                                                checked={selectedLanguages.includes('German')}
-                                                onChange={handleLanguagesChange}
-                                                name="German"
-                                            />
-                                        }
-                                        label={<b>German</b>}
-                                    />
-                                    <FormControlLabel
-                                        control={
-                                            <Checkbox
-                                                checked={selectedLanguages.includes('French')}
-                                                onChange={handleLanguagesChange}
-                                                name="French"
-                                            />
-                                        }
-                                        label={<b>French</b>}
+                                        label={<b>Arabic</b>}
                                     />
                                     <FormControlLabel
                                         control={
@@ -343,22 +323,43 @@ export default function AsylumCountries() {
                                     <FormControlLabel
                                         control={
                                             <Checkbox
+                                                checked={selectedLanguages.includes('English')}
+                                                onChange={handleLanguagesChange}
+                                                name="English"
+                                            />
+                                        }
+                                        label={<b>English</b>}
+                                    />
+                                    <FormControlLabel
+                                        control={
+                                            <Checkbox
+                                                checked={selectedLanguages.includes('French')}
+                                                onChange={handleLanguagesChange}
+                                                name="French"
+                                            />
+                                        }
+                                        label={<b>French</b>}
+                                    />
+                                    <FormControlLabel
+                                        control={
+                                            <Checkbox
+                                                checked={selectedLanguages.includes('German')}
+                                                onChange={handleLanguagesChange}
+                                                name="German"
+                                            />
+                                        }
+                                        label={<b>German</b>}
+                                    />
+                                    
+                                    <FormControlLabel
+                                        control={
+                                            <Checkbox
                                                 checked={selectedLanguages.includes('Spanish')}
                                                 onChange={handleLanguagesChange}
                                                 name="Spanish"
                                             />
                                         }
                                         label={<b>Spanish</b>}
-                                    />
-                                    <FormControlLabel
-                                        control={
-                                            <Checkbox
-                                                checked={selectedLanguages.includes('Arabic')}
-                                                onChange={handleLanguagesChange}
-                                                name="Arabic"
-                                            />
-                                        }
-                                        label={<b>Arabic</b>}
                                     />
                                     <FormControlLabel
                                         control={
@@ -406,11 +407,11 @@ export default function AsylumCountries() {
                                 onChange={handleSortChange}
                             >
                                 <MenuItem value="default"><b>Default</b></MenuItem>
-                                <MenuItem value="name"><b>Name</b></MenuItem>
                                 <MenuItem value="capital"><b>Capital</b></MenuItem>
-                                <MenuItem value="region"><b>Region</b></MenuItem>
-                                <MenuItem value="population"><b>Population</b></MenuItem>
                                 <MenuItem value="languages"><b>Languages</b></MenuItem>
+                                <MenuItem value="name"><b>Name</b></MenuItem>
+                                <MenuItem value="population"><b>Population</b></MenuItem>
+                                <MenuItem value="region"><b>Region</b></MenuItem>
                                 {/* Add other sorting options here */}
                             </Select>
                         </FormControl>
