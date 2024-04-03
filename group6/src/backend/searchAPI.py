@@ -146,7 +146,8 @@ def perform_news_search(word):
             'publishedAt': news_item.published_at,
             'name': news_item.source_name,
             'content': news_item.content,
-            'urlToImage': news_item.image_url
+            'urlToImage': news_item.image_url,
+            'searchWord': word
         }
         found_results.append(temp_dict)
     return found_results
@@ -262,6 +263,7 @@ def perform_countries_search(word):
             'population': countries_item.population,
             'languages': countries_item.languages,
             'flag': countries_item.flag,
+            'searchWord': word
         }
         found_results.append(temp_dict)
     return found_results
@@ -403,6 +405,7 @@ def perform_support_groups_search(word):
             'mission_stmt': support_groups_item.mission_stmt,
             'website_url': support_groups_item.website_url,
             'picture_url': support_groups_item.picture_url,
+            'searchWord': word
         }
         found_results.append(temp_dict)
     return found_results
