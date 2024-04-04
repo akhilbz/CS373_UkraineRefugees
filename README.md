@@ -28,7 +28,7 @@
 | ----- | ------------ |------------|
 | 1          | Chuma                         | Delegating tasks, and motivating team                         |
 | 2          |Samuel                          |Getting the group past walls and hurdles                          |
-| 3          |                          |                          |
+| 3          | Alex                         |  Early bird that help set the foundation                        |
 | 4          |                          |                          |
 
 **GitLab Pipeline:** [https://gitlab.com/ajimenez1173/cs373-group-6/-/pipelines/1177324288](https://gitlab.com/ajimenez1173/cs373-group-6/-/pipelines/1177324288)
@@ -51,6 +51,15 @@
 | Alex                 |    14              |  24            |
 | Akhilesh            |        8          |     17         |
 | Derek                 |   14               |    24          |
+
+### Phase 3
+| Member    | Estimated | Actual |
+| ----------- | --------- | ------ |
+| Samuel                  |  15                |      8        |
+| Chuma                  | 12                 |   9           |
+| Alex                 |    6              |  8            |
+| Akhilesh            |        4          |     7         |
+| Derek                 |   9               |    8          |
 
 
 ### Project Proposal
