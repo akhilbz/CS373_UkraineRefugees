@@ -146,7 +146,7 @@ export default function mediaModel() {
         setSearchQuery(event.target.value);
         //Need To handle searching Not sure if we do it here or in our API?
     };
-
+    
     const handleSourceChange = (event) => {
         if (event.target.checked) {
             setSelectedSources([...selectedSources, event.target.name]);
@@ -437,26 +437,6 @@ export default function mediaModel() {
 
                             </List>
                         </Popover>
-
-                        {/* Center - Search bar
-                        <div className='flex justify-center flex-grow pl-'>
-                            <TextField
-                                variant="filled"
-                                id="search-bar"
-                                type="search"
-                                value={searchQuery}
-                                onChange={handleSearchChange}
-                                placeholder="Search"
-                                InputProps={{
-                                    startAdornment: (
-                                        <InputAdornment position="start">
-                                            <SearchIcon />
-                                        </InputAdornment>
-                                    ),
-                                }}
-                                style={{ width: '80%' }}  // Adjust width as needed to fit design
-                            />
-                        </div> */}
 
                         {/* Center - Search bar */}
                         <div className='flex justify-center rounded mx-5' style={{ width: '65%',  borderRadius: '8px'}}>
