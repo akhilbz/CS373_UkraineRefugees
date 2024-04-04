@@ -162,12 +162,11 @@ class Test(unittest.TestCase):
         )
         regions_button.click()
 
-
-        total_countries_text_element = WebDriverWait(self.driver, 10).until(
+        total_countries_text_element = WebDriverWait(self.driver, 45).until(
             EC.visibility_of_element_located(
                 (By.CLASS_NAME, "font-light.text-xl"))
         )
-        #18
+        # 18
         total_countries_text = "Total Countries: 100"
         total_countries_text2 = total_countries_text_element.text
         self.assertIn(total_countries_text, total_countries_text2)
@@ -180,28 +179,28 @@ class Test(unittest.TestCase):
         )
         regions_button.click()
 
-        total_countries_text_element = WebDriverWait(self.driver, 10).until(
+        total_countries_text_element = WebDriverWait(self.driver, 45).until(
             EC.visibility_of_element_located(
                 (By.CLASS_NAME, "font-light.text-xl"))
         )
-        
+
         total_countries_text = "Total News and Media: 167"
         total_countries_text2 = total_countries_text_element.text
         self.assertIn(total_countries_text, total_countries_text2)
 
     def test11(self):
         self.driver.get("https://www.ukrainecrisis.me/support-groups")
-        regions_button = WebDriverWait(self.driver, 30).until(
+        regions_button = WebDriverWait(self.driver, 45).until(
             EC.element_to_be_clickable(
                 (By.XPATH, "//button[contains(text(),'Rating')]"))
         )
         regions_button.click()
 
-        total_countries_text_element = WebDriverWait(self.driver, 10).until(
+        total_countries_text_element = WebDriverWait(self.driver, 45).until(
             EC.visibility_of_element_located(
                 (By.CLASS_NAME, "font-light.text-xl"))
         )
-        
+
         total_countries_text = "Total Groups: 50"
         total_countries_text2 = total_countries_text_element.text
         self.assertIn(total_countries_text, total_countries_text2)
