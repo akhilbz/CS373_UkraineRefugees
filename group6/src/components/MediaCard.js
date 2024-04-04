@@ -8,6 +8,15 @@ export default function MediaCard({ media_data }) {
         }
         return text;
     };
+
+    const highlightSearchWord = (text) => {
+        if (!searchWord) {
+            return text;
+        }
+        const regex = new RegExp(searchWord, 'gi'); 
+        return text.replace(regex, (match) => `<span style="background-color: yellow">${match}</span>`); 
+    };
+
     const mediaDetailsEndpoint = `/news/${media_data.id}`;
     console.log("MEDIA ID: ", media_data.id)
 
@@ -21,7 +30,7 @@ export default function MediaCard({ media_data }) {
                 <div className="border-b-[1px]"> {/* Title section */}
                     <div className="m-2">
                         {/* Display title and truncate if necessary */}
-                        <h1 className="font-semibold">{truncateText(media_data.title, 30)}</h1>
+                        <h1 className="font-semibold">{highlightSearchWord(truncateText(media_data.title, 30))}</h1>
                         <div className="flex justify-between">
                             {/* Display source name */}
                             <p className="text-xs font-semibold">{`Source: ${media_data.name}`}</p>
@@ -34,7 +43,7 @@ export default function MediaCard({ media_data }) {
                 </div>
                 <div className="m-2 overflow-ellipsis"> {/* Content section */}
                     {/* Display description and truncate if necessary */}
-                    <p className="line-clamp-2 text-sm">{truncateText(media_data.description, 150)}</p>
+                    <p className="line-clamp-2 text-sm">{highlightSearchWord(truncateText(media_data.description, 150))}</p>
                 </div>
             </div>
             <div className="flex justify-center pb-1"> {/* Button at the bottom */}
