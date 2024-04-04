@@ -126,52 +126,9 @@ const SearchPage = () => {
     const indexOfLastItem = currentPage * newsPerPage;
     const indexOfFirstItem = indexOfLastItem - newsPerPage;
     const currentItems = tabContent[selectedTab].slice(indexOfFirstItem, indexOfLastItem);
-
+    
     const tabLabels = ["News", "Groups", "Countries"];
     const selectedContentLabel = tabLabels[selectedTab];
-
-    // const handleSortChange = (event) => {
-    //     setSortOption(event.target.value);
-    //     // Need To handle searching Not sure if we do it here or in our API?
-    // };
-
-    // const handleOrderChange = (event) => {
-    //     setOrderBy(event.target.value);
-    //     //Need To handle searching Not sure if we do it here or in our API?
-    // };
-
-    // const handleSourceChange = (event) => {
-    //     if (event.target.checked) {
-    //         setSelectedSources([...selectedSources, event.target.name]);
-    //     } else {
-    //         setSelectedSources(selectedSources.filter(source => source !== event.target.name));
-    //     }
-    // };
-
-    // const handleAuthorChange = (event) => {
-    //     if (event.target.checked) {
-    //         setSelectedAuthors([...selectedAuthors, event.target.name]);
-    //     } else {
-    //         setSelectedAuthors(selectedAuthors.filter(author => author !== event.target.name));
-    //     }
-    // };
-
-    // const handleAuthorsClick = (event) => {
-    //     setAnchorElAuthors(event.currentTarget);
-    // };
-
-    // const handleAuthorsClose = () => {
-    //     setAnchorElAuthors(null);
-    // };
-
-    // // Event handlers for Sources
-    // const handleSourcesClick = (event) => {
-    //     setAnchorElSources(event.currentTarget);
-    // };
-
-    // const handleSourcesClose = () => {
-    //     setAnchorElSources(null);
-    // };
 
     return (
         <div>
@@ -193,12 +150,22 @@ const SearchPage = () => {
                     <Tab key={label} label={label} />
                 ))}
             </Tabs>
+            {/* Displaying total instances and current page */}
+            <div className="flex justify-between items-center px-4 my-4">
+                <h2 className='text-xl' style={{ color: 'white', textShadow: '1px 1px black' }}>
+                    Total {selectedContentLabel}: {tabContent[selectedTab].length}
+                </h2>
+                <h2 className='text-xl' style={{ color: 'white', textShadow: '1px 1px black' }}>
+                    Page: {currentPage} of {Math.ceil(tabContent[selectedTab].length / newsPerPage)}
+                </h2>
+            </div>
+
             <h2 className='ml-2' style={{ fontWeight: 'bold', color: 'white', textShadow: '1px 1px black' }}>
                 {selectedContentLabel} content for "{term}"
             </h2>
             <div className={`pt-28 pb-8 ${isSmallScreen ? 'px-2' : 'px-8'} flex justify-center w-full`}>
                 <Grid container spacing={isSmallScreen ? 2 : 4} className='flex justify-center'>
-                    {tabContent[selectedTab].map((data, index) => {
+                    {currentItems.map((data, index) => {
                         if (selectedTab == 0) {
                             return (
                                 <Grid item xs={12} sm={6} md={4} lg={3} key={index}>
@@ -225,23 +192,7 @@ const SearchPage = () => {
                     )}
                 </Grid>
             </div>
-            {/* {() => {
-                // If you want to do something specific for the first item:
-                if (selectedTab === 2) {
-                    return (
-                        <div className={`pt-28 pb-8 ${isSmallScreen ? 'px-2' : 'px-8'} flex justify-center w-full`}>
-                            <Grid container spacing={isSmallScreen ? 2 : 4} className='flex justify-center'>
-                                {tabContent[selectedTab].map((country, index) => (
-                                    <Grid item xs={12} sm={6} md={4} lg={3} key={index}>
-                                        <Card className={` min-h-[400px]  ${isSmallScreen ? 'w-full max-w-[90%]' : 'w-full max-w-[400px]'} rounded-2xl mx-auto`}>
-                                            <AsylumCountriesCard country_data={country} />
-                                        </Card>
-                                    </Grid>
-                                ))}
-                            </Grid>
-                        </div>
-                    );
-                }}} */}
+            
             <div className='flex justify-center mt-4 mb-8'>
                 <Button
                     variant="contained"
