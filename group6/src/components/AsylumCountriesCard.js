@@ -4,7 +4,7 @@ import Link from 'next/link';
 export default function AsylumCountriesCard({ country_data }) {
     const countryDetailsEndpoint = `/asylum-countries/${country_data.id}`;
     const highlightSearchWord = (text) => {
-        if (!searchWord) {
+        if (!country_data.searchWord) {
             return text;
         }
         const regex = new RegExp(searchWord, 'gi'); 

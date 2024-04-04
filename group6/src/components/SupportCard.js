@@ -5,7 +5,7 @@ export default function SupportCard({ support_groups_data }) {
 
     const groupDetailsEndpoint = `/support-groups/${support_groups_data.id}`;
     const highlightSearchWord = (text) => {
-        if (!searchWord) {
+        if (!support_groups_data.searchWord) {
             return text; 
         }
         const regex = new RegExp(searchWord, 'gi'); // Case-insensitive search

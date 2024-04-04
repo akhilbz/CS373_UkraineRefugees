@@ -10,7 +10,7 @@ export default function MediaCard({ media_data }) {
     };
 
     const highlightSearchWord = (text) => {
-        if (!searchWord) {
+        if (!media_data.searchWord) {
             return text;
         }
         const regex = new RegExp(searchWord, 'gi'); 
