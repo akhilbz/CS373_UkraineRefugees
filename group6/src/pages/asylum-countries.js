@@ -68,7 +68,7 @@ export default function AsylumCountries() {
         const fetchAsylumCountries = async () => {
             try {
                 setLoading(true);
-                const response = await axios.get('http://127.0.0.1:5000/api/asylum-countries', {
+                const response = await axios.get('https://cs373-backend.ukrainecrisis.me/api/asylum-countries', {
                     params: {
                         sort_by: sortOption,
                         order: orderBy,
@@ -90,7 +90,7 @@ export default function AsylumCountries() {
             try {
                 
                 setLoading(true);
-                const response = await axios.get(`http://127.0.0.1:5000/api/search/countries/${searchQuery}`, {
+                const response = await axios.get(`https://cs373-backend.ukrainecrisis.me/api/search/countries/${searchQuery}`, {
                     params: {
                         sort_by: sortOption,
                         order: orderBy,

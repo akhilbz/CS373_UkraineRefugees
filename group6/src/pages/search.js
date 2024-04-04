@@ -50,7 +50,7 @@ const SearchPage = () => {
             try {
                 
                 // setLoading(true);
-                const response = await axios.get(`http://127.0.0.1:5000/api/search/countries/${term}`, {
+                const response = await axios.get(`https://cs373-backend.ukrainecrisis.me/api/search/countries/${term}`, {
                     params: {
                         sort_by: sortOption,
                         order: orderBy,
@@ -73,7 +73,7 @@ const SearchPage = () => {
             try {
                 
                 // setLoading(true);
-                const response = await axios.get(`http://127.0.0.1:5000/api/search/news/${term}`, {
+                const response = await axios.get(`https://cs373-backend.ukrainecrisis.me/api/search/news/${term}`, {
                     params: {
                         sort_by: sortOption,
                         order: orderBy,
@@ -95,7 +95,7 @@ const SearchPage = () => {
             try {
                 
                 // setLoading(true);
-                const response = await axios.get(`http://127.0.0.1:5000/api/search/support-groups/${term}`, {
+                const response = await axios.get(`https://cs373-backend.ukrainecrisis.me/api/search/support-groups/${term}`, {
                     params: {
                         sort_by: sortOption,
                         order: orderBy,

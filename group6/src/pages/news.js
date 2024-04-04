@@ -52,7 +52,7 @@ export default function mediaModel() {
         const fetchNews = async () => {
             try {
                 setLoading(true);
-                const response = await axios.get('http://127.0.0.1:5000/api/news', {
+                const response = await axios.get('https://cs373-backend.ukrainecrisis.me/api/news', {
                     params: {
                         sort_by: sortOption,
                         order: orderBy,
@@ -72,7 +72,7 @@ export default function mediaModel() {
             try {
                 
                 setLoading(true);
-                const response = await axios.get(`http://127.0.0.1:5000/api/search/news/${searchQuery}`, {
+                const response = await axios.get(`https://cs373-backend.ukrainecrisis.me/api/search/news/${searchQuery}`, {
                     params: {
                         sort_by: sortOption,
                         order: orderBy,

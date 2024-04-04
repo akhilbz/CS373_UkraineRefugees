@@ -66,7 +66,7 @@ export default function SupportGroups() {
         const fetchSupportGroups = async () => {
             try {
                 setLoading(true);
-                const response = await axios.get('http://127.0.0.1:5000/api/support-groups', {
+                const response = await axios.get('https://cs373-backend.ukrainecrisis.me/api/support-groups', {
                     params: {
                         sort_by: sortOption,
                         order: orderBy,
@@ -86,7 +86,7 @@ export default function SupportGroups() {
             try {
                 
                 setLoading(true);
-                const response = await axios.get(`http://127.0.0.1:5000/api/search/support-groups/${searchQuery}`, {
+                const response = await axios.get(`https://cs373-backend.ukrainecrisis.me/api/search/support-groups/${searchQuery}`, {
                     params: {
                         sort_by: sortOption,
                         order: orderBy,

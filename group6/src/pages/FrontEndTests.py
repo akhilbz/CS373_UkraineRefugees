@@ -172,6 +172,7 @@ class Test(unittest.TestCase):
             EC.visibility_of_element_located(
                 (By.CLASS_NAME, "font-light.text-xl"))
         )
+        #18
         total_countries_text = "Total Countries: 0"
         total_countries_text2 = total_countries_text_element.text
         self.assertIn(total_countries_text, total_countries_text2)
@@ -186,7 +187,7 @@ class Test(unittest.TestCase):
 
         # africa_checkbox = WebDriverWait(self.driver, 30).until(
         #     EC.element_to_be_clickable(
-        #         (By.XPATH, "//checkbox[contains(text(),'Africa')]"))
+        #         (By.XPATH, "//checkbox[contains(text(),'aol.com')]"))
         # )
         # africa_checkbox.click()
 
@@ -194,6 +195,7 @@ class Test(unittest.TestCase):
             EC.visibility_of_element_located(
                 (By.CLASS_NAME, "font-light.text-xl"))
         )
+        #4
         total_countries_text = "Total News and Media: 0"
         total_countries_text2 = total_countries_text_element.text
         self.assertIn(total_countries_text, total_countries_text2)
@@ -208,7 +210,7 @@ class Test(unittest.TestCase):
 
         # africa_checkbox = WebDriverWait(self.driver, 30).until(
         #     EC.element_to_be_clickable(
-        #         (By.XPATH, "//checkbox[contains(text(),'Africa')]"))
+        #         (By.XPATH, "//checkbox[contains(text(),'100')]"))
         # )
         # africa_checkbox.click()
 
@@ -216,6 +218,7 @@ class Test(unittest.TestCase):
             EC.visibility_of_element_located(
                 (By.CLASS_NAME, "font-light.text-xl"))
         )
+        #18
         total_countries_text = "Total Groups: 0"
         total_countries_text2 = total_countries_text_element.text
         self.assertIn(total_countries_text, total_countries_text2)
