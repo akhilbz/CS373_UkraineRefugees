@@ -1,79 +1,79 @@
-# stages:
-#   - f_test1
-#   - b_test1
-#   - b_post
-#   - build
-#   - f_jest
+stages:
+  - f_test1
+  - b_test1
+  - b_post
+  - build
+  - f_jest
 
-# frontend_tests:
-#     stage: f_test1
-#     image: python:3
-#     services:
-#         - selenium/standalone-chrome
-#     before_script:
-#         # - apt-get update -qy
-#         # - apt-get install -y wget gnupg2 apt-utils
-#         # - wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add -
-#         # - sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list'
-#         # - apt-get update -qy
-#         # - apt-get install -y google-chrome-stable
-#         # - CHROMEDRIVER_VERSION=`curl -sS chromedriver.storage.googleapis.com/LATEST_RELEASE`
-#         # - wget -N http://chromedriver.storage.googleapis.com/$CHROMEDRIVER_VERSION/chromedriver_linux64.zip -P ~/
-#         # - unzip ~/chromedriver_linux64.zip -d ~/
-#         # - rm ~/chromedriver_linux64.zip
-#         # - mv -f ~/chromedriver /usr/local/bin/chromedriver
-#         # - chown root:root /usr/local/bin/chromedriver
-#         # - chmod 0755 /usr/local/bin/chromedriver
-#         - pip3 install selenium
-#         - pip install -r group6/src/backend/requirements.txt
-#     script:
-#         - cd group6/src/pages
-#         - echo "Hello, $GITLAB_USER_LOGIN!"
-#         - python3 FrontEndTests.py
+frontend_tests:
+    stage: f_test1
+    image: python:3
+    services:
+        - selenium/standalone-chrome
+    before_script:
+        # - apt-get update -qy
+        # - apt-get install -y wget gnupg2 apt-utils
+        # - wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add -
+        # - sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list'
+        # - apt-get update -qy
+        # - apt-get install -y google-chrome-stable
+        # - CHROMEDRIVER_VERSION=`curl -sS chromedriver.storage.googleapis.com/LATEST_RELEASE`
+        # - wget -N http://chromedriver.storage.googleapis.com/$CHROMEDRIVER_VERSION/chromedriver_linux64.zip -P ~/
+        # - unzip ~/chromedriver_linux64.zip -d ~/
+        # - rm ~/chromedriver_linux64.zip
+        # - mv -f ~/chromedriver /usr/local/bin/chromedriver
+        # - chown root:root /usr/local/bin/chromedriver
+        # - chmod 0755 /usr/local/bin/chromedriver
+        - pip3 install selenium
+        - pip install -r group6/src/backend/requirements.txt
+    script:
+        - cd group6/src/pages
+        - echo "Hello, $GITLAB_USER_LOGIN!"
+        - python3 FrontEndTests.py
 
-# postman_tests:
-#     stage: b_post
-#     # image: postman/newman:alpine
-#     before_script:
-#         # Installing Postman CLI
-#         - curl -o- "https://dl-cli.pstmn.io/install/linux64.sh" | sh
+postman_tests:
+    stage: b_post
+    # image: postman/newman:alpine
+    before_script:
+        # Installing Postman CLI
+        - curl -o- "https://dl-cli.pstmn.io/install/linux64.sh" | sh
 
-#     script:
-#         # Login using your Postman API keys
-#         - postman login --with-api-key PMAK-65eaa9907c467d0001814743-ad530e207e94581bbc8ce61ebf7a48b8fd
-#         - postman collection run 32956503-3be14ec6-6aea-4120-aa4f-4ffb7a845853
-#         # Lint your API using Postman CLI
-#         # - postman api lint 60d2f810-d71d-478c-8f12-4cf592f02747
+    script:
+        # Login using your Postman API keys
+        - postman login --with-api-key PMAK-65eaa9907c467d0001814743-ad530e207e94581bbc8ce61ebf7a48b8fd
+        - postman collection run 32956503-3be14ec6-6aea-4120-aa4f-4ffb7a845853
+        # Lint your API using Postman CLI
+        # - postman api lint 60d2f810-d71d-478c-8f12-4cf592f02747
 
-# backend_tests:
-#     stage: b_test1
-#     image: python:3
-#     script:
-#         - echo "Hello, $GITLAB_USER_LOGIN!"
-#         - pip install -r group6/src/backend/requirements.txt
-#         - cd group6/src/backend
-#         - python3 tests.py
+backend_tests:
+    stage: b_test1
+    image: python:3
+    script:
+        - echo "Hello, $GITLAB_USER_LOGIN!"
+        - pip install -r group6/src/backend/requirements.txt
+        - cd group6/src/backend
+        - python3 tests.py
 
-# build_frontend:
-#   stage: build
-#   image: node:latest
-#   cache:
-#     paths:
-#       - ./group6/node_modules/
-#       - ./group6/.next/cache/
-#   script:
-#       - cd group6 
-#       - npm install
-#       - npm run build
+build_frontend:
+  stage: build
+  image: node:latest
+  cache:
+    paths:
+      - ./group6/node_modules/
+      - ./group6/.next/cache/
+  script:
+      - cd group6 
+      - npm install
+      - npm run build
 
-# jest_tests:
-#     stage: f_jest
-#     image: node:latest
-#     script:
-#         - echo "Hello, $GITLAB_USER_LOGIN!"
-#         - cd group6 
-#         - npm install
-#         - npm test 
+jest_tests:
+    stage: f_jest
+    image: node:latest
+    script:
+        - echo "Hello, $GITLAB_USER_LOGIN!"
+        - cd group6 
+        - npm install
+        - npm test 
 
 
 

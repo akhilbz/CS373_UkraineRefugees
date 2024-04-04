@@ -30,7 +30,7 @@ let teamMembers = [
         commits: 0,
         issues: 10,
         tests: 16,
-        gitLabName: 'Chuma Anigbogu',
+        gitLabName: 'chumaanigbogu',
         username: 'chumaanigbogu',
     },
     {
