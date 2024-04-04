@@ -3,26 +3,37 @@ import Link from 'next/link';
 
 export default function AsylumCountriesCard({ country_data }) {
     const countryDetailsEndpoint = `/asylum-countries/${country_data.id}`;
-    const highlightSearchWord = (text) => {
-        if (!country_data.searchWord) {
-            return text;
+
+    const highlightSearchWord = (text, searchWord) => {
+        if (!searchWord) {
+            return { __html: text };
         }
-        const regex = new RegExp(searchWord, 'gi'); 
-        return text.replace(regex, (match) => `<span style="background-color: yellow">${match}</span>`); 
+        const regex = new RegExp(`(${searchWord})`, 'gi');
+        const highlightedText = text.replace(regex, (match) => `<span style="background-color: yellow">${match}</span>`);
+        return { __html: highlightedText };
     };
+
     return (
-        <div className="flex flex-col  h-full shadow-lg" style={{ overflow: 'hidden'}}>
-            <img src={country_data.flag} alt={`Flag of ${highlightSearchWord(country_data.name)}`} className="h-[200px] w-full object-cover" />
+        <div className="flex flex-col h-full shadow-lg" style={{ overflow: 'hidden'}}>
+            {/* Image tag, assuming country_data.flag is a URL to the image */}
+            <img src={country_data.flag} alt={`Flag of ${country_data.name}`} className="h-[200px] w-full object-cover" />
             <div className="p-2 text-center">
-                <h1 className="font-semibold text-lg">{highlightSearchWord(country_data.name)}</h1>
-                <p className="text-sm">{`Capital: ${highlightSearchWord(country_data.capital)}`}</p>
+                {/* Name of the country */}
+                <h1 className="font-semibold text-lg" dangerouslySetInnerHTML={highlightSearchWord(country_data.name, country_data.searchWord)} />
+                {/* Capital of the country */}
+                <p className="text-sm" dangerouslySetInnerHTML={highlightSearchWord(`Capital: ${country_data.capital}`, country_data.searchWord)} />
+                {/* Other details */}
                 <p className="text-xs"><span className="font-semibold">Region: </span>{country_data.region}</p>
                 <p className="text-xs"><span className="font-semibold">Population: </span>{country_data.population}</p>
                 <p className="text-xs"><span className="font-semibold">Languages: </span>{country_data.languages}</p>
             </div>
-            <div style={{ marginTop: 55, padding: 0 }} className="flex h-[60px] justify-center "> {/* This div pushes the button to the bottom and removes any top margin */}
-                <Link href={countryDetailsEndpoint} passHref>
-                    <button className="h-[35px] w-[100px] bg-blue-500 hover:bg-blue-700 text-white font-bold rounded-md ">View More</button>
+            {/* Button at the bottom */}
+            <div className="mt-auto p-4">
+                {/* Use the Link component without <a> */}
+                <Link href={countryDetailsEndpoint}>
+                    <button className="text-center bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded w-full">
+                        View More
+                    </button>
                 </Link>
             </div>
         </div>

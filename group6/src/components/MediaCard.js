@@ -8,13 +8,14 @@ export default function MediaCard({ media_data }) {
         }
         return text;
     };
-
-    const highlightSearchWord = (text) => {
-        if (!media_data.searchWord) {
-            return text;
+    
+    const highlightSearchWord = (text, searchWord) => {
+        if (!searchWord) {
+            return { __html: text };
         }
-        const regex = new RegExp(searchWord, 'gi'); 
-        return text.replace(regex, (match) => `<span style="background-color: yellow">${match}</span>`); 
+        const regex = new RegExp(`(${searchWord})`, 'gi');
+        const highlightedText = text.replace(regex, (match) => `<span style="background-color: yellow">${match}</span>`);
+        return { __html: highlightedText };
     };
 
     const mediaDetailsEndpoint = `/news/${media_data.id}`;
@@ -24,30 +25,24 @@ export default function MediaCard({ media_data }) {
         <div className="flex flex-col rounded-2xl h-full overflow-hidden"> {/* Card container */}
             <div className="flex-grow"> {/* Content container */}
                 <div className="flex justify-center bg-black"> {/* Image container */}
-                    {/* Display image with a fallback in case image URL is missing */}
                     <img src={media_data.urlToImage || 'path_to_some_default_image.jpg'} alt={media_data.title} className="h-[200px] w-full object-cover" />
                 </div>
                 <div className="border-b-[1px]"> {/* Title section */}
                     <div className="m-2">
-                        {/* Display title and truncate if necessary */}
-                        <h1 className="font-semibold">{highlightSearchWord(truncateText(media_data.title, 30))}</h1>
+                        <h1 className="font-semibold" dangerouslySetInnerHTML={highlightSearchWord(truncateText(media_data.title, 30), media_data.searchWord)}></h1>
                         <div className="flex justify-between">
-                            {/* Display source name */}
                             <p className="text-xs font-semibold">{`Source: ${media_data.name}`}</p>
-                            {/* Display formatted publication date */}
                             <p className="text-xs">{new Date(media_data.publishedAt).toLocaleDateString()}</p>
                         </div>
-                        {/* Display author */}
                         <p className="text-xs font-semibold">{`Author: ${media_data.author}`}</p>
                     </div>
                 </div>
                 <div className="m-2 overflow-ellipsis"> {/* Content section */}
-                    {/* Display description and truncate if necessary */}
-                    <p className="line-clamp-2 text-sm">{highlightSearchWord(truncateText(media_data.description, 150))}</p>
+                    <p className="line-clamp-2 text-sm" dangerouslySetInnerHTML={highlightSearchWord(truncateText(media_data.description, 150), media_data.searchWord)}></p>
                 </div>
             </div>
             <div className="flex justify-center pb-1"> {/* Button at the bottom */}
-                <Link href={mediaDetailsEndpoint} passHref>
+                <Link href={mediaDetailsEndpoint}>
                     <button className="h-[25px] w-[85px] bg-slate-300 rounded-lg text-xs">Read More</button>
                 </Link>
             </div>

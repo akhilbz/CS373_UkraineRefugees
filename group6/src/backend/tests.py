@@ -75,6 +75,23 @@ class EndpointTests(unittest.TestCase):
         self.assertEqual(len(support_dictionary), 7)
         self.assertEqual(support_dictionary["name"], "Islamic Relief USA")
 
+    def test6(self):
+        # Test Countries Search Endpoint
+        response = session.get(BASE_URL + "/api/search/countries/Uni")
+        self.assertTrue(response.status_code == 200)
+
+    def test7(self):
+        # Test News Search Endpoint
+        response = session.get(BASE_URL + "/api/search/news/Ukraine")
+        self.assertTrue(response.status_code == 200)
+    
+    def test8(self):
+        # Test News Search Endpoint
+        response = session.get(BASE_URL + "/api/search/support-groups/New")
+        self.assertTrue(response.status_code == 200)
+    
+
+
 
 if __name__ == "__main__":
     unittest.main()
