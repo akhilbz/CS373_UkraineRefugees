@@ -31,10 +31,12 @@ export default function MediaCard({ media_data }) {
                     <div className="m-2">
                         <h1 className="font-semibold" dangerouslySetInnerHTML={highlightSearchWord(truncateText(media_data.title, 30), media_data.searchWord)}></h1>
                         <div className="flex justify-between">
-                            <p className="text-xs font-semibold">{`Source: ${media_data.name}`}</p>
+                            {/* <p className="text-xs font-semibold">{`Source: ${media_data.name}`}</p> */}
+                            <p className="text-xs font-semibold" dangerouslySetInnerHTML={highlightSearchWord(`Source: ${media_data.name}`, media_data.searchWord)}></p>
                             <p className="text-xs">{new Date(media_data.publishedAt).toLocaleDateString()}</p>
                         </div>
-                        <p className="text-xs font-semibold">{`Author: ${media_data.author}`}</p>
+                        {/* <p className="text-xs font-semibold">{`Author: ${media_data.author}`}</p> */}
+                        <p className="text-xs font-semibold" dangerouslySetInnerHTML={highlightSearchWord(`Author: ${media_data.author}`, media_data.searchWord)}></p>
                     </div>
                 </div>
                 <div className="m-2 overflow-ellipsis"> {/* Content section */}

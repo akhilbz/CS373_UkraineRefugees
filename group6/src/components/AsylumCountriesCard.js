@@ -23,9 +23,12 @@ export default function AsylumCountriesCard({ country_data }) {
                 {/* Capital of the country */}
                 <p className="text-sm" dangerouslySetInnerHTML={highlightSearchWord(`Capital: ${country_data.capital}`, country_data.searchWord)} />
                 {/* Other details */}
-                <p className="text-xs"><span className="font-semibold">Region: </span>{country_data.region}</p>
-                <p className="text-xs"><span className="font-semibold">Population: </span>{country_data.population}</p>
-                <p className="text-xs"><span className="font-semibold">Languages: </span>{country_data.languages}</p>
+                {/* <p className="text-xs"><span className="font-semibold">Region: </span>{country_data.region}</p> */}
+                <p className="text-xs" dangerouslySetInnerHTML={highlightSearchWord(`Region: ${country_data.region}`, country_data.searchWord)}></p>
+                {/* <p className="text-xs"><span className="font-semibold">Population: </span>{country_data.population}</p> */}
+                <p className="text-xs" dangerouslySetInnerHTML={highlightSearchWord(`Population: ${country_data.population}`, country_data.searchWord)}></p>
+                {/* <p className="text-xs"><span className="font-semibold">Languages: </span>{country_data.languages}</p> */}
+                <p className="text-xs" dangerouslySetInnerHTML={highlightSearchWord(`Languages: ${country_data.languages}`, country_data.searchWord)}></p>
             </div>
             {/* Button at the bottom */}
             <div className="mt-auto p-4">

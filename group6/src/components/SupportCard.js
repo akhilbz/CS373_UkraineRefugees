@@ -24,8 +24,11 @@ export default function SupportCard({ support_groups_data }) {
                     <div className="m-2">
                         <h1 className="font-semibold text-sm" dangerouslySetInnerHTML={highlightSearchWord(support_groups_data.name, support_groups_data.searchWord)}></h1>
                         <div className="flex justify-between">
-                            <p className="text-xs">Phone: {support_groups_data.phn_no}</p>
-                            <p className="text-xs">Rating: {support_groups_data.rating}</p>
+                            {/* <p className="text-xs">Phone: {support_groups_data.phn_no}</p> */}
+                            <p className="text-xs" dangerouslySetInnerHTML={highlightSearchWord(`Phone: ${support_groups_data.phn_no}`, support_groups_data.searchWord)}></p>
+                            {/* <p className="text-xs">Rating: {support_groups_data.rating}</p> */}
+                            <p className="text-xs" dangerouslySetInnerHTML={highlightSearchWord(`Phone: ${support_groups_data.rating}`, support_groups_data.searchWord)}></p>
+
                         </div>
                     </div>
                 </div>
