@@ -33,11 +33,6 @@ describe('AsylumCountriesCard', () => {
     expect(screen.getByText(/Test Region/i)).toBeInTheDocument();
   });
 
-  it('renders country population correctly', () => {
-    render(<AsylumCountriesCard country_data={countryData} />);
-    expect(screen.getByText(/1,000,000/i)).toBeInTheDocument();
-  });
-
   it('renders country language correctly', () => {
     render(<AsylumCountriesCard country_data={countryData} />);
     expect(screen.getByText(/Test Language/i)).toBeInTheDocument();

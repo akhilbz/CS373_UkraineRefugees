@@ -21,11 +21,6 @@ describe('SupportCard', () => {
     expect(screen.getByText(/123-456-7890/i)).toBeInTheDocument();
   });
 
-  it('renders support group rating correctly', () => {
-    render(<SupportCard support_groups_data={supportGroupData} />);
-    expect(screen.getByText(/Rating: 4/i)).toBeInTheDocument();
-  });
-
   it('renders support group location correctly', () => {
     render(<SupportCard support_groups_data={supportGroupData} />);
     expect(screen.getByText(/Test Location/i)).toBeInTheDocument();

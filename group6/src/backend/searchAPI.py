@@ -6,27 +6,32 @@ from sqlalchemy.orm import sessionmaker
 from sqlalchemy.orm import DeclarativeBase
 from flask_cors import CORS
 from modelsDB import NewsModel, AsylumCountryModel, SupportGroupsModel
+
+
 class Base(DeclarativeBase):
     pass
 
+
 search_news_api = Blueprint('search_news_api', __name__)
-search_asylum_countries_api = Blueprint('search_asylum_countries_api', __name__)
+search_asylum_countries_api = Blueprint(
+    'search_asylum_countries_api', __name__)
 search_support_groups_api = Blueprint('search_support_groups_api', __name__)
+
 
 @search_news_api.route('/<query>', methods=['GET'])
 def get_search_results(query):
     try:
-        search_words = query.split()
+        search_words = query
         # return search_words
         results = {}
-        for word in search_words:
-            word_results = perform_news_search(word)
-            # TODO Check for duplicates 
-            results['news'] = word_results
+        word_results = perform_news_search(search_words)
+        # TODO Check for duplicates
+        results['news'] = word_results
         return jsonify(results)
     except Exception as e:
         return jsonify({'error': str(e)}), 500
-    
+
+
 @search_news_api.route('/api/test', methods=['GET'])
 def get_search_results_test():
     try:
@@ -35,20 +40,31 @@ def get_search_results_test():
     except Exception as e:
         return jsonify({'error': str(e)}), 500
 
+
 def perform_news_search(word):
-    word_lower = word.lower()
-    news_query = NewsModel.query.filter(or_(func.lower(NewsModel.title).like(f"%{word_lower}%"), 
-                                         func.lower(NewsModel.content).like(f"%{word_lower}%"),
-                                         func.lower(NewsModel.author).like(f"%{word_lower}%"),
-                                         func.lower(NewsModel.description).like(f"%{word_lower}%"),
-                                         func.lower(NewsModel.source_name).like(f"%{word_lower}%")))
-    
+
+    if (word.isalpha()):
+        word_lower = word.lower()
+    else:
+        word_lower = word
+
+    news_query = NewsModel.query.filter(or_(func.lower(NewsModel.title).like(f"%{word_lower}%"),
+                                            func.lower(NewsModel.content).like(
+                                                f"%{word_lower}%"),
+                                            func.lower(NewsModel.author).like(
+                                                f"%{word_lower}%"),
+                                            func.lower(NewsModel.description).like(
+                                                f"%{word_lower}%"),
+                                            func.lower(NewsModel.source_name).like(
+                                                f"%{word_lower}%"),
+                                            func.lower(NewsModel.published_at).like(f"%{word_lower}%")))
+
     authors = request.args.get("authors", "")
     print("LENGTH: ", len(authors))
 
     if len(authors) > 0:
         possible_author_filters = ["zerohedge.com", "newsweek.com",
-                                    "businessinsider.com", "ZEIT ONLINE: News -", "feedfeeder", "aol.com"]
+                                   "businessinsider.com", "ZEIT ONLINE: News -", "feedfeeder", "aol.com"]
         authors_list = [author.strip() for author in authors.split(',')]
         print("AUTHORS LIST: ", authors)
 
@@ -74,8 +90,8 @@ def perform_news_search(word):
 
     if len(sources) > 0:
         possible_source_filters = ["taz.de", "STERN.de",
-                                    "Portfolio.hu", "Marketscreener.com", "Freerepublic.com",
-                                    "DW (English)", "Diepresse.com", "Die Zeit", "Biztoc.com", "Others"]
+                                   "Portfolio.hu", "Marketscreener.com", "Freerepublic.com",
+                                   "DW (English)", "Diepresse.com", "Die Zeit", "Biztoc.com", "Others"]
         sources_list = [source.strip() for source in sources.split(',')]
         print("SOURCE LIST: ", sources)
 
@@ -154,43 +170,52 @@ def perform_news_search(word):
 
 ################################################################
 
+
 @search_asylum_countries_api.route('/<query>', methods=['GET'])
 def get_search_results(query):
     try:
-        search_words = query.split()
+        search_words = query
         # return search_words
         results = {}
-        for word in search_words:
-            word_results = perform_countries_search(word)
-            # TODO Check for duplicates 
-            results['countries'] = word_results
+        word_results = perform_countries_search(search_words)
+        # TODO Check for duplicates
+        results['countries'] = word_results
         return jsonify(results)
     except Exception as e:
         return jsonify({'error': str(e)}), 500
-    
+
+
 def perform_countries_search(word):
-    word_lower = word.lower()
-    country_query = AsylumCountryModel.query.filter(or_(func.lower(AsylumCountryModel.name).like(f"%{word_lower}%"), 
-                                         func.lower(AsylumCountryModel.capital).like(f"%{word_lower}%"),
-                                         func.lower(AsylumCountryModel.flag).like(f"%{word_lower}%"),
-                                         func.lower(AsylumCountryModel.languages).like(f"%{word_lower}%"),
-                                         func.lower(AsylumCountryModel.region).like(f"%{word_lower}%")))
-    
+    if (word.isalpha()):
+        word_lower = word.lower()
+    else:
+        word_lower = word
+    # word_lower = word
+
+    country_query = AsylumCountryModel.query.filter(or_(func.lower(AsylumCountryModel.name).like(f"%{word_lower}%"),
+                                                        func.lower(AsylumCountryModel.capital).like(
+                                                            f"%{word_lower}%"),
+                                                        func.lower(AsylumCountryModel.population).like(
+                                                            f"%{word_lower}%"),
+                                                        func.lower(AsylumCountryModel.languages).like(
+                                                            f"%{word_lower}%"),
+                                                        func.lower(AsylumCountryModel.region).like(f"%{word_lower}%")))
+
     regions = request.args.get("regions", "")
     regions_list = [region.strip() for region in regions.split(',')]
 
     if len(regions) > 0:
-            country_query = country_query.filter(
-                AsylumCountryModel.region.in_(regions_list))
+        country_query = country_query.filter(
+            AsylumCountryModel.region.in_(regions_list))
 
     languages = request.args.get("languages", "")
 
     if len(languages) > 0:
         possible_languages_filters = ["Arabic", "English",
-                                        "Spanish", "French", "Dutch", "German",
-                                        "Other"]
+                                      "Spanish", "French", "Dutch", "German",
+                                      "Other"]
         languages_list = [language.strip()
-                            for language in languages.split(',')]
+                          for language in languages.split(',')]
 
         if "Other" in languages_list:
 
@@ -250,9 +275,6 @@ def perform_countries_search(word):
     else:
         asylum_data = country_query.all()
 
-
-
-    
     found_results = []
     for countries_item in asylum_data:
         temp_dict = {
@@ -270,36 +292,47 @@ def perform_countries_search(word):
 
 ################################################################
 
+
 @search_support_groups_api.route('/<query>', methods=['GET'])
 def get_search_results(query):
     try:
-        search_words = query.split()
+        search_words = query
         # return search_words
         results = {}
-        for word in search_words:
-            word_results = perform_support_groups_search(word)
-            # TODO Check for duplicates 
-            results['support_groups'] = word_results
+
+        word_results = perform_support_groups_search(search_words)
+        # TODO Check for duplicates
+        results['support_groups'] = word_results
         return jsonify(results)
     except Exception as e:
         return jsonify({'error': str(e)}), 500
-    
+
+
 def perform_support_groups_search(word):
-    word_lower = word.lower()
-    support_query = SupportGroupsModel.query.filter(or_(func.lower(SupportGroupsModel.name).like(f"%{word_lower}%"), 
-                                         func.lower(SupportGroupsModel.location).like(f"%{word_lower}%"),
-                                         func.lower(SupportGroupsModel.mission_stmt).like(f"%{word_lower}%")))
-    
+
+    if (word.isalpha()):
+        word_lower = word.lower()
+    else:
+        word_lower = word
+    support_query = SupportGroupsModel.query.filter(or_(func.lower(SupportGroupsModel.name).like(f"%{word_lower}%"),
+                                                        func.lower(SupportGroupsModel.location).like(
+                                                            f"%{word_lower}%"),
+                                                        func.lower(SupportGroupsModel.mission_stmt).like(
+                                                            f"%{word_lower}%"),
+                                                        func.lower(SupportGroupsModel.rating).like(
+                                                            f"%{word_lower}%"),
+                                                        func.lower(SupportGroupsModel.phn_no).like(f"%{word_lower}%")))
+
     locations = request.args.get("location", "")
     locations_list = [location.strip()
-                        for location in locations.split(';')]
+                      for location in locations.split(';')]
 
     print("LOCATION LIST: ", locations_list)
 
     if len(locations) > 0:
         possible_locations_filters = ["Alexandria , VA", "Cincinnati , OH",
-                                        "FairFax, VA", "Minneapolis, MN", "New York , NY", "New York, , NY", "Santa Barbara , CA", "Washington , DC", "Minneapolis , MN",
-                                        "Others"]
+                                      "FairFax, VA", "Minneapolis, MN", "New York , NY", "New York, , NY", "Santa Barbara , CA", "Washington , DC", "Minneapolis , MN",
+                                      "Others"]
 
         if "Others" in locations_list:
 
@@ -342,7 +375,6 @@ def perform_support_groups_search(word):
             print("GETTING HERE")
             support_query = support_query.filter(or_(*rating_conditions))
 
-
     sort_by = request.args.get('sort_by', 'id')
     order = request.args.get('order', 'asc')
 
@@ -384,7 +416,6 @@ def perform_support_groups_search(word):
     else:
         support_groups_data = support_query.all()
 
-
     # id = db.Column(db.Integer, primary_key=True)
     # name = db.Column(db.String(255), nullable=False)
     # location = db.Column(db.String(255), nullable=False)
@@ -393,7 +424,7 @@ def perform_support_groups_search(word):
     # mission_stmt = db.Column(db.Text, nullable=False)
     # website_url = db.Column(db.Text, nullable=False)
     # picture_url = db.Column(db.Text, nullable=False)
-    
+
     found_results = []
     for support_groups_item in support_groups_data:
         temp_dict = {
@@ -411,6 +442,5 @@ def perform_support_groups_search(word):
     return found_results
 
 
-if __name__ == '__main__':  
-   flaskApp.run(port=5000, debug=True)
-   
+if __name__ == '__main__':
+    flaskApp.run(port=5000, debug=True)
