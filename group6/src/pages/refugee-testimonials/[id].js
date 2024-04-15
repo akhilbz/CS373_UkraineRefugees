@@ -12,7 +12,11 @@ export default function TestimonialPage() {
   const router = useRouter();
   const { id } = router.query; // Accessing the dynamic part of the URL
 
-  const center = { lat: 48.3794, lng: 31.1656 }
+  // Randomize the Google Maps center within Ukraine and surrounding areas
+  const [center, setCenter] = useState({
+    lat: Math.random() * (52 - 44) + 44,  // Latitude between 44 and 52
+    lng: Math.random() * (40 - 22) + 22   // Longitude between 22 and 40
+  });
   const { isLoaded } = useJsApiLoader({
     googleMapsApiKey: process.env.NEXT_PUBLIC_REACT_APP_GOOGLE_MAPS_API_KEY,
   })
@@ -62,7 +66,7 @@ export default function TestimonialPage() {
                 mapTypeControl: false,
                 fullscreenControl: false,
               }}>
-              <Marker position={{ lat: refTestimonial?.location[0] ?? 48.3794, lng: refTestimonial?.location[1] ?? 31.1656 }} />
+              <Marker position={center} />
             </GoogleMap>
             </div>
             </div>

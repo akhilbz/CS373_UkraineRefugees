@@ -19,7 +19,14 @@ const NewsDetailPage = () => {
   const [loading, setLoading] = useState(true);
 
   // Load the Google Maps API
-  const center = { lat: -34.397, lng: 150.644 };
+  // const center = { lat: -34.397, lng: 150.644 };
+
+  // Randomize the Google Maps center within Ukraine and surrounding areas
+  const [center, setCenter] = useState({
+    lat: Math.random() * (52 - 44) + 44,  // Latitude between 44 and 52
+    lng: Math.random() * (40 - 22) + 22   // Longitude between 22 and 40
+  });
+
   const { isLoaded } = useJsApiLoader({
     googleMapsApiKey: process.env.NEXT_PUBLIC_REACT_APP_GOOGLE_MAPS_API_KEY,
 })

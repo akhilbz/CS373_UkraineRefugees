@@ -19,8 +19,20 @@ const CountryDetailPage = () => {
     const [loading, setLoading] = useState(true);
     const [map, setMap] = useState(null);
 
+    const continentCoords = {
+      'Africa': { lat: 1.6508, lng: 27.8493 },
+      'Antarctica': { lat: -82.8628, lng: 135.0000 },
+      'Asia': { lat: 34.0479, lng: 100.6197 },
+      'Europe': { lat: 54.5260, lng: 15.2551 },
+      'Americas': { lat: 54.5260, lng: -105.2551 },
+      'Oceania': { lat: -18.7669, lng: 140.6675 },
+    };
+
     // Example center location for the map
-    const center = { lat: -34.397, lng: 150.644 };
+    const [center, setCenter] = useState({
+      lat: Math.random() * (52 - 44) + 44,  // Latitude between 44 and 52
+      lng: Math.random() * (40 - 22) + 22   // Longitude between 22 and 40
+    });
 
     // Load the Google Maps API
     const { isLoaded } = useJsApiLoader({
@@ -42,6 +54,13 @@ const CountryDetailPage = () => {
                 setCountry(response.data);
                 setSingleGroupsInstance(response2.data)
                 setSingleNewsInstance(response3.data)
+
+                // Update map center based on the country's region
+                const regionCoords = continentCoords[response.data.region];
+                if (regionCoords) {
+                    setCenter(regionCoords);
+                }
+
             } catch (error) {
                 console.error('Error fetching country details', error);
             }

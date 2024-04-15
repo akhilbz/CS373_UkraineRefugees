@@ -182,7 +182,7 @@ class Test(unittest.TestCase):
 
         total_countries_text_element = WebDriverWait(self.driver, 10).until(
             EC.visibility_of_element_located(
-                (By.CLASS_NAME, "font-light.text-xl"))
+                (By.CLASS_NAME, "font-light text-xl"))
         )
         
         total_countries_text = "Total News and Media: 167"
