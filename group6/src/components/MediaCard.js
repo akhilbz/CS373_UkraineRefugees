@@ -1,7 +1,35 @@
 import React from "react";
 import Link from 'next/link';
+import { useState, useEffect } from "react";
 
 export default function MediaCard({ media_data }) {
+
+    const [imageSrc, setImageSrc] = useState('');
+
+    const placeholderImages = [
+        '/placeholder1.jpeg',
+        '/placeholder2.jpeg',
+        '/placeholder3.jpeg',
+        '/placeholder4.jpeg',
+        '/placeholder5.jpeg',
+        '/placeholder6.jpeg',
+        '/placeholder7.jpeg'
+    ];
+
+    // Function to randomly select a placeholder image
+    const getRandomPlaceholder = () => {
+        const randomIndex = Math.floor(Math.random() * placeholderImages.length);
+        return placeholderImages[randomIndex];
+    };
+
+    useEffect(() => {
+        const img = new Image();
+        img.onload = () => setImageSrc(media_data.urlToImage);
+        img.onerror = () => setImageSrc(getRandomPlaceholder());
+        img.src = media_data.urlToImage || getRandomPlaceholder(); // Set initial source
+    }, [media_data.urlToImage]);
+
+
     const truncateText = (text, maxLength) => {
         if (text && text.length > maxLength) {
             return text.slice(0, maxLength) + "...";
@@ -25,7 +53,7 @@ export default function MediaCard({ media_data }) {
         <div className="flex flex-col rounded-2xl h-full overflow-hidden"> {/* Card container */}
             <div className="flex-grow"> {/* Content container */}
                 <div className="flex justify-center bg-black"> {/* Image container */}
-                    <img src={media_data.urlToImage || 'path_to_some_default_image.jpg'} alt={media_data.title} className="h-[200px] w-full object-cover" />
+                    <img src={imageSrc} alt={media_data.title} className="h-[200px] w-full object-cover" />
                 </div>
                 <div className="border-b-[1px]"> {/* Title section */}
                     <div className="m-2">

@@ -14,12 +14,11 @@ const NewsDetailPage = () => {
   const { id } = router.query;
 
   const [newsItem, setNewsItem] = useState(null);
+  const [imageURL, setImageURL] = useState('');
+
   const [singleCountryInstance, setSingleCountriesInstance] = useState(null);
   const [singleGroupsInstance, setSingleGroupsInstance] = useState(null);
   const [loading, setLoading] = useState(true);
-
-  // Load the Google Maps API
-  // const center = { lat: -34.397, lng: 150.644 };
 
   // Randomize the Google Maps center within Ukraine and surrounding areas
   const [center, setCenter] = useState({
@@ -30,6 +29,22 @@ const NewsDetailPage = () => {
   const { isLoaded } = useJsApiLoader({
     googleMapsApiKey: process.env.NEXT_PUBLIC_REACT_APP_GOOGLE_MAPS_API_KEY,
 })
+
+  const placeholderImages = [
+    '/placeholder1.jpeg',
+    '/placeholder2.jpeg',
+    '/placeholder3.jpeg',
+    '/placeholder4.jpeg',
+    '/placeholder5.jpeg',
+    '/placeholder6.jpeg',
+    '/placeholder7.jpeg'
+  ];
+
+  // Function to randomly select a placeholder image
+  const getRandomPlaceholder = () => {
+    const randomIndex = Math.floor(Math.random() * placeholderImages.length);
+    return placeholderImages[randomIndex];
+  };
 
   useEffect(() => {
     if (id && isLoaded) {
@@ -45,9 +60,12 @@ const NewsDetailPage = () => {
           setNewsItem(response.data);
           setSingleCountriesInstance(response2.data)
           setSingleGroupsInstance(response3.data)
+          validateImageURL(response.data.urlToImage);
 
         } catch (error) {
           console.error('Error fetching news details', error);
+          setImageURL(getRandomPlaceholder());
+
         }
         setLoading(false);
       };
@@ -55,6 +73,13 @@ const NewsDetailPage = () => {
       fetchNewsDetails();
     }
   }, [id, isLoaded]);
+
+  const validateImageURL = (url) => {
+    const img = new Image();
+    img.onload = () => setImageURL(url);  // Image is valid
+    img.onerror = () => setImageURL(getRandomPlaceholder());
+    img.src = url;
+  };
 
   const formatDate = (dateString) => {
     const options = { year: 'numeric', month: 'long', day: 'numeric' };
@@ -84,7 +109,7 @@ const NewsDetailPage = () => {
         <h1 style={{ textAlign: 'center', fontSize: '24px', marginTop: '20px' }}>{newsItem.title}</h1>
         <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '20px' }}>
           <img 
-            src={newsItem.urlToImage} 
+            src={imageURL} 
             alt={`Cover of ${newsItem.title}`} 
             style={{ maxWidth: '100%', height: 'auto', boxShadow: '0 4px 8px 0 rgba(0,0,0,0.2)' }} 
           />
