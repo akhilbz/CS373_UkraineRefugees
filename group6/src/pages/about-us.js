@@ -227,8 +227,8 @@ export default function AboutUs() {
                     const issues = allClosedIssues.filter(issue => issue.assignee && issue.assignee.username === member.username).length;
 
                     if (member.gitLabName == 'chumaanigbogu') {
-                        console.log("CHUMAS COMMITS: ", commits);
-                        console.log("CHUMAS ISSUES: ", issues);
+                        console.log("CHUMA: ", commits);
+                        console.log("CHUMA I: ", issues);
                     }
                     
                     return { ...member, commits, issues };
