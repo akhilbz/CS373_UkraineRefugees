@@ -1,4 +1,4 @@
-import React, { useState } from 'react'; // Import useState
+import React, { useState } from 'react';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import styles from '../styles/Cursor.module.css';
@@ -29,8 +29,8 @@ const NavBar = () => {
             {/* Centered navigation links */}
             <div className="flex items-center justify-center flex-grow">
                 <div className="flex justify-center w-auto space-x-4">
-                    {['/', '/about-us', '/asylum-countries', '/news', '/support-groups'].map((path, index) => {
-                        const text = ['Home', 'About', 'Asylum Countries', 'News and Media', 'Support Groups'][index];
+                    {['/', '/about-us', '/asylum-countries', '/news', '/support-groups', '/visuals'].map((path, index) => {
+                        const text = ['Home', 'About', 'Asylum Countries', 'News and Media', 'Support Groups', 'Visuals'][index];
                         return (
                             <Link href={path} passHref key={path}>
                                 <div className={`${styles.cursorHover} ${isActive(path) ? styles.activeLink : ''}`}>
