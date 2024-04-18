@@ -14,7 +14,7 @@ export default function AsylumCountriesCard({ country_data }) {
     };
 
     return (
-        <div className="flex flex-col h-full shadow-lg" style={{ overflow: 'hidden'}}>
+        <div className="flex flex-col rounded-b-2xl h-full shadow-lg" style={{ overflow: 'hidden'}}>
             {/* Image tag, assuming country_data.flag is a URL to the image */}
             <img src={country_data.flag} alt={`Flag of ${country_data.name}`} className="h-[200px] w-full object-cover" />
             <div className="p-2 text-center">

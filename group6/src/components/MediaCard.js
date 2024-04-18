@@ -50,9 +50,9 @@ export default function MediaCard({ media_data }) {
     console.log("MEDIA ID: ", media_data.id)
 
     return (
-        <div className="flex flex-col rounded-2xl h-full overflow-hidden"> {/* Card container */}
+        <div className="flex flex-col rounded-b-2xl h-full overflow-hidden shadow-lg"> {/* Card container */}
             <div className="flex-grow"> {/* Content container */}
-                <div className="flex justify-center bg-black"> {/* Image container */}
+                <div className="flex justify-center bg-black "> {/* Image container */}
                     <img src={imageSrc} alt={media_data.title} className="h-[200px] w-full object-cover" />
                 </div>
                 <div className="border-b-[1px]"> {/* Title section */}
@@ -71,7 +71,7 @@ export default function MediaCard({ media_data }) {
                     <p className="line-clamp-2 text-sm" dangerouslySetInnerHTML={highlightSearchWord(truncateText(media_data.description, 150), media_data.searchWord)}></p>
                 </div>
             </div>
-            <div className="flex justify-center pb-1"> {/* Button at the bottom */}
+            <div className="flex justify-center pb-1 rounded-b-2xl"> {/* Button at the bottom */}
                 <Link href={mediaDetailsEndpoint}>
                     <button className="h-[25px] w-[85px] bg-slate-300 rounded-lg text-xs">Read More</button>
                 </Link>

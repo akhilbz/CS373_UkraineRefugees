@@ -15,7 +15,7 @@ export default function SupportCard({ support_groups_data }) {
     };
 
     return (
-        <div className="flex flex-col rounded-2xl h-full overflow-hidden">
+        <div className="flex flex-col rounded-b-2xl h-full overflow-hidden shadow-lg">
             <div className="flex-grow">
                 <div className="rounded-t-2xl flex items-center justify-center bg-yellow-600 h-[50px]">
                     <h1 className="text-white text-2xl font-light text-center" dangerouslySetInnerHTML={highlightSearchWord(support_groups_data.name, support_groups_data.searchWord)}></h1>
