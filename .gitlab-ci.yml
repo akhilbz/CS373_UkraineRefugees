@@ -6,7 +6,9 @@ stages:
   - f_jest
 
 frontend_tests:
-    pass
+    script:
+     - echo "Hello, $GITLAB_USER_LOGIN!"
+
     # stage: f_test1
     # image: python:3
     # services:
@@ -33,7 +35,8 @@ frontend_tests:
     #     - python3 FrontEndTests.py
 
 postman_tests:
-    pass
+    script:
+     - echo "Hello, $GITLAB_USER_LOGIN!"
     # stage: b_post
     # # image: postman/newman:alpine
     # before_script:
@@ -48,7 +51,8 @@ postman_tests:
     #     # - postman api lint 60d2f810-d71d-478c-8f12-4cf592f02747
 
 backend_tests:
-    pass
+    script:
+     - echo "Hello, $GITLAB_USER_LOGIN!"
     # stage: b_test1
     # image: python:3
     # script:
@@ -58,7 +62,8 @@ backend_tests:
     #     - python3 tests.py
 
 build_frontend:
-    pass
+    script:
+     - echo "Hello, $GITLAB_USER_LOGIN!"
 #   stage: build
 #   image: node:latest
 #   cache:
@@ -71,7 +76,8 @@ build_frontend:
 #       - npm run build
 
 jest_tests:
-    pass
+    script:
+     - echo "Hello, $GITLAB_USER_LOGIN!"
     # stage: f_jest
     # image: node:latest
     # script:
