@@ -1,9 +1,9 @@
-stages:
-  - f_test1
-  - b_test1
-  - b_post
-  - build
-  - f_jest
+# stages:
+#   - frontend_tests
+#   - b_test1
+#   - b_post
+#   - build
+#   - f_jest
 
 frontend_tests:
     script:
