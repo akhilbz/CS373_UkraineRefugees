@@ -15,7 +15,7 @@ const AsylumPieChart = () => {
         const fetchAsylumCountries = async () => {
             try {
                 // setLoading(true);
-                const response = await axios.get('https://cs373-backend.ukrainecrisis.me/api/asylum-countries', {
+                const response = await axios.get('http://127.0.0.1:5000/api/asylum-countries', {
                     params: {
                         sort_by: sortOption,
                         order: orderBy,
@@ -52,7 +52,7 @@ const AsylumPieChart = () => {
 
         fetchAsylumCountries();
 
-    }, [sortOption, orderBy, selectedLanguages, selectedRegions, asylumRegionCounts, asylumCountries]);
+    }, [sortOption, orderBy, selectedLanguages, selectedRegions]);
 
 
 
