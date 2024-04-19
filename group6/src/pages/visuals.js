@@ -11,13 +11,6 @@ const VisualsPage = () => {
         setSelectedTab(newValue);
     };
 
-    // const random_data = [
-    //     { region: 'Americas', percentage: 5 },
-    //     { region: 'Europe', percentage: 20 },
-    //     { region: 'Asia', percentage: 35 },
-    //     { region: 'Australia', percentage: 15 },
-    //   ];
-
     const renderTabContent = () => {
         switch (selectedTab) {
             case 0:
