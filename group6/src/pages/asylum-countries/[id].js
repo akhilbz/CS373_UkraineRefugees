@@ -157,12 +157,12 @@ const CountryDetailPage = () => {
           </div>
           <Grid container spacing={3} style={gridContainerStyle}>
             <Grid item xs={12} md={6}>
-            <Card className='rounded-2xl' style={{ width: '100%', maxHeight: '400px' }}>
+            <Card className='rounded-2xl' style={{ width: '100%'}}>
                 <SupportCard support_groups_data={singleGroupsInstance} />
               </Card>
             </Grid>
             <Grid item xs={12} md={6}>
-            <Card className='rounded-2xl' style={{ width: '100%', maxHeight: '400px' }}>
+            <Card className='rounded-2xl' style={{ width: '100%'}}>
                 <MediaCard media_data={singleNewsInstance} />
               </Card>
             </Grid>

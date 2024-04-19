@@ -163,13 +163,13 @@ export default function SupportGroupDetailPage() {
         <Grid container spacing={3} style={{ marginTop: '20px' }}>
           {/* Grid item for AsylumCountriesCard */}
           <Grid item xs={12} md={6} style={{ display: 'flex', justifyContent: 'center' }}>
-            <Card className='rounded-2xl' style={{ width: '100%', maxHeight: '400px' }}>
+            <Card className='rounded-2xl' style={{ width: '100%'}}>
               <AsylumCountriesCard country_data={singleCountryInstance} />
             </Card>
           </Grid>
           {/* Grid item for MediaCard */}
           <Grid item xs={12} md={6} style={{ display: 'flex', justifyContent: 'center' }}>
-            <Card className='rounded-2xl' style={{ width: '100%', maxHeight: '400px' }}>
+            <Card className='rounded-2xl' style={{ width: '100%'}}>
               <MediaCard media_data={singleNewsInstance} />
             </Card>
           </Grid>
