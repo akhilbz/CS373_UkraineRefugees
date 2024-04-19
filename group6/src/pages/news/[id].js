@@ -144,12 +144,12 @@ const NewsDetailPage = () => {
         {/* Adjust the Grid container to add top margin */}
         <Grid container spacing={3} style={{ marginTop: '20px' }}>
           <Grid item xs={12} md={6} style={{ display: 'flex', justifyContent: 'center' }}>
-            <Card className='rounded-2xl' style={{ width: '100%', maxHeight: '400px' }}>
+            <Card className='rounded-2xl' style={{ width: '100%'}}>
               <AsylumCountriesCard country_data={singleCountryInstance} />
             </Card>
           </Grid>
           <Grid item xs={12} md={6} style={{ display: 'flex', justifyContent: 'center' }}>
-            <Card className='rounded-2xl' style={{ width: '100%', maxHeight: '400px' }}>
+            <Card className='rounded-2xl' style={{ width: '100%'}}>
               <SupportCard support_groups_data={singleGroupsInstance} />
             </Card>
           </Grid>
