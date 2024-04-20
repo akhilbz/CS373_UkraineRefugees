@@ -14,7 +14,7 @@ const MediaBarChart = () => {
   useEffect(() => {
     const fetchNews = async () => {
         try {
-            const response = await axios.get('http://127.0.0.1:5000/api/news', {
+            const response = await axios.get('https://cs373-backend.ukrainecrisis.me/api/news', {
                 params: {
                     sort_by: sortOption,
                     order: orderBy,
