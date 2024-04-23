@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
 import NavBar from './NavBar';
 import { Tabs, Tab } from '@mui/material';
-import AsylumPieChart from '@/components/AsylumPieChart';
-import MediaBarChart from '@/components/MediaBarChart';
-import SupportHistogram from '@/components/SupportHistogram';
+import AsylumPieChart from '@/components/UkraineVisuals/AsylumPieChart';
+import MediaBarChart from '@/components/UkraineVisuals/MediaBarChart';
+import SupportHistogram from '@/components/UkraineVisuals/SupportHistogram';
+import OrganizationPieChart from '@/components/BBVisuals/OrganizationBarChart';
+import ScholarshipBarChart from '@/components/BBVisuals/ScholarshipBarChart';
+
 const VisualsPage = () => {
     const [selectedTab, setSelectedTab] = useState(0);
 
@@ -50,7 +53,34 @@ const VisualsPage = () => {
             case 1:
                 return (
                     <div>
-                        <p style={{ color: 'white', textAlign: 'center', marginTop: '20px', fontSize: '25px', fontWeight: 'bold', textDecorationLine: 'underline'  }}>Content for Developer Visuals</p>
+                        <p style={{ color: 'white', textAlign: 'center', marginTop: '20px', marginBottom: '20px', fontSize: '25px', fontWeight: 'bold', textDecorationLine: 'underline' }}>Content for Developer Visuals</p>
+                        <div className='flex justify-center mt-2 w-full space-x-4 mb-8'>
+                            <div className="space-y-4">
+                                <div className=' bg-slate-700 p-2 rounded-xl flex justify-center items-center'>   
+                                    <OrganizationPieChart />
+                                </div>
+                                <div className=' flex-col rounded-xl bg-white h-20 flex justify-center text-center'>
+                                    <h2 className='text-black font-semibold text-xl '>Organizations Bar Chart</h2>
+                                    <p className=' text-gray-500 font-light text-xs '>Description: Details the percentage of organizations per organization type.</p>
+                                </div>
+                                
+                                <div className=' bg-yellow-600 p-2 rounded-xl flex justify-center items-center'>   
+                                    <SupportHistogram />
+                                </div>
+                                <div className=' flex-col rounded-xl bg-yellow-600 h-20 flex justify-center text-center'>
+                                    <h2 className='text-white font-semibold text-xl '>Support Groups Histogram</h2>
+                                    <p className=' text-slate-50 font-light text-xs '>Description: Details the number of support groups at a range of ratings.</p>
+                                </div>
+                            </div>
+                            <div className=' bg-[#245372] p-2 rounded-xl flex-col flex justify-evenly '>   
+                                <ScholarshipBarChart />
+                                <div className=' flex-col rounded-xl flex justify-center text-center'>
+                                    <h2 className='text-white font-semibold text-xl '>Scholarship Amount Bar Graph</h2>
+                                    <p className=' text-slate-50 font-light text-xs '>Description: Details the number of scholarship that awarded the same amount.</p>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
                 );
             default:
