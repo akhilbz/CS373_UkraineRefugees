@@ -6,6 +6,7 @@ import MediaBarChart from '@/components/UkraineVisuals/MediaBarChart';
 import SupportHistogram from '@/components/UkraineVisuals/SupportHistogram';
 import OrganizationPieChart from '@/components/BBVisuals/OrganizationBarChart';
 import ScholarshipBarChart from '@/components/BBVisuals/ScholarshipBarChart';
+import CitiesHistogram from '@/components/BBVisuals/CitiesHistogram';
 
 const VisualsPage = () => {
     const [selectedTab, setSelectedTab] = useState(0);
@@ -65,11 +66,11 @@ const VisualsPage = () => {
                                 </div>
                                 
                                 <div className=' bg-yellow-600 p-2 rounded-xl flex justify-center items-center'>   
-                                    <SupportHistogram />
+                                    <CitiesHistogram />
                                 </div>
                                 <div className=' flex-col rounded-xl bg-yellow-600 h-20 flex justify-center text-center'>
-                                    <h2 className='text-white font-semibold text-xl '>Support Groups Histogram</h2>
-                                    <p className=' text-slate-50 font-light text-xs '>Description: Details the number of support groups at a range of ratings.</p>
+                                    <h2 className='text-white font-semibold text-xl '>City Population Histogram</h2>
+                                    <p className=' text-slate-50 font-light text-xs '>Description: Details the number of cities at a range of populations.</p>
                                 </div>
                             </div>
                             <div className=' bg-[#245372] p-2 rounded-xl flex-col flex justify-evenly '>   

@@ -49,7 +49,7 @@ const MediaBarChart = () => {
 
       // Set dimensions and margins for the graph
       const margin = { top: 25, right: 20, bottom: 20, left: 130 };
-      const width = 750 - margin.left - margin.right;
+      const width = 600 - margin.left - margin.right;
       const height = 800 - margin.top - margin.bottom;
 
       // Append SVG object to the ref element
