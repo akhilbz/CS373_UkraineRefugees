@@ -4,7 +4,7 @@ import { Tabs, Tab } from '@mui/material';
 import AsylumPieChart from '@/components/UkraineVisuals/AsylumPieChart';
 import MediaBarChart from '@/components/UkraineVisuals/MediaBarChart';
 import SupportHistogram from '@/components/UkraineVisuals/SupportHistogram';
-import OrganizationPieChart from '@/components/BBVisuals/OrganizationBarChart';
+import OrganizationPieChart from '@/components/BBVisuals/OrganizationPieChart';
 import ScholarshipBarChart from '@/components/BBVisuals/ScholarshipBarChart';
 import CitiesHistogram from '@/components/BBVisuals/CitiesHistogram';
 
