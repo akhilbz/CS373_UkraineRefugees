@@ -15,7 +15,7 @@ const CitiesHistogram = () => {
                 });
 
                 const cities_data = response.data.Cities;
-                
+                // console.log(cities_data.length);
                 // Find min and max ratings to determine range
                 var min_population = 1000000;
                 var max_population = 0;
@@ -24,20 +24,20 @@ const CitiesHistogram = () => {
                     if (population < min_population) min_population = population;
                     if (population > max_population) max_population = population;
                 });
-
+                // console.log(`${min_population} - ${max_population}`);
                 min_population = Math.floor(min_population / 100000) * 100000; // rounding down to nearest multiple of 100000 for range
                 max_population = Math.floor(max_population / 100000) * 100000; // rounding down to nearest multiple of 100000 for range
-                console.log(`${min_population} -\n${max_population}`);
-
+                
+                // console.log(`${min_population} - ${max_population}`);
                 // Get counts of support groups in a range of ratings
                 const cityPopulationCounts = {};
                 for (var i = min_population; i <= max_population; i += 100000) {
-                    const range_end = i + 90000;
+                    const range_end = i + 99999;
                     cities_data.forEach((city) => {
                         let population = city.population;
                         if (population >= i && population <= range_end) {
-                            var range = `${i / 1000}K - ${range_end / 1000}K`;
-                            console.log(range);
+                            var range = `${i / 1000}K - ${Math.floor(range_end / 1000)}K`;
+                            // console.log(range);
                             if (cityPopulationCounts[range]) {
                                 cityPopulationCounts[range] += 1;
                             } else {
@@ -52,7 +52,7 @@ const CitiesHistogram = () => {
                     range: city,
                     count: cityPopulationCounts[city]
                   }));
-                console.log(cityPopulationDataForChart);
+                // console.log(cityPopulationDataForChart);
                 setCities(response.data.Cities);
                 setCityPopulationCounts(cityPopulationDataForChart);
             } catch (error) {

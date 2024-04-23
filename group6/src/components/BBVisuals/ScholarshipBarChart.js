@@ -12,9 +12,9 @@ const MediaBarChart = () => {
         try {
             const response = await axios.get('https://api.brighterbeginnings.me/scholarships', {
             });
-            console.log(response);
+            // console.log(response);
             const scholarships_data = response.data.Scholarships;
-            // console.log(country_data.length)
+            // console.log(scholarships_data.length)
             const awardCounts = {};
             scholarships_data.forEach(scholarship => {
                 const award_amount = scholarship.award_amount;
@@ -43,7 +43,7 @@ const MediaBarChart = () => {
 
   useEffect(() => {
     if (awardAmountCounts && awardAmountCounts.length > 0) {
-        console.log("Here");
+        // console.log("Here");
       // Clear SVG before redrawing
       d3.select(ref.current).selectAll("*").remove();
 
