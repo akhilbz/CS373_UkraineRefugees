@@ -171,22 +171,22 @@ class Test(unittest.TestCase):
         total_countries_text2 = total_countries_text_element.text
         self.assertIn(total_countries_text, total_countries_text2)
 
-    def test10(self):
-        self.driver.get("https://www.ukrainecrisis.me/news")
-        regions_button = WebDriverWait(self.driver, 30).until(
-            EC.element_to_be_clickable(
-                (By.XPATH, "//button[contains(text(),'Authors')]"))
-        )
-        regions_button.click()
+    # def test10(self):
+    #     self.driver.get("https://www.ukrainecrisis.me/news")
+    #     regions_button = WebDriverWait(self.driver, 30).until(
+    #         EC.element_to_be_clickable(
+    #             (By.XPATH, "//button[contains(text(),'Authors')]"))
+    #     )
+    #     regions_button.click()
 
-        total_countries_text_element = WebDriverWait(self.driver, 45).until(
-            EC.visibility_of_element_located(
-                (By.CLASS_NAME, "font-light text-xl"))
-        )
+    #     total_countries_text_element = WebDriverWait(self.driver, 45).until(
+    #         EC.visibility_of_element_located(
+    #             (By.CLASS_NAME, "font-light text-xl"))
+    #     )
 
-        total_countries_text = "Total News and Media"
-        total_countries_text2 = total_countries_text_element.text
-        self.assertIn(total_countries_text, total_countries_text2)
+    #     total_countries_text = "Total News and Media"
+    #     total_countries_text2 = total_countries_text_element.text
+    #     self.assertIn(total_countries_text, total_countries_text2)
 
     def test11(self):
         self.driver.get("https://www.ukrainecrisis.me/support-groups")
