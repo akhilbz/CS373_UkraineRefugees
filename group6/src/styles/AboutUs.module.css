@@ -239,3 +239,22 @@
 .documentationLink:hover {
     background-color: #f0f0f0;
 }
+
+.pechaKuchaContainer {
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.pechaKuchaHeader {
+    font-size: 24px;
+    /* Increase font size as needed */
+    font-weight: bold;
+    /* Make the header bold */
+}
+
+.youtubeVideo {
+    display: flex;
+    justify-content: center;
+    /* Center the video horizontally */
+}
