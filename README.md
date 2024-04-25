@@ -21,7 +21,7 @@
 | 1          | 6d5ee9626fd69c08894a14485eef21f91124c491       |
 | 2          | 8328c8ed2932c441991cb822271fcbfd02d91218       |
 | 3          | 5a687edfd387d5f42bb08e8cfa77e7ad1215eb94       |
-| 4          |        |
+| 4          | 616a8509415a479c7345a6ddacacc07adddffe8c       |
 
 ### Phase Leader
 | Phase        | Phase Leader | Responsibilities |
@@ -29,7 +29,7 @@
 | 1          | Chuma                         | Delegating tasks, and motivating team                         |
 | 2          |Samuel                          |Getting the group past walls and hurdles                          |
 | 3          | Alex                         |  Early bird that help set the foundation                        |
-| 4          |                          |                          |
+| 4          |    Samuel                      |      Helped coordinate the team to the finish line                    |
 
 **GitLab Pipeline:** [https://gitlab.com/ajimenez1173/cs373-group-6/-/pipelines/1177324288](https://gitlab.com/ajimenez1173/cs373-group-6/-/pipelines/1177324288)
 
@@ -60,6 +60,15 @@
 | Alex                 |    6              |  8            |
 | Akhilesh            |        4          |     7         |
 | Derek                 |   9               |    8          |
+
+### Phase 4
+| Member    | Estimated | Actual |
+| ----------- | --------- | ------ |
+| Samuel                  |  4                |      5        |
+| Chuma                  | 4                 |   5           |
+| Alex                 |    4              |  5            |
+| Akhilesh            |        3          |     5         |
+| Derek                 |   3               |    5          |
 
 
 ### Project Proposal
